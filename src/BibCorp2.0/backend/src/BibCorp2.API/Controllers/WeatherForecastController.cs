@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace BibCorp__.api.Controllers;
+namespace BibCorp2.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
