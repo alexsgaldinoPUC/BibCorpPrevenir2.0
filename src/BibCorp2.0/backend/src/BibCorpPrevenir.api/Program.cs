@@ -1,5 +1,5 @@
 
-namespace BibCorp2.API
+namespace BibCorpPrevenir.API
 {
     public class Program
     {

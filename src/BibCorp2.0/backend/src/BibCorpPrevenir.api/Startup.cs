@@ -1,4 +1,4 @@
-namespace BibCorp2.API
+namespace BibCorpPrevenir.API
 {
     public class Startup
     {
@@ -16,7 +16,7 @@ namespace BibCorp2.API
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BibCorp2.API", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BibCorpPrevenir.API", Version = "v1" });
             });
         }
 
@@ -27,7 +27,7 @@ namespace BibCorp2.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BibCorp2.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BibCorpPrevenir.API v1"));
             }
 
             app.UseHttpsRedirection();
