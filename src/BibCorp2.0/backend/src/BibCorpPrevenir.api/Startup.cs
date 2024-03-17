@@ -1,3 +1,7 @@
+using System.Reflection;
+using BibCorpPrevenir.Persistence.Interfaces.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 namespace BibCorpPrevenir.API
 {
     public class Startup
@@ -13,10 +17,24 @@ namespace BibCorpPrevenir.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            // Injeção do DBCONTEXT no projeto
+            services
+              .AddDbContext<BibCorpPrevenirContext>(
+                context =>
+                {
+                    context.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                    context.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                }
+            );
+
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BibCorpPrevenir.API", Version = "v1" });
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BibCorpPrevenir.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend da biblioteca corporativa da empresa Prevenir" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -34,8 +52,17 @@ namespace BibCorpPrevenir.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseCors(cors =>
+                cors.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    );
+
+            app.UseHttpsRedirection();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
