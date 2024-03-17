@@ -1,7 +1,7 @@
 
 namespace BibCorpPrevenir.Domain.Models.Patrimonios
 {
-    class Patrimonio
+    public class Patrimonio
     {
         public int Id { get; set; }
         public string Localizacao { get; set; }
@@ -11,8 +11,8 @@ namespace BibCorpPrevenir.Domain.Models.Patrimonios
         public string Posicao { get; set; }
         public string ISBN { get; set; }
         public bool Status { get; set; }
-        public string DataCadastro { get; set; }
-        public string DataAtualizacao { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public DateTime DataAtualizacao { get; set; }
         public string DataIndisponibilidade { get; set; }
 //        public int? AcervoId { get; set; }
 //        public Acervo Acervo { get; set; }
