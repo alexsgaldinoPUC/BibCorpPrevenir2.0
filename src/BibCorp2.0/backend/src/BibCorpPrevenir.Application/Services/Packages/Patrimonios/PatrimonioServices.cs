@@ -11,7 +11,7 @@ using BibCorpPrevenir.Persistence.Util.Pages.Class;
 
 namespace BibCorpPrevenir.Application.Services.Packages.Patrimonios
 {
-    public class PatrimonioServices : IPratrimonioServices
+    public class PatrimonioServices : IPatrimonioServices
     {
         private readonly IPatrimonioPersistence _patrimonioPersistence;
         private readonly IMapper _mapper;
