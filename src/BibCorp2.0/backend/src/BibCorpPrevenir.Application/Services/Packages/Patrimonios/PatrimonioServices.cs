@@ -1,0 +1,188 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using BibCorpPrevenir.Application.Dtos.Patrimonios;
+using BibCorpPrevenir.Application.Services.Contracts.Patrimonios;
+using BibCorpPrevenir.Domain.Models.Patrimonios;
+using BibCorpPrevenir.Persistence.Interfaces.Contracts.Patrimonios;
+using BibCorpPrevenir.Persistence.Util.Pages.Class;
+
+namespace BibCorpPrevenir.Application.Services.Packages.Patrimonios
+{
+    public class PatrimonioServices : IPratrimonioServices
+    {
+        private readonly IPatrimonioPersistence _patrimonioPersistence;
+        private readonly IMapper _mapper;
+        public PatrimonioServices(
+            IPatrimonioPersistence patrimonioPersistence,
+            IMapper mapper)
+        {
+            _patrimonioPersistence = patrimonioPersistence;
+            _mapper = mapper;
+        }
+        public async Task<PatrimonioDto> CreatePatrimonio(PatrimonioDto patrimonioDto)
+        {
+            try
+            {
+                var patrimonio = _mapper.Map<Patrimonio>(patrimonioDto);
+
+                _patrimonioPersistence.Create<Patrimonio>(patrimonio);
+
+                if (await _patrimonioPersistence.SaveChangesAsync())
+                {
+                    var patrimonioRetorno = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonio.Id);
+
+                    return _mapper.Map<PatrimonioDto>(patrimonioRetorno);
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<bool> DeletePatrimonio(int patrimonioId)
+        {
+            try
+            {
+                var patrimonio = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioId);
+
+                if (patrimonio == null)
+                    throw new Exception("Patrimonio para deleção não foi encontrado");
+
+                _patrimonioPersistence.Delete<Patrimonio>(patrimonio);
+
+                return await _patrimonioPersistence.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<IEnumerable<PatrimonioDto>> GetAllPatrimoniosAsync()
+        {
+            try
+            {
+                Console.WriteLine("aquiiiiiiiii");
+                var patrimonios = await _patrimonioPersistence.GetAllPatrimoniosAsync();
+
+                if (patrimonios == null) return null;
+
+                var patrimonioMapper = _mapper.Map<PatrimonioDto[]>(patrimonios);
+
+                return patrimonioMapper;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<IEnumerable<PatrimonioDto>> GetAllPatrimoniosLivresAsync(string isbn)
+        {
+            try
+            {
+                var patrimonios = await _patrimonioPersistence.GetAllPatrimoniosLivresAsync(isbn);
+
+                if (patrimonios == null) return null;
+
+                var patrimonioMapper = _mapper.Map<PatrimonioDto[]>(patrimonios);
+
+                return patrimonioMapper;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<PatrimonioDto> GetPatrimonioByIdAsync(int patrimonioId)
+        {
+            try
+            {
+                var patrimonio = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioId);
+
+                if (patrimonio == null) return null;
+
+                var patrimonioMapper = _mapper.Map<PatrimonioDto>(patrimonio);
+
+                return patrimonioMapper;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<PatrimonioDto> UpdatePatrimonio(int patrimonioId, PatrimonioDto patrimoioDto)
+        {
+            try
+            {
+                var patrimonio = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioId);
+
+                if (patrimonio == null) return null;
+
+                var patrimonioUpdate = _mapper.Map(patrimoioDto, patrimonio);
+
+                _patrimonioPersistence.Update<Patrimonio>(patrimonioUpdate);
+
+                if (await _patrimonioPersistence.SaveChangesAsync())
+                {
+                    var patrimonioMapper = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioUpdate.Id);
+                    return _mapper.Map<PatrimonioDto>(patrimonioMapper);
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
+        public async Task<IEnumerable<PatrimonioDto>> GetPatrimoniosByISBNAsync(string ISBN)
+        {
+            try
+            {
+                var patrimonio = await _patrimonioPersistence.GetPatrimoniosByISBNAsync(ISBN);
+
+                if (patrimonio == null) return null;
+
+                var patrimonioMapper = _mapper.Map<PatrimonioDto[]>(patrimonio);
+
+                return patrimonioMapper;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<ListaDePaginas<PatrimonioDto>> GetPatrimoniosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao)
+        {
+            try
+            {
+                var patrimonios = await _patrimonioPersistence.GetPatrimoniosPaginacaoAsync(parametrosPaginacao);
+                Console.WriteLine("AquiService");
+
+                if (patrimonios == null) return null;
+
+                var patrimoniosMappper = _mapper.Map<ListaDePaginas<PatrimonioDto>>(patrimonios);
+
+                patrimoniosMappper.PaginaCorrente = patrimonios.PaginaCorrente;
+                patrimoniosMappper.TotalDePaginas = patrimonios.TotalDePaginas;
+                patrimoniosMappper.TamanhoDaPagina = patrimonios.TamanhoDaPagina;
+                patrimoniosMappper.ContadorTotal = patrimonios.ContadorTotal;
+
+                return patrimoniosMappper;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+    }
+}
