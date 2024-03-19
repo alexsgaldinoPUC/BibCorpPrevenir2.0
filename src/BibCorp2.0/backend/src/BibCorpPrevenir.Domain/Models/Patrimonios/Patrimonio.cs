@@ -14,7 +14,7 @@ namespace BibCorpPrevenir.Domain.Models.Patrimonios
         public DateTime DataCadastro { get; set; }
         public DateTime DataAtualizacao { get; set; }
         public string DataIndisponibilidade { get; set; }
-//        public int? AcervoId { get; set; }
+        public int? AcervoId { get; set; }
 //        public Acervo Acervo { get; set; }
     }
 }
