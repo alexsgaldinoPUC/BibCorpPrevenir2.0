@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'BibCorpPrevenir-APP' title`, () => {
+  it(`should have the 'BibCorpPrevenir-App' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('BibCorpPrevenir-APP');
+    expect(app.title).toEqual('BibCorpPrevenir-App');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, BibCorpPrevenir-APP');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, BibCorpPrevenir-App');
   });
 });

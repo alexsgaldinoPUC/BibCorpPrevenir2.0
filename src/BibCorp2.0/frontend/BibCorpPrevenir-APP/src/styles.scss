@@ -1,1 +1,205 @@
 /* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$theme-primary: mat.define-palette(mat.$indigo-palette);
+$theme-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$theme-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$theme: mat.define-light-theme((
+  color: (
+    primary: $theme-primary,
+    accent: $theme-accent,
+    warn: $theme-warn,
+  ),
+  typography: mat.define-typography-config(),
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+
+// regular style toast
+@import 'ngx-toastr/toastr';
+
+// if you'd like to use it without importing all of bootstrap it requires
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+// boostrap 5
+@import 'ngx-toastr/toastr-bs5-alert';
+//@import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
+
+/* Importing Bootstrap SCSS file. */
+
+
+//Configurações Collors
+.bibcorp-primary {
+  color: #0D4880;
+}
+
+.bibcorp-secondary {
+  color: #092e54;
+}
+
+
+
+.iconBadge {
+  transform: scale(1.3);
+  color: #0D4880;
+}
+
+.iconBadge2 {
+  transform: scale(1.3);
+  color: #0D4880;
+}
+
+
+@for $i from 0 through 20 {
+  $colors: rgb(random(255), random(255), random(255));
+
+  .text-color-#{$i} {
+    color: $colors
+  }
+
+  .bg-color-#{$i} {
+    background-color: $colors
+  }
+
+  .border-left-#{$i} {
+    border-left: 0.8rem solid $colors
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bibcorp-bg-image{
+  background: url("./assets/Images/backgroundImageBibCorp.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+// Configurações background
+.bibcorp-bg-primary {
+  background-color: #0D4880;
+  opacity: .9;
+}
+
+.bibcorp-bg-secondary {
+  background-color: #092e54;
+  opacity: .9;
+}
+
+.bibcorp-bg-white {
+  background-color: white;
+  opacity: .9;
+  color: black;
+}
+
+.bibcorp-bg-white2 {
+  background-color: #e6e3f4;
+  opacity: .9;
+}
+
+.bibcorp-titulo {
+  font-size: 1.3rem;
+}
+
+.bibcorp-titulo2 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+// Botão Voltar
+.btn-no-bg {
+  color: darkgray;
+  border: none;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+// Botão Voltar - mouse passando por cima
+.btn-no-bg:hover {
+  color: black;
+}
+
+.bibcorp-body {
+  border-bottom-right-radius: 20px;
+}
+
+.bibcorp-select {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.bibcorp-search {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.bibcorp-dropdown {
+  border-radius: 20px;
+}
+
+.bibcorp-box {
+  min-height: 550px;
+}
+
+.btn-blue {
+  background-color: #00BFFF;
+  border: none;
+  transition: background-color 0.3s;
+  color: white;
+  margin: auto;
+  display: block;
+}
+
+.btn-blue:hover {
+  background-color: #00BFFF;
+  color: white;
+}
+
+.nav-item {
+  margin-top: 30px;
+}
+
+.nav-item2 {
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: black;
+  font-size: .9em;
+}
+
+.nav-link2 {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: black;
+  font-size: .75em;
+}
