@@ -1,3 +1,4 @@
+using BibCorpPrevenir.Domain.Models.Emprestimos;
 
 namespace BibCorpPrevenir.Application.Dtos.Usuarios
 {
@@ -11,6 +12,6 @@ namespace BibCorpPrevenir.Application.Dtos.Usuarios
     public string Password { get; set; }
     public string UserName { get; set; }
     public string PhoneNumber { get; set; }
-//    public IEnumerable<Emprestimo> Emprestimos { get; set; }
+    public IEnumerable<Emprestimo> Emprestimos { get; set; }
   }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using BibCorpPrevenir.Domain.Models.Acervos;
 
 namespace BibCorpPrevenir.Application.Dtos.Patrimonios
 {
@@ -25,6 +26,6 @@ namespace BibCorpPrevenir.Application.Dtos.Patrimonios
     public string DataAtualizacao { get; set; }
     public string DataIndisponibilidade { get; set; }
     public int? AcervoId { get; set; }
-//    public Acervo Acervo { get; set; }
+    public Acervo Acervo { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+using BibCorpPrevenir.Application.Dtos.Usuarios;
+using Microsoft.AspNetCore.Identity;
+
+namespace BibCorpPrevenir.Application.Services.Contracts.Usuarios
+{
+  public interface IUsuarioServices
+  {
+    Task<UsuarioUpdateDto> CreateUsuario(UsuarioDto usuarioDto);
+    Task<UsuarioUpdateDto> UpdateUsuario(UsuarioUpdateDto usuarioUpdateDto);
+    Task<IEnumerable<UsuarioDto>> GetAllUsuariosByNomeAsync(string nome);
+    Task<IEnumerable<UsuarioDto>> GetAllUsuariosAsync();
+    Task<UsuarioDto> GetUsuarioByIdAsync(int usuarioId);
+    Task<SignInResult> CompararSenhaUsuarioAsync(UsuarioUpdateDto usuarioUpdateDto, string password);
+    Task<bool> VerificarUsuarioExisteAsync(string userName);
+    Task<UsuarioUpdateDto> GetUsuarioByUserNameAsync(string userName);
+  }
+}

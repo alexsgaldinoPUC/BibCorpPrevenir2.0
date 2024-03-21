@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using BibCorpPrevenir.api.Extensions.Pages;
+using BibCorpPrevenir.api.Util.Extensions.Pages;
 using BibCorpPrevenir.Application.Dtos.Patrimonios;
 using BibCorpPrevenir.Application.Services.Contracts.Patrimonios;
 using BibCorpPrevenir.Persistence.Util.Pages.Class;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace BibCorpPrevenir.api.Controllers.Patrimonios
 {
+    [Authorize]
     [Route("[controller]")]
     public class PatrimoniosController : ControllerBase
     {

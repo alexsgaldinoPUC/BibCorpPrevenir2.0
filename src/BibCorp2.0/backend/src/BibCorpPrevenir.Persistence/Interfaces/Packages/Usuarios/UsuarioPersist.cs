@@ -4,7 +4,7 @@ using BibCorpPrevenir.Persistence.Interfaces.Contracts.Usuarios;
 using BibCorpPrevenir.Persistence.Interfaces.Packages.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
+namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Usuarios
 {
   public class UsuarioPersistence : SharedPersistence, IUsuarioPersistence
   {

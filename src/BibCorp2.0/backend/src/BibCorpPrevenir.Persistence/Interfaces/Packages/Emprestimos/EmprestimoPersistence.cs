@@ -9,7 +9,7 @@ using BibCorpPrevenir.Persistence.Interfaces.Packages.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
+namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
 {
   public class EmprestimoPersistence : SharedPersistence, IEmprestimoPersistence
   {

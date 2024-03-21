@@ -6,7 +6,7 @@ using BibCorpPrevenir.Persistence.Interfaces.Packages.Shared;
 using BibCorpPrevenir.Persistence.Util.Pages.Class;
 using Microsoft.EntityFrameworkCore;
 
-namespace BibCorp.Persistence.Interfaces.Packages.Acervos
+namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Acervos
 {
   public class AcervoPersistence : SharedPersistence, IAcervoPersistence
   {
