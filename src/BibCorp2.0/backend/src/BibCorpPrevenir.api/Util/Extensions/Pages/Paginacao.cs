@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using BibCorpPrevenir.api.Util.Class;
 
-namespace BibCorpPrevenir.api.Extensions.Pages
+namespace BibCorpPrevenir.api.Util.Extensions.Pages
 {
   public static class Paginacao
   {
