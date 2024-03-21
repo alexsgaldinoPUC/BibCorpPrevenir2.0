@@ -27,8 +27,8 @@ namespace BibCorpPrevenir.API
               .AddDbContext<BibCorpPrevenirContext>(
                 context =>
                 {
-                    context.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
-                    context.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                    context.UseMySql(Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")));
+ //                   context.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 }
             );
 

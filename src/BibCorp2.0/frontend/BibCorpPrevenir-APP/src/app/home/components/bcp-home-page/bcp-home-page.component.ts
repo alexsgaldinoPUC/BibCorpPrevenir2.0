@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { BcpTitleBarComponent } from '../../../shared/components/bcp-title-bar/bcp-title-bar.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { BcpTitleBarComponent } from '../../../shared';
 
 @Component({
   selector: 'app-bcp-home-page',

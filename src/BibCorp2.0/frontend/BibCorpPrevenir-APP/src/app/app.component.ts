@@ -1,10 +1,12 @@
-import { BcpNavBarComponent } from './shared/components/bcp-nav-bar/bcp-nav-bar.component';
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+
+import { BcpNavBarComponent } from './shared';
 
 @Component({
   selector: 'app-root',
