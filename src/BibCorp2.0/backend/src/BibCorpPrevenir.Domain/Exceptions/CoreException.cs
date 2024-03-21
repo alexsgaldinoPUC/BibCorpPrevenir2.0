@@ -1,4 +1,4 @@
-namespace BibCorp.Domain.Exceptions
+namespace BibCorpPrevenir.Domain.Exceptions
 {
   public class CoreException: Exception
   {

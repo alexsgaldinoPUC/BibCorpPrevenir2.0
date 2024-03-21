@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BibCorpPrevenir.Domain.Models.Acervos;
+using BibCorpPrevenir.Domain.Models.Emprestimos;
 using BibCorpPrevenir.Domain.Models.Patrimonios;
 using BibCorpPrevenir.Domain.Models.Usuarios;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +17,10 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Contexts
 
     {
         public BibCorpPrevenirContext(DbContextOptions<BibCorpPrevenirContext> options) : base(options) { }
+        public DbSet<Acervo> Acervos { get; set; }
         public DbSet<Patrimonio> Patrimonios { get; set; }
+        public DbSet<Emprestimo> Emprestimos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,7 +47,22 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Contexts
               {
                   patrimonio.HasIndex(p => p.ISBN);
               });
+
+            // Empréstimos
+            modelBuilder.Entity<Emprestimo>(emprestimo =>
+            {
+                emprestimo.HasIndex(e => e.AcervoId);
+
+                emprestimo.HasIndex(e => e.PatrimonioId);
+
+                emprestimo.HasIndex(e => e.UserName);
+            });
+
+            // Acervos
+            modelBuilder.Entity<Acervo>(acervo =>
+            {
+                acervo.HasIndex(a => a.ISBN);
+            });
         }
     }
-
 }
