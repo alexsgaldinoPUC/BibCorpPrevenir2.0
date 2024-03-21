@@ -7,7 +7,7 @@ using BibCorpPrevenir.Persistence.Util.Pages.Class;
 
 namespace BibCorpPrevenir.Application.Services.Contracts.Patrimonios
 {
-    public interface IPratrimonioServices
+    public interface IPatrimonioServices
     {
     Task<IEnumerable<PatrimonioDto>> GetAllPatrimoniosAsync();
     Task<PatrimonioDto> GetPatrimonioByIdAsync(int patrimonioId);

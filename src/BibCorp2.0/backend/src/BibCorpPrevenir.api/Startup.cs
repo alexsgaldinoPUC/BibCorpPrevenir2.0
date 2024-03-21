@@ -1,5 +1,10 @@
 using System.Reflection;
+using System.Text.Json.Serialization;
+using BibCorpPrevenir.Application.Services.Contracts.Patrimonios;
+using BibCorpPrevenir.Application.Services.Packages.Patrimonios;
 using BibCorpPrevenir.Persistence.Interfaces.Contexts;
+using BibCorpPrevenir.Persistence.Interfaces.Contracts.Patrimonios;
+using BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios;
 using Microsoft.EntityFrameworkCore;
 
 namespace BibCorpPrevenir.API
@@ -27,14 +32,37 @@ namespace BibCorpPrevenir.API
                 }
             );
 
-            services.AddControllers();
+            services
+                .AddControllers()
+
+                // Já leva os enum convertidos na query
+                .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
+
+                 // Eliminar loop infinito da estrutura
+                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services
+                .AddCors();
+
+            //InjeÇão do mapeamento automático de campos (DTO)
+            services
+                .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //Injeção dos serviços de persistencias
+            services
+                .AddScoped<IPatrimonioServices, PatrimonioServices>();
+
+            //Injeção das interfaces de Persistencias
+            services
+                .AddScoped<IPatrimonioPersistence, PatrimonioPersistence>();
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BibCorpPrevenir.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend da biblioteca corporativa da empresa Prevenir" });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                options.IncludeXmlComments(xmlPath);
+//                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+//                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+//                options.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -53,7 +81,7 @@ namespace BibCorpPrevenir.API
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization();
+ //           app.UseAuthorization();
 
             app.UseCors(cors =>
                 cors.AllowAnyHeader()
@@ -61,12 +89,19 @@ namespace BibCorpPrevenir.API
                     .AllowAnyOrigin()
                     );
 
-            app.UseHttpsRedirection();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
         }
+    }
+
+    internal class PatrimonioService
+    {
+    }
+
+    internal interface IPatrimonioService
+    {
     }
 }
