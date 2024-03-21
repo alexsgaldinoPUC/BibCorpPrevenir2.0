@@ -1,4 +1,6 @@
 
+using BibCorpPrevenir.Domain.Models.Acervos;
+
 namespace BibCorpPrevenir.Domain.Models.Patrimonios
 {
     public class Patrimonio
@@ -15,6 +17,6 @@ namespace BibCorpPrevenir.Domain.Models.Patrimonios
         public DateTime DataAtualizacao { get; set; }
         public string DataIndisponibilidade { get; set; }
         public int? AcervoId { get; set; }
-//        public Acervo Acervo { get; set; }
+        public Acervo Acervo { get; set; }
     }
 }
