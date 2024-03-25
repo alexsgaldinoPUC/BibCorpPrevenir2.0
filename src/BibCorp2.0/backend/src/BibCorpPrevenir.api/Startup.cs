@@ -1,27 +1,33 @@
 using System.Reflection;
+using System.Text;
 using System.Text.Json.Serialization;
-using BibCorpPrevenir.Application.Services.Packages.Acervos;
-using BibCorpPrevenir.Application.Services.Packages.Emprestimos;
-using BibCorpPrevenir.Application.Services.Packages.Usuarios;
+using BibCorp.API.Controllers.Uploads;
+using BibCorpPrevenir.API.Controllers.Uploads;
 using BibCorpPrevenir.Application.Services.Contracts.Acervos;
 using BibCorpPrevenir.Application.Services.Contracts.Emprestimos;
 using BibCorpPrevenir.Application.Services.Contracts.Patrimonios;
 using BibCorpPrevenir.Application.Services.Contracts.Usuarios;
+using BibCorpPrevenir.Application.Services.Packages.Acervos;
+using BibCorpPrevenir.Application.Services.Packages.Emprestimos;
 using BibCorpPrevenir.Application.Services.Packages.Patrimonios;
+using BibCorpPrevenir.Application.Services.Packages.Usuarios;
+using BibCorpPrevenir.Config;
+using BibCorpPrevenir.Domain.Models.Usuarios;
 using BibCorpPrevenir.Persistence.Interfaces.Contexts;
 using BibCorpPrevenir.Persistence.Interfaces.Contracts.Acervos;
 using BibCorpPrevenir.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorpPrevenir.Persistence.Interfaces.Contracts.Patrimonios;
+using BibCorpPrevenir.Persistence.Interfaces.Contracts.Shared;
 using BibCorpPrevenir.Persistence.Interfaces.Contracts.Usuarios;
 using BibCorpPrevenir.Persistence.Interfaces.Packages.Acervos;
 using BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios;
+using BibCorpPrevenir.Persistence.Interfaces.Packages.Shared;
 using BibCorpPrevenir.Persistence.Interfaces.Packages.Usuarios;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using BibCorpPrevenir.Domain.Models.Usuarios;
 using Microsoft.OpenApi.Models;
 
 namespace BibCorpPrevenir.API
@@ -49,13 +55,6 @@ namespace BibCorpPrevenir.API
                 }
             );
 
-            services
-                .AddControllers()
-                // Já leva os enum convertidos na query
-                .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
-                // Eliminar loop infinito da estrutura
-                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
             // Injeção Identity
             services
                 .AddIdentityCore<Usuario>(options =>
@@ -75,24 +74,29 @@ namespace BibCorpPrevenir.API
 
             //Injeção de autenticação
             services
-              .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-              .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
                     {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
-                });
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                        };
+                    });
 
             services
-                .AddCors();
+                .AddControllers()
+                // Já leva os enum convertidos na query
+                .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
+                // Eliminar loop infinito da estrutura
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             //InjeÇão do mapeamento automático de campos (DTO)
             services
                 .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
             //Injeção dos serviços de persistencias
             services
@@ -100,14 +104,24 @@ namespace BibCorpPrevenir.API
                 .AddScoped<IEmprestimoServices, EmprestimoServices>()
                 .AddScoped<IPatrimonioServices, PatrimonioServices>()
                 .AddScoped<ITokenServices, TokenServices>()
-                .AddScoped<IUsuarioServices, UsuarioServices>(); ;
+                .AddScoped<IUsuarioServices, UsuarioServices>()
+                .AddScoped<IUploadService, UploadService>();
 
             //Injeção das interfaces de Persistencias
             services
                 .AddScoped<IAcervoPersistence, AcervoPersistence>()
                 .AddScoped<IEmprestimoPersistence, EmprestimoPersistence>()
                 .AddScoped<IPatrimonioPersistence, PatrimonioPersistence>()
-                .AddScoped<IUsuarioPersistence, UsuarioPersistence>();
+                .AddScoped<IUsuarioPersistence, UsuarioPersistence>()
+                .AddScoped<ISharedPersistence, SharedPersistence>();
+
+            services
+                .AddCors();
+
+            services.Configure<PersistenceConfiguration>(x =>
+                {
+                    x.PrazoRenovacao = Convert.ToInt32(Configuration["prazoRenovacao"]);
+                });
 
             services.AddSwaggerGen(options =>
             {
@@ -120,7 +134,7 @@ namespace BibCorpPrevenir.API
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = @"JWT Authorization header usando Beares. Entre com 'Bearer [espaço] em seguida coloque seu token.
-                                Exemplo: 'Bearer 12345abcdef'",
+                                    Exemplo: 'Bearer 12345abcdef'",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
@@ -143,36 +157,45 @@ namespace BibCorpPrevenir.API
                     }
                 });
             });
+
         }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        if (env.IsDevelopment())
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
-            app.UseSwagger();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+            }
+
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BibCorpPrevenir.API v1"));
-        }
 
-        app.UseHttpsRedirection();
+ //           app.UseHttpsRedirection();
 
-        app.UseRouting();
+            app.UseRouting();
 
-        app.UseAuthentication();
-        app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-        app.UseCors(cors =>
-            cors.AllowAnyHeader()
-                .AllowAnyMethod()
+            app.UseCors(cors => cors
                 .AllowAnyOrigin()
-                );
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
+
+            //Injeção de diretivas para utilização de diretórios
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+                RequestPath = new PathString("/Resources")
+            });
 
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
     }
-}
 }

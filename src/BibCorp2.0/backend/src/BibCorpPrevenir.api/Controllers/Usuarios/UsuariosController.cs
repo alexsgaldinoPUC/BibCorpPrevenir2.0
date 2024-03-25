@@ -1,7 +1,6 @@
 ﻿using BibCorpPrevenir.API.Util.Security;
 using BibCorpPrevenir.Application.Dtos.Usuarios;
 using BibCorpPrevenir.Application.Services.Contracts.Usuarios;
-using BibCorpPrevenir.Application.Services.Packages.Usuarios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,8 +28,9 @@ public class UsuariosController : ControllerBase
   {
     try
     {
+      Console.WriteLine("Cheguei aqui");
       var claimUserName = User.GetUserNameClaim();
-
+      Console.WriteLine(claimUserName);
       if (claimUserName == null) return Unauthorized();
 
       var usuario = await _usuarioService.GetUsuarioByUserNameAsync(claimUserName);
@@ -143,8 +143,8 @@ public class UsuariosController : ControllerBase
     }
   }
 
-  [HttpPost("Login")]
   [AllowAnonymous]
+  [HttpPost("Login")]
   public async Task<IActionResult> Login(UsuarioLoginDto usuarioLoginDto)
   {
     try

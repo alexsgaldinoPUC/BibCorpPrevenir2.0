@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BibCorpPrevenir.Persistence.Interfaces.Contexts;
+using BibCorpPrevenir.Persistence.Interfaces.Contracts.Shared;
 
 namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Shared
 {
-    public class SharedPersistence
+    public class SharedPersistence : ISharedPersistence
     {
         private readonly BibCorpPrevenirContext _context;
         public SharedPersistence(BibCorpPrevenirContext context)
