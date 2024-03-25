@@ -1,75 +1,46 @@
 <nav class="navbar">
   <div class="container">
     <ul class="navbar-nav">
+
       @if (usuarioLogado) {
-      <li class="nav-item dropdown">
-        <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+        <li class="nav-item dropdown">
+          <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
           aria-expanded="true">
           <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
             <img [src]="fotoURL" class="rounded-circle" style="width: 50px; height: 50px;">
-            {{usuarioAtivo}}
+            {{usuarioAtivo.userName}}
+            <p>Teste</p>
           </a>
         </div>
         <div class="dropdown-menu" data-popper-placement="bottom-start"
           style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
           <h6 class="dropdown-header">Navegar para</h6>
-          <!-- Condição adicionada aqui -->
+
           @if (!usuarioAdmin) {
           <a class="dropdown-item" routerLink="solicitacoes">Minhas Solicitações</a>
           }
+
           <a class="dropdown-item" routerLink="usuarios/perfil">Perfil</a>
         </div>
       </li>
-      }
+
+
+      } @else {
 
       @if (!usuarioAdmin) {
       <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" routerLink="/principal">
-          <mat-icon class="iconBadge mr-1">home</mat-icon>
+        <a class="h4 nav-link p-0 ms-4" routerLink="/homePage">
+          <mat-icon class="bcp-icon mr-1">home</mat-icon>
           Home
         </a>
       </li>
       }
 
-      @if (usuarioAdmin) {
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h6 nav-link p-0 ms-4" routerLink="home-admin">
-          <mat-icon class="iconBadge mr-1">home</mat-icon>
-          Home
-        </a>
-      </li>
-      <!--Gerenciar é visão apenas do Admin-->
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
-          <mat-icon class="iconBadge mr-1">settings</mat-icon>
-          Gerenciar
-        </a>
-      </li>
-      }
-
-      @if (!usuarioLogado) {
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" routerLink="/usuarios/login">
-          <mat-icon class="iconBadge mr-1">login</mat-icon>
-          Login
-        </a>
-      </li>
-
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" routerLink="/usuarios/cadastro">
-          <mat-icon class="iconBadge mr-1">person_add</mat-icon>
-          Cadastrar
-        </a>
-      </li>
-      }
-
-      @if (usuarioLogado) {
-      @if (usuarioAdmin) {
+      @if(usuarioAdmin) {
       <li class="nav-item dropdown">
-        <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-          aria-expanded="true">
+        <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
           <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
-            <mat-icon class="iconBadge mr-1">book</mat-icon>
+            <mat-icon class="bcp-icon mr-1">book</mat-icon>
             Patrimônio
           </a>
         </div>
@@ -80,43 +51,64 @@
           <a class="dropdown-item" routerLink="patrimonios/lista">Lista</a>
         </div>
       </li>
-      }
       <li class="nav-item dropdown">
         <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
           aria-expanded="true">
           <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
-            <mat-icon class="iconBadge mr-1">library_books</mat-icon>
+            <mat-icon class="bcp-icon mr-1">library_books</mat-icon>
             Acervos
           </a>
         </div>
         <div class="dropdown-menu" data-popper-placement="bottom-start"
           style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
           <h6 class="dropdown-header">Navegar para</h6>
-          @if (usuarioAdmin) {
-          <a class="dropdown-item" routerLink="acervos/novo"  >Novo</a>
-          }
+          <a class="dropdown-item" routerLink="acervos/novo">Novo</a>
           <a class="dropdown-item" routerLink="acervos/lista">Lista</a>
         </div>
       </li>
-      <!--<li class="nav-item dropdown">
-          <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
-            <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
-              <mat-icon class="iconBadge mr-1">dvr</mat-icon>
-              Solicitações
-            </a>
-          </div>
-          <div class="dropdown-menu" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
-            <h6 class="dropdown-header">Navegar para</h6>
-            <a class="dropdown-item"  routerLink="solicitacoes">Nova</a>
-          </div>
-        </li>-->
       <li class="nav-item dropdown">
         <a class="h4 nav-link p-0 ms-4" (click)="logout()">
-          <mat-icon class="iconBadge2 mr-1">logout</mat-icon>
+          <mat-icon class="bcp-icon mr-1">logout</mat-icon>
           Sair
+        </a>
+      </li>
+
+      }
+
+      @if(usuarioAdmin) {
+      <li class="nav-item" routerLinkActive="active">
+        <a class="h6 nav-link p-0 ms-4" routerLink="homeAdmin">
+          <mat-icon class="bcp-icon mr-1">home</mat-icon>
+          Home
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="h4 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
+          <mat-icon class="bcp-icon mr-1">settings</mat-icon>
+          Gerenciar
+        </a>
+      </li>
+      }
+
+      <li class="nav-item" routerLinkActive="active">
+        <a class="h4 nav-link p-0 ms-4" [routerLink]="['/login']">
+          <mat-icon class="bcp-icon mr-1">login</mat-icon>
+          Login
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active">
+        <a class="h4 nav-link p-0 ms-4" routerLink="/register">
+          <mat-icon class="bcp-icon mr-1">person_add</mat-icon>
+          Cadastrar
         </a>
       </li>
       }
     </ul>
   </div>
 </nav>
+
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>

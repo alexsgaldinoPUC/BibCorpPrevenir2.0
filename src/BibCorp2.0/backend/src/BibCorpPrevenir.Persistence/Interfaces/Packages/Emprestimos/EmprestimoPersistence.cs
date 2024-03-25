@@ -1,5 +1,3 @@
-
-using AutoMapper;
 using BibCorpPrevenir.Config;
 using BibCorpPrevenir.Domain.Exceptions;
 using BibCorpPrevenir.Domain.Models.Emprestimos;
@@ -16,7 +14,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
     private readonly BibCorpPrevenirContext _context;
     private readonly PersistenceConfiguration _persistenceConfiguration;
 
-    public EmprestimoPersistence(BibCorpPrevenirContext context, IMapper mapper, IOptions<PersistenceConfiguration> persistenceConfiguration) : base(context)
+    public EmprestimoPersistence(BibCorpPrevenirContext context, IOptions<PersistenceConfiguration> persistenceConfiguration) : base(context)
     {
       _context = context;
       _persistenceConfiguration = persistenceConfiguration.Value;

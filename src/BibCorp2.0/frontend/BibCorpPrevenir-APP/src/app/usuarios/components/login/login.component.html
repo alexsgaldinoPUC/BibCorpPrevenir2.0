@@ -1,0 +1,40 @@
+<div class="bcp-login-wrapper">
+  <div class="bcp-login-title">
+    <img src="../assets/images/thumbnail_logotipo.png" width="250px" alt="Logotipo Prevenir">
+    <div class="bcp-login-mensagem">
+      <p class="bcp-primary">Seja Bem-vindo!</p>
+    </div>
+    <div class="bcp-login-orientacao">
+      <p>Preencha os seus dados de login para acessar</p>
+    </div>
+  </div>
+  <div class="bcp-form-container">
+    <div class="bcp-form-inner">
+      <form #loginForm="ngForm" class="bcp-login" [formGroup]="formLogin" (ngSubmit)="login()">
+        <mat-form-field class="col-12 mt-5" appearance="fill">
+          <mat-label>Nome de Usuário:</mat-label>
+          <input matInput type="text" formControlName="userName" [ngClass]="fieldValidator(ctrF.userName)">
+          <mat-error class="invalid-feedback">{{messageReturned(ctrF.userName, '')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-12" appearance="fill">
+          <mat-label>Senha:</mat-label>
+          <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
+          <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
+        </mat-form-field>
+        <div class="flex row">
+          <button class="btn btn-primary m-0 p-2 " [disabled]="!formLogin.valid">
+            Entrar
+          </button>
+        </div>
+        <div class="bcp-signup-link mt-2" >
+          <div >
+            Novo por aqui? <a routerLink="/register">Cadastre-se</a>
+          </div>
+          <div id="bcp-acessar-acervo">
+            <a (click)="reloadPrincipal()">Acessar o acervo</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 using BibCorpPrevenir.api.Util.Extensions.Pages;
 using BibCorpPrevenir.Application.Dtos.Acervos;
 using BibCorpPrevenir.Application.Services.Contracts.Acervos;
-using BibCorpPrevenir.Application.Services.Packages.Acervos;
 using BibCorpPrevenir.Persistence.Util.Pages.Class;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +17,7 @@ public class AcervosController : ControllerBase
 
   public AcervosController
   (
-      AcervoServices acervoService
+      IAcervoServices acervoService
   )
   {
     _acervoService = acervoService;

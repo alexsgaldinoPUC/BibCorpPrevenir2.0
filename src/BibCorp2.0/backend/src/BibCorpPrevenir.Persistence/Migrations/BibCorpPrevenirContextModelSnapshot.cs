@@ -19,6 +19,125 @@ namespace BibCorpPrevenir.Persistence.Migrations
                 .HasAnnotation("ProductVersion", "7.0.17")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Acervos.Acervo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("AnoPublicacao")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Autor")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CapaUrl")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Comentarios")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("DataCriacao")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Edicao")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Editora")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Genero")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ISBN")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("QtdPaginas")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtdeDisponivel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtdeEmTransito")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtdeEmprestada")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Resumo")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("SubTitulo")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ISBN");
+
+                    b.ToTable("Acervos");
+                });
+
+            modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Emprestimos.Emprestimo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Acao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AcervoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DataDevolucao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataEmprestimo")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataPrevistaDevolucao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LocalDeColeta")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LocalDeEntrega")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("PatrimonioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtdeDiasAtraso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtdeDiasEmprestimo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcervoId");
+
+                    b.HasIndex("PatrimonioId");
+
+                    b.HasIndex("UserName");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Emprestimos");
+                });
+
             modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Patrimonios.Patrimonio", b =>
                 {
                     b.Property<int>("Id")
@@ -59,6 +178,8 @@ namespace BibCorpPrevenir.Persistence.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AcervoId");
 
                     b.HasIndex("ISBN");
 
@@ -268,6 +389,38 @@ namespace BibCorpPrevenir.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Emprestimos.Emprestimo", b =>
+                {
+                    b.HasOne("BibCorpPrevenir.Domain.Models.Acervos.Acervo", "Acervo")
+                        .WithMany()
+                        .HasForeignKey("AcervoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BibCorpPrevenir.Domain.Models.Patrimonios.Patrimonio", "Patrimonio")
+                        .WithMany()
+                        .HasForeignKey("PatrimonioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BibCorpPrevenir.Domain.Models.Usuarios.Usuario", null)
+                        .WithMany("Emprestimos")
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Acervo");
+
+                    b.Navigation("Patrimonio");
+                });
+
+            modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Patrimonios.Patrimonio", b =>
+                {
+                    b.HasOne("BibCorpPrevenir.Domain.Models.Acervos.Acervo", "Acervo")
+                        .WithMany("Patrimonios")
+                        .HasForeignKey("AcervoId");
+
+                    b.Navigation("Acervo");
+                });
+
             modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Usuarios.UsuarioPapel", b =>
                 {
                     b.HasOne("BibCorpPrevenir.Domain.Models.Usuarios.Papel", "Papel")
@@ -323,6 +476,11 @@ namespace BibCorpPrevenir.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Acervos.Acervo", b =>
+                {
+                    b.Navigation("Patrimonios");
+                });
+
             modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Usuarios.Papel", b =>
                 {
                     b.Navigation("UsuariosPapeis");
@@ -330,6 +488,8 @@ namespace BibCorpPrevenir.Persistence.Migrations
 
             modelBuilder.Entity("BibCorpPrevenir.Domain.Models.Usuarios.Usuario", b =>
                 {
+                    b.Navigation("Emprestimos");
+
                     b.Navigation("UsuariosPapeis");
                 });
 #pragma warning restore 612, 618

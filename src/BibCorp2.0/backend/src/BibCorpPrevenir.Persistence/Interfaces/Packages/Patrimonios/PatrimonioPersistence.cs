@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using BibCorpPrevenir.Domain.Models.Patrimonios;
 using BibCorpPrevenir.Persistence.Interfaces.Contexts;
 using BibCorpPrevenir.Persistence.Interfaces.Contracts.Patrimonios;
@@ -16,7 +15,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
     {
         private readonly BibCorpPrevenirContext _context;
 
-        public PatrimonioPersistence(BibCorpPrevenirContext context, IMapper mapper) : base(context)
+        public PatrimonioPersistence(BibCorpPrevenirContext context) : base(context)
         {
             _context = context;
         }
@@ -142,7 +141,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoLiberado")
                 {
                     query = _context.Patrimonios
-                   .Where(a => a.Status == false);
+                      .Where(a => a.Status == false);
                 }
             }
 

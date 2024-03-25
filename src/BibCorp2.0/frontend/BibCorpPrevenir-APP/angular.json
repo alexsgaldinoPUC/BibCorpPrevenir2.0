@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "BibCorpPrevenir-App": {
+    "BibCorpPrevenir-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -33,12 +33,7 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -68,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "BibCorpPrevenir-App:build:production"
+              "buildTarget": "BibCorpPrevenir-app:build:production"
             },
             "development": {
-              "buildTarget": "BibCorpPrevenir-App:build:development"
+              "buildTarget": "BibCorpPrevenir-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "BibCorpPrevenir-App:build"
+            "buildTarget": "BibCorpPrevenir-app:build"
           }
         },
         "test": {

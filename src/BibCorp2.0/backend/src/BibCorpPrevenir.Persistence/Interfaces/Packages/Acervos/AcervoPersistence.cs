@@ -1,4 +1,3 @@
-using AutoMapper;
 using BibCorpPrevenir.Domain.Models.Acervos;
 using BibCorpPrevenir.Persistence.Interfaces.Contexts;
 using BibCorpPrevenir.Persistence.Interfaces.Contracts.Acervos;
@@ -11,12 +10,10 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Acervos
   public class AcervoPersistence : SharedPersistence, IAcervoPersistence
   {
     private readonly BibCorpPrevenirContext _context;
-    private readonly IMapper _mapper;
 
-    public AcervoPersistence(BibCorpPrevenirContext context, IMapper mapper) : base(context)
+    public AcervoPersistence(BibCorpPrevenirContext context) : base(context)
     {
       _context = context;
-      _mapper = mapper;
     }
 
     public async Task<IEnumerable<Acervo>> GetAllAcervosAsync()
