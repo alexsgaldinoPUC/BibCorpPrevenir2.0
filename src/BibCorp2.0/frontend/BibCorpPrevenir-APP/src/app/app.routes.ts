@@ -1,19 +1,37 @@
-import { Routes } from '@angular/router';
-import { BcpHomePageComponent } from './homes';
-import { LoginComponent, RegisterComponent, UsuarioComponent } from './usuarios';
-
+import { Routes, mapToCanActivate } from "@angular/router";
+import { BcpHomePageComponent } from "./homes";
+import { CanActivateGuard } from "./shared";
 
 export const routes: Routes = [
   { path: "", redirectTo: "usuarios/login", pathMatch: "full" },
 
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  {
+    path: "login",
+    loadComponent: () =>
+      import("./usuarios/components/login/login.component").then(
+        (c) => c.LoginComponent
+      ),
+  },
+  {
+    path: "register",
+    loadComponent: () =>
+      import("./usuarios/components/register/register.component").then(
+        (c) => c.RegisterComponent
+      ),
+  },
 
   {
-    path: "usuarios",
-    component: UsuarioComponent,
+    path: "",
+    runGuardsAndResolvers: "always",
+    canActivate: mapToCanActivate([CanActivateGuard]),
     children: [
-
+      {
+        path: "usuarios",
+        loadComponent: () =>
+          import("./usuarios/components/usuario/usuario.component").then(
+            (c) => c.UsuarioComponent
+          ),
+      },
     ],
   },
 

@@ -95,19 +95,19 @@ export class RegisterComponent implements OnInit {
 
     this.#usuarioService
       .createUser(this.usuario)
-      .subscribe(
-        () => {
+      .subscribe({
+        next: () => {
           this.#router.navigateByUrl("/principal");
           location.replace("/princial");
           this.#toastrService.success("Conta Cadastrada!", "Sucesso!");
         },
-        (error: any) => {
+        error: (error: any) => {
           this.#toastrService.error(
             "Ocorreu um erro ao tentar cadastrar o usuário"
           );
           console.error(error);
-        }
-      )
+        },
+      })
       .add(() => this.#spinnerService.hide());
   }
 }

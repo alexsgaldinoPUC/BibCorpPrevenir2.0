@@ -31,7 +31,11 @@ public class UsuariosController : ControllerBase
       Console.WriteLine("Cheguei aqui");
       var claimUserName = User.GetUserNameClaim();
       Console.WriteLine(claimUserName);
-      if (claimUserName == null) return Unauthorized();
+      if (claimUserName == null) 
+      {
+        Console.WriteLine("UserName is null");
+      return Unauthorized();
+      }
 
       var usuario = await _usuarioService.GetUsuarioByUserNameAsync(claimUserName);
 

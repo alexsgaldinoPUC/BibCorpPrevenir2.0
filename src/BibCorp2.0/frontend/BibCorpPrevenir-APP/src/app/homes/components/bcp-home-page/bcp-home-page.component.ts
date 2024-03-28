@@ -9,7 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { BcpTitleBarComponent } from '../../../shared/components/bcp-title-bar/bcp-title-bar.component';
+import { BcpTitleBarComponent } from "../../../shared/components/bcp-title-bar/bcp-title-bar.component";
 
 @Component({
   selector: "app-bcp-home-page",
@@ -57,16 +57,16 @@ export class BcpHomePageComponent implements OnInit {
         this.opcaoPesquisa,
         this.opcaoGeneroRecentes
       )
-      .subscribe(
-        (retorno: ResultadoPaginado<Acervo[]>) => {
+      .subscribe({
+        next: (retorno: ResultadoPaginado<Acervo[]>) => {
           this.acervosRecentes = retorno.resultado;
         },
-        (error: any) => {
+        error: (error: any) => {
           console.log("aqui 2");
           this.#toastrService.error("Erro ao carregar Acervos", "Erro!");
           console.error(error);
-        }
-      )
+        },
+      })
       .add(() => this.#spinnerService.hide());
   }
 

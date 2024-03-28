@@ -1,6 +1,9 @@
 import { Component, inject } from "@angular/core";
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+
+import { MatButtonModule } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
+import { MatMenuModule } from "@angular/material/menu";
 
 import { LoginService, Usuario, UsuarioService } from "../../../usuarios";
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
@@ -10,7 +13,14 @@ import { environment } from "../../../../assets/environments";
 @Component({
   selector: "app-bcp-nav-bar",
   standalone: true,
-  imports: [MatIcon, NgxSpinnerModule, RouterLink, RouterLinkActive],
+  imports: [
+    MatButtonModule,
+    MatIcon,
+    MatMenuModule,
+    NgxSpinnerModule,
+    RouterLink,
+    RouterLinkActive,
+  ],
   templateUrl: "./bcp-nav-bar.component.html",
   styleUrl: "./bcp-nav-bar.component.scss",
 })
@@ -31,38 +41,36 @@ export class BcpNavBarComponent {
   public fotoURL = "";
 
   ngOnInit() {
-    console.log(this.usuarioLogado);
     this.getUsuario();
   }
 
   public getUsuario(): void {
     this.#spinnerService.show();
 
-    this.#usuarioService.getUsuarioByUserName().subscribe(
-      (usuarioAtivo: Usuario) => {
-        console.log(usuarioAtivo)
-        this.usuarioAtivo = { ...usuarioAtivo };
-        console.log(this.usuarioAtivo.userName);
-        this.usuarioLogado = this.usuarioAtivo.userName ? true : false;
-        this.fotoURL =
-        this.usuarioAtivo.fotoURL === null
-        ? "../../../../../assets/Images/not-available.png"
-        : environment.fotoURL + this.usuarioAtivo.fotoURL;
-        console.log(this.fotoURL);
+    this.#usuarioService
+      .getUsuarioByUserName()
+      .subscribe({
+        next: (usuarioAtivo: Usuario) => {
+          this.usuarioAtivo = { ...usuarioAtivo };
+          this.usuarioLogado = this.usuarioAtivo.userName ? true : false;
+          this.fotoURL =
+            this.usuarioAtivo.fotoURL === null
+              ? "../../../../../assets/images/not-available.png"
+              : environment.fotoURL + this.usuarioAtivo.fotoURL;
+          console.log(this.fotoURL);
 
-        this.usuarioAdmin = this.usuarioAtivo.userName === "Admin";
-        console.log(this.usuarioLogado, this.usuarioAdmin);
-      },
-      (error: any) => {
-        if (error.status == 401) {
-          console.log("aqui");
-        } else {
-          this.#toastrService.error("Falha ao logar no sistema");
-          console.error(error);
-        }
-      }
-    )
-    .add(() => this.#spinnerService.hide());
+          this.usuarioAdmin = this.usuarioAtivo.userName === "Admin";
+          console.log(this.usuarioLogado, this.usuarioAdmin);
+        },
+        error: (error: any) => {
+          if (error.status == 401) {
+          } else {
+            this.#toastrService.error("Falha ao logar no sistema");
+            console.error(error);
+          }
+        },
+      })
+      .add(() => this.#spinnerService.hide());
   }
 
   public logout(): void {
