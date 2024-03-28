@@ -1,114 +1,184 @@
-<nav class="navbar">
-  <div class="container">
-    <ul class="navbar-nav">
+<div class="container">
 
-      @if (usuarioLogado) {
-        <li class="nav-item dropdown">
-          <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-          aria-expanded="true">
-          <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
-            <img [src]="fotoURL" class="rounded-circle" style="width: 50px; height: 50px;">
-            {{usuarioAtivo.userName}}
-            <p>Teste</p>
-          </a>
+  @if (usuarioLogado) {
+  <div class="col">
+    <div class="d-flex align-items-center justify-content-center">
+      <img [src]="fotoURL" class="rounded-circle" style="width: 90px; height: 90px;">
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+      {{usuarioAtivo.userName}}
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+      <p class="mt-4"> Navegar para:</p>
+    </div>
+  </div>
+  <div class="d-flex">
+    <button mat-button [matMenuTriggerFor]="menu1">
+      <div class="d-flex">
+        <div class="nav-item" routerLinkActive="active">
+          <mat-icon class="bcp-icon mr-1">person</mat-icon>
+          Usuário
         </div>
-        <div class="dropdown-menu" data-popper-placement="bottom-start"
-          style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
-          <h6 class="dropdown-header">Navegar para</h6>
-
-          @if (!usuarioAdmin) {
-          <a class="dropdown-item" routerLink="solicitacoes">Minhas Solicitações</a>
-          }
-
-          <a class="dropdown-item" routerLink="usuarios/perfil">Perfil</a>
-        </div>
-      </li>
-
-
-      } @else {
-
+      </div>
+    </button>
+    <mat-menu #menu1="matMenu">
       @if (!usuarioAdmin) {
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" routerLink="/homePage">
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="emprestimo/solicitacoes">
+          <mat-icon class="bcp-icon mr-1">format_list_bulleted</mat-icon>
+          Minhas Solicitações
+        </a>
+      </button>
+      }
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="usuario/perfil">
+          <mat-icon class="bcp-icon mr-1">account_box</mat-icon>
+          Perfil
+        </a>
+      </button>
+    </mat-menu>
+  </div>
+  }
+
+  <div class="d-flex">
+    <button mat-button [matMenuTriggerFor]="menu2">
+      <div class="d-flex">
+        <div class="nav-item" routerLinkActive="active">
           <mat-icon class="bcp-icon mr-1">home</mat-icon>
           Home
+        </div>
+      </div>
+    </button>
+    <mat-menu #menu2="matMenu">
+      @if (!usuarioAdmin) {
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="home/homePage">
+          <mat-icon class="bcp-icon mr-1">space_dashboard</mat-icon>
+          Principal
         </a>
-      </li>
+      </button>
+      } @else {
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="home/homeAdmin">
+          <mat-icon class="bcp-icon mr-1">admin_panel_settings</mat-icon>
+          Administrador
+        </a>
+      </button>
       }
+    </mat-menu>
+  </div>
 
-      @if(usuarioAdmin) {
-      <li class="nav-item dropdown">
-        <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
-          <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
-            <mat-icon class="bcp-icon mr-1">book</mat-icon>
-            Patrimônio
-          </a>
+  @if(usuarioLogado) {
+  <div class="d-flex">
+    <button mat-button [matMenuTriggerFor]="menu3">
+      <div class="d-flex">
+        <div class="nav-item" routerLinkActive="active">
+          <mat-icon class="bcp-icon mr-1">book</mat-icon>
+          Patrimônio
         </div>
-        <div class="dropdown-menu" data-popper-placement="bottom-start"
-          style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
-          <h6 class="dropdown-header">Navegar para</h6>
-          <a class="dropdown-item" routerLink="patrimonios/novo">Novo</a>
-          <a class="dropdown-item" routerLink="patrimonios/lista">Lista</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-          aria-expanded="true">
-          <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
-            <mat-icon class="bcp-icon mr-1">library_books</mat-icon>
-            Acervos
-          </a>
-        </div>
-        <div class="dropdown-menu" data-popper-placement="bottom-start"
-          style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
-          <h6 class="dropdown-header">Navegar para</h6>
-          <a class="dropdown-item" routerLink="acervos/novo">Novo</a>
-          <a class="dropdown-item" routerLink="acervos/lista">Lista</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="h4 nav-link p-0 ms-4" (click)="logout()">
-          <mat-icon class="bcp-icon mr-1">logout</mat-icon>
-          Sair
+      </div>
+    </button>
+    <mat-menu #menu3="matMenu">
+      @if (usuarioAdmin) {
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="patrimonios/novo">
+          <mat-icon class="bcp-icon mr-1">add</mat-icon>
+          Novo
         </a>
-      </li>
-
+      </button>
       }
-
-      @if(usuarioAdmin) {
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h6 nav-link p-0 ms-4" routerLink="homeAdmin">
-          <mat-icon class="bcp-icon mr-1">home</mat-icon>
-          Home
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="patrimonios/lista">
+          <mat-icon class="bcp-icon mr-1">list</mat-icon>
+          Lista
         </a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
-          <mat-icon class="bcp-icon mr-1">settings</mat-icon>
+      </button>
+    </mat-menu>
+  </div>
+  <div class="d-flex">
+    <button mat-button [matMenuTriggerFor]="menu4">
+      <div class="d-flex">
+        <div class="nav-item" routerLinkActive="active">
+          <mat-icon class="bcp-icon mr-1">library_books</mat-icon>
+          Acervo
+        </div>
+      </div>
+    </button>
+    <mat-menu #menu4="matMenu">
+      @if (usuarioAdmin) {
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="acervo/novo">
+          <mat-icon class="bcp-icon mr-1">add</mat-icon>
+          Novo
+        </a>
+      </button>
+      }
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="acervo/lista">
+          <mat-icon class="bcp-icon mr-1">list</mat-icon>
+          Lista
+        </a>
+      </button>
+    </mat-menu>
+  </div>
+
+  @if (usuarioAdmin) {
+  <div class="d-flex">
+    <button mat-button [matMenuTriggerFor]="menu5">
+      <div class="d-flex">
+        <div class="nav-item" routerLinkActive="active">
+          <mat-icon class="bcp-icon mr-1">admin_panel_settings</mat-icon>
+          Administrador
+        </div>
+      </div>
+    </button>
+    <mat-menu #menu5="matMenu">
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="emprestimo/gerenciar">
+          <mat-icon class="bcp-icon mr-1">shield_person</mat-icon>
           Gerenciar
         </a>
-      </li>
-      }
+      </button>
+    </mat-menu>
+  </div>
+  }
+  }
 
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" [routerLink]="['/login']">
+  <div class="d-flex">
+    <button mat-button [matMenuTriggerFor]="menu6">
+      <div class="d-flex">
+        <div class="nav-item" routerLinkActive="active">
+          <mat-icon class="bcp-icon mr-1">computer</mat-icon>
+          Sistema
+        </div>
+      </div>
+    </button>
+    <mat-menu #menu6="matMenu">
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="/login">
           <mat-icon class="bcp-icon mr-1">login</mat-icon>
           Login
         </a>
-      </li>
-
-      <li class="nav-item" routerLinkActive="active">
-        <a class="h4 nav-link p-0 ms-4" routerLink="/register">
-          <mat-icon class="bcp-icon mr-1">person_add</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <a class="dropdown-item" routerLink="/register">
+          <mat-icon class="bcp-icon mr-1">add_registration</mat-icon>
           Cadastrar
         </a>
-      </li>
-      }
-    </ul>
+      </button>
+      @if(usuarioLogado) {
+      <button mat-menu-item>
+        <a class="dropdown-item" (click)="logout()">
+          <mat-icon class="bcp-icon mr-1">logout</mat-icon>
+          Logout
+        </a>
+      </button>
+    }
+    </mat-menu>
   </div>
-</nav>
-
+</div>
 
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
   <p style="font-size: 20px; color: white">Carregando...</p>
 </ngx-spinner>
+

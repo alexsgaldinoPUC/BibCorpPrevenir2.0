@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../../assets';
 import { Usuario, UsuarioUpdate } from '../../interfaces';
 import { LoginService } from '../login';
-import { Observable, map, take } from 'rxjs';
+import { Observable, map, shareReplay, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class UsuarioService {
 
     public getUsuarioByUserName(): Observable<Usuario> {
       console.log("aqui2");
-      return this.#http.get<Usuario>(this.baseURL + "getusername").pipe(take(1));
+      return this.#http.get<Usuario>(this.baseURL + "getusername").pipe(shareReplay());
     }
 
     public getUsuarioById(usuarioId: number): Observable<Usuario> {

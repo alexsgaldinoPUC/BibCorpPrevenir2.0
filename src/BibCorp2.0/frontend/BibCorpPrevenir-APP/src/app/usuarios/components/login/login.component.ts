@@ -23,7 +23,15 @@ import { CommonModule } from "@angular/common";
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, RouterLink, RouterLinkActive],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    RouterLink,
+    RouterLinkActive,
+  ],
   templateUrl: "./login.component.html",
   styleUrl: "./login.component.scss",
 })
@@ -75,8 +83,8 @@ export class LoginComponent implements OnInit {
 
     this.#loginService
       .login(this.model)
-      .subscribe(
-        () => {
+      .subscribe({
+        next: () => {
           if (this.model.userName == "Admin") {
             this.#router.navigateByUrl("/home-admin");
             location.replace("/home-admin");
@@ -85,15 +93,15 @@ export class LoginComponent implements OnInit {
             location.replace("/principal");
           }
         },
-        (error: any) => {
+        error: (error: any) => {
           if (error.status == 401)
             this.#toastrService.error("Usuário ou senha inválidos");
           else {
             this.#toastrService.error("Falha ao logar no sistema");
             console.error(error);
           }
-        }
-      )
+        },
+      })
       .add(() => this.#spinnerService.hide());
   }
 
