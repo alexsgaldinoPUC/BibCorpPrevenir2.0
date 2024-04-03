@@ -12,6 +12,7 @@ export const routes: Routes = [
         (c) => c.LoginComponent
       ),
   },
+  
   {
     path: "register",
     loadComponent: () =>

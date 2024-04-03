@@ -1,158 +1,188 @@
 <div class="container">
 
-  @if (usuarioLogado) {
-  <div class="col">
+  <div class="col mb-3">
     <div class="d-flex align-items-center justify-content-center">
       <img [src]="fotoURL" class="rounded-circle" style="width: 90px; height: 90px;">
     </div>
     <div class="d-flex align-items-center justify-content-center">
       {{usuarioAtivo.userName}}
     </div>
-    <div class="d-flex align-items-center justify-content-center">
-      <p class="mt-4"> Navegar para:</p>
-    </div>
   </div>
-  <div class="d-flex">
-    <button mat-button [matMenuTriggerFor]="menu1">
-      <div class="d-flex">
-        <div class="nav-item" routerLinkActive="active">
+
+  <mat-accordion>
+    @if (usuarioLogado) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
           <mat-icon class="bcp-icon mr-1">person</mat-icon>
           Usuário
-        </div>
-      </div>
-    </button>
-    <mat-menu #menu1="matMenu">
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
       @if (!usuarioAdmin) {
       <button mat-menu-item>
-        <a class="dropdown-item" routerLink="emprestimo/solicitacoes">
+        <a class="linkMenu" routerLink="emprestimo/solicitacoes">
           <mat-icon class="bcp-icon mr-1">format_list_bulleted</mat-icon>
           Minhas Solicitações
         </a>
       </button>
       }
-      <button mat-menu-item>
-        <a class="dropdown-item" routerLink="usuario/perfil">
-          <mat-icon class="bcp-icon mr-1">account_box</mat-icon>
-          Perfil
-        </a>
-      </button>
-    </mat-menu>
-  </div>
-  }
+      <div class="d-flex justify-content-center">
+        <button mat-menu-item>
+          <a class="linkMenu" routerLink="usuario/perfil">
+            <mat-icon class="bcp-icon mr-1">account_box</mat-icon>
+            Perfil
+          </a>
+        </button>
+      </div>
 
-  <div class="d-flex">
-    <button mat-button [matMenuTriggerFor]="menu2">
-      <div class="d-flex">
-        <div class="nav-item" routerLinkActive="active">
+    </mat-expansion-panel>
+    }
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
           <mat-icon class="bcp-icon mr-1">home</mat-icon>
           Home
-        </div>
-      </div>
-    </button>
-    <mat-menu #menu2="matMenu">
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
       @if (!usuarioAdmin) {
       <button mat-menu-item>
-        <a class="dropdown-item" routerLink="home/homePage">
+        <a class="linkMenu" routerLink="home/homePage">
           <mat-icon class="bcp-icon mr-1">space_dashboard</mat-icon>
           Principal
         </a>
       </button>
       } @else {
-      <button mat-menu-item>
-        <a class="dropdown-item" routerLink="home/homeAdmin">
-          <mat-icon class="bcp-icon mr-1">admin_panel_settings</mat-icon>
-          Administrador
-        </a>
-      </button>
+      <div class="d-flex justify-content-center">
+        <button mat-menu-item>
+          <a class="linkMenu" routerLink="home/homeAdmin">
+            <mat-icon class="bcp-icon mr-1">admin_panel_settings</mat-icon>
+            Administrador
+          </a>
+        </button>
+      </div>
       }
-    </mat-menu>
-  </div>
 
-  @if(usuarioLogado) {
-  <div class="d-flex">
-    <button mat-button [matMenuTriggerFor]="menu3">
-      <div class="d-flex">
-        <div class="nav-item" routerLinkActive="active">
+    </mat-expansion-panel>
+
+    @if (usuarioLogado) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
           <mat-icon class="bcp-icon mr-1">book</mat-icon>
           Patrimônio
-        </div>
-      </div>
-    </button>
-    <mat-menu #menu3="matMenu">
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
       @if (usuarioAdmin) {
       <button mat-menu-item>
-        <a class="dropdown-item" routerLink="patrimonios/novo">
+        <a class="linkMenu" routerLink="patrimonios/novo">
           <mat-icon class="bcp-icon mr-1">add</mat-icon>
           Novo
         </a>
       </button>
       }
-      <button mat-menu-item>
-        <a class="dropdown-item" routerLink="patrimonios/lista">
-          <mat-icon class="bcp-icon mr-1">list</mat-icon>
-          Lista
-        </a>
-      </button>
-    </mat-menu>
-  </div>
-  <div class="d-flex">
-    <button mat-button [matMenuTriggerFor]="menu4">
-      <div class="d-flex">
-        <div class="nav-item" routerLinkActive="active">
+      <div class="d-flex justify-content-center">
+        <button mat-menu-item>
+          <a class="linkMenu" routerLink="patrimonios/lista">
+            <mat-icon class="bcp-icon mr-1">list</mat-icon>
+            Lista
+          </a>
+        </button>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
           <mat-icon class="bcp-icon mr-1">library_books</mat-icon>
           Acervo
-        </div>
-      </div>
-    </button>
-    <mat-menu #menu4="matMenu">
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
       @if (usuarioAdmin) {
       <button mat-menu-item>
-        <a class="dropdown-item" routerLink="acervo/novo">
+        <a class="linkMenu" routerLink="acervo/novo">
           <mat-icon class="bcp-icon mr-1">add</mat-icon>
           Novo
         </a>
       </button>
       }
-      <button mat-menu-item>
-        <a class="dropdown-item" routerLink="acervo/lista">
-          <mat-icon class="bcp-icon mr-1">list</mat-icon>
-          Lista
-        </a>
-      </button>
-    </mat-menu>
-  </div>
+      <div class="d-flex justify-content-center">
+        <button mat-menu-item>
+          <a class="linkMenu" routerLink="acervo/lista">
+            <mat-icon class="bcp-icon mr-1">list</mat-icon>
+            Lista
+          </a>
+        </button>
+      </div>
 
-  @if (usuarioAdmin) {
-  <div class="d-flex">
-    <button mat-button [matMenuTriggerFor]="menu5">
-      <div class="d-flex">
-        <div class="nav-item" routerLinkActive="active">
+    </mat-expansion-panel>
+
+    @if (usuarioAdmin) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
           <mat-icon class="bcp-icon mr-1">admin_panel_settings</mat-icon>
           Administrador
-        </div>
-      </div>
-    </button>
-    <mat-menu #menu5="matMenu">
-      <button mat-menu-item>
-        <a class="dropdown-item" routerLink="emprestimo/gerenciar">
-          <mat-icon class="bcp-icon mr-1">shield_person</mat-icon>
-          Gerenciar
-        </a>
-      </button>
-    </mat-menu>
-  </div>
-  }
-  }
-
-  <div class="d-flex">
-    <button mat-button [matMenuTriggerFor]="menu6">
+        </mat-panel-title>
+      </mat-expansion-panel-header>
       <div class="d-flex">
-        <div class="nav-item" routerLinkActive="active">
+        <button mat-menu-item>
+          <a class="linkMenu" routerLink="emprestimo/gerenciar">
+            <mat-icon class="bcp-icon mr-1">shield_person</mat-icon>
+            Gerenciar
+          </a>
+        </button>
+      </div>
+
+    </mat-expansion-panel>
+    }
+    }
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
           <mat-icon class="bcp-icon mr-1">computer</mat-icon>
           Sistema
-        </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="d-flex">
+        <button mat-menu-item>
+          <a class="linkMenu" routerLink="/login">
+            <mat-icon class="bcp-icon mr-1">login</mat-icon>
+            Login
+          </a>
+        </button>
       </div>
-    </button>
+
+      <div class="d-flex">
+        <button mat-menu-item>
+          <a class="linkMenu" routerLink="/register">
+            <mat-icon class="bcp-icon mr-1">add_registration</mat-icon>
+            Cadastrar
+          </a>
+        </button>
+      </div>
+
+      @if (usuarioLogado) {
+
+      <div class="d-flex">
+        <button mat-menu-item>
+          <a class="linkMenu" (click)="logout()">
+            <mat-icon class="bcp-icon mr-1">logout</mat-icon>
+            Logout
+          </a>
+        </button>
+      </div>
+      }
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="d-flex">
     <mat-menu #menu6="matMenu">
       <button mat-menu-item>
         <a class="dropdown-item" routerLink="/login">
@@ -173,7 +203,7 @@
           Logout
         </a>
       </button>
-    }
+      }
     </mat-menu>
   </div>
 </div>
@@ -181,4 +211,3 @@
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
   <p style="font-size: 20px; color: white">Carregando...</p>
 </ngx-spinner>
-

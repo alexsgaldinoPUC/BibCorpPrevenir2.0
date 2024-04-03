@@ -1,7 +1,7 @@
 import { routes } from "./app.routes";
 
 import { ApplicationConfig, LOCALE_ID, importProvidersFrom } from "@angular/core";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule, provideAnimations } from "@angular/platform-browser/animations";
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideRouter } from "@angular/router";
@@ -15,6 +15,7 @@ import { JwtInterceptor } from "./shared";
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
+    provideAnimations(),
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
     provideToastr({

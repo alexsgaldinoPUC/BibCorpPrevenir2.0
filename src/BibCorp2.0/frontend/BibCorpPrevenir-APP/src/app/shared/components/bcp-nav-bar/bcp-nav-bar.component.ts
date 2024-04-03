@@ -1,14 +1,16 @@
-import { Component, inject } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { LoginService, Usuario, UsuarioService } from "../../../usuarios";
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { environment } from "../../../../assets/environments";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @Component({
   selector: "app-bcp-nav-bar",
@@ -17,6 +19,8 @@ import { environment } from "../../../../assets/environments";
     MatButtonModule,
     MatIcon,
     MatMenuModule,
+    MatExpansionModule,
+    MatFormFieldModule,
     NgxSpinnerModule,
     RouterLink,
     RouterLinkActive,
@@ -24,14 +28,15 @@ import { environment } from "../../../../assets/environments";
   templateUrl: "./bcp-nav-bar.component.html",
   styleUrl: "./bcp-nav-bar.component.scss",
 })
-export class BcpNavBarComponent {
+export class BcpNavBarComponent implements OnInit{
   #router = inject(Router);
   #loginService = inject(LoginService);
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
   #usuarioService = inject(UsuarioService);
 
-  public isCollapsed = true;
+
+  public isExpanded = false;
 
   public usuarioLogado = false;
   public usuarioAdmin = false;
@@ -40,8 +45,22 @@ export class BcpNavBarComponent {
 
   public fotoURL = "";
 
+  public step = 1;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
   ngOnInit() {
-    this.getUsuario();
+     this.getUsuario();
   }
 
   public getUsuario(): void {

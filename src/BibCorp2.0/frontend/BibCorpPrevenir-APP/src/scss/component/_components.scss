@@ -2,7 +2,11 @@
 .bcp-icon {
   transform: scale(1.4);
   color: var(--primary);
-  margin-right: 2px;
+  margin-right: 4px;
+}
+
+.linkMenu{
+  color: var(--primary-010);
 }
 
 // Configurações background
@@ -24,4 +28,8 @@
 .bcp-boder-right {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+.bcp-container {
+  min-height: 650px;
 }
