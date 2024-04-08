@@ -1,0 +1,29 @@
+.bcp-primary {
+  color: #0D4880;
+}
+
+.bcp-bg-white {
+  background-color: white;
+  opacity: .9;
+  color: black;
+}
+
+.bcp-container {
+  min-height: 670px;
+}
+
+.bcp-icon {
+  transform: scale(1.4);
+  color: var(--primary);
+  margin-right: 4px;
+}
+.bcp-icon-Menu {
+  transform: scale(1.2);
+  color: var(--primary);
+  margin-right: 4px;
+}
+
+.bcp-cursor{
+  cursor: pointer;
+  color: black;
+}
