@@ -1,0 +1,107 @@
+// /* You can add global styles to this file, and also import other style files */
+
+// /* Importing Bootstrap SCSS file. */
+ @import 'bootstrap/scss/bootstrap';
+
+@import 'ngx-toastr/toastr';
+@import 'ngx-toastr/toastr-bs5-alert';
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+
+@import "scss/index";
+
+
+
+// //Configurações Collors
+
+
+
+
+// .iconBadge2 {
+//   transform: scale(1.3);
+//   color: #0D4880;
+// }
+
+
+// @for $i from 0 through 20 {
+//   $colors: rgb(random(255), random(255), random(255));
+
+//   .text-color-#{$i} {
+//     color: $colors
+//   }
+
+//   .bg-color-#{$i} {
+//     background-color: $colors
+//   }
+
+//   .border-left-#{$i} {
+//     border-left: 0.8rem solid $colors
+//   }
+// }
+
+
+// .bibcorp-bg-image{
+//   background: url("./assets/images/backgroundImageBibCorp.jpg") no-repeat center center;
+//   background-size: cover;
+// }
+
+
+
+
+
+
+// .bibcorp-bg-white2 {
+//   background-color: #e6e3f4;
+//   opacity: .9;
+// }
+
+// .bibcorp-titulo {
+//   font-size: 1.3rem;
+// }
+
+// .bibcorp-titulo2 {
+//   font-size: 1.2rem;
+//   margin-top: 10px;
+// }
+
+// // Botão Voltar
+// .btn-no-bg {
+//   color: darkgray;
+//   border: none;
+//   padding-left: 20px;
+//   padding-top: 20px;
+// }
+
+// // Botão Voltar - mouse passando por cima
+// .btn-no-bg:hover {
+//   color: black;
+// }
+
+// .bibcorp-body {
+//   border-bottom-right-radius: 20px;
+// }
+
+// .bibcorp-dropdown {
+//   border-radius: 20px;
+// }
+
+// .btn-blue {
+//   background-color: #00BFFF;
+//   border: none;
+//   transition: background-color 0.3s;
+//   color: white;
+//   margin: auto;
+//   display: block;
+// }
+
+// .btn-blue:hover {
+//   background-color: #00BFFF;
+//   color: white;
+// }
+
+
+/* Importing Bootstrap SCSS file. */
+

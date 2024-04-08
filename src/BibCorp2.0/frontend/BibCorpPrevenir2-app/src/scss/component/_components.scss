@@ -1,0 +1,26 @@
+
+
+
+
+// Configurações background
+.bcp-bg-primary {
+  background-color: var(--primary);
+  opacity: .9;
+}
+
+.bcp-bg-secondary {
+  background-color: var(--secondary);
+  opacity: .9;
+}
+
+.bcp-boder-left {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.bcp-boder-right {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+
