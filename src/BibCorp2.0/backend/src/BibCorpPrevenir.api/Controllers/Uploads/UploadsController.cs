@@ -23,10 +23,11 @@ namespace BibCorpPrevenir.API.Controllers.Uploads
 
 
         [HttpPost("upload-user-photo")]
-        public async Task<IActionResult> UploadFotoUSer()
+        public async Task<IActionResult> UploadFotoUser()
         {
             try
             {
+                Console.WriteLine("---------------------- " + User.GetUserNameClaim());
                 var user = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
 
                 if (user == null) return NoContent();

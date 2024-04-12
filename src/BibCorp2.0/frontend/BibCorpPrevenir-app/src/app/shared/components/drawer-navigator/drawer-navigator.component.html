@@ -1,0 +1,129 @@
+<div class="container">
+  <mat-accordion class="m-0 p-0">
+    @if (usuarioLogado) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-icon mr-1">person</mat-icon>
+          Usuário
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      @if (!usuarioAdmin) {
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="emprestimo/solicitacoes">
+          Minhas Solicitações
+        </a>
+      </div>
+      }
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="/pages/usuarios/perfil">
+          Perfil
+        </a>
+      </div>
+
+    </mat-expansion-panel>
+    }
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-icon mr-1">home</mat-icon>
+          Home
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      @if (!usuarioAdmin) {
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="pages/home/homePage">
+          Principal
+        </a>
+      </div>
+      } @else {
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="pages/home/homeAdmin">
+          Administrador
+        </a>
+      </div>
+      }
+    </mat-expansion-panel>
+
+    @if (usuarioLogado) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-icon mr-1">book</mat-icon>
+          Patrimônio
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      @if (usuarioAdmin) {
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="patrimonios/novo">
+          Novo
+        </a>
+      </div>
+      }
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="patrimonios/lista">
+          Lista
+        </a>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-icon mr-1">library_books</mat-icon>
+          Acervo
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      @if (usuarioAdmin) {
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+
+        <a class="bcp-cursor" routerLink="acervo/novo">
+          Novo
+        </a>
+      </div>
+      }
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="acervo/lista">
+          Lista
+        </a>
+      </div>
+
+    </mat-expansion-panel>
+
+    @if (usuarioAdmin) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-icon mr-1">admin_panel_settings</mat-icon>
+          Administrador
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-divider class="mt-2 mb-2" />
+      <div class="d-flex justify-content-start">
+        <a class="bcp-cursor" routerLink="emprestimo/gerenciar">
+          Gerenciar
+        </a>
+      </div>
+
+    </mat-expansion-panel>
+    }
+    }
+
+  </mat-accordion>
+
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+    <p style="font-size: 20px; color: white">Carregando...</p>
+  </ngx-spinner>

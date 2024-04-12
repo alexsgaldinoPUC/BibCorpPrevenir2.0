@@ -1,0 +1,46 @@
+@if (showCabecalho()) {
+<div class="m-0 p-0 bcp-bg-secondary">
+  <div class="container  m-0 p-0">
+    <div class="row m-0 p-0">
+      <div class="col mt-2 text-white">
+        <h1>{{title}}</h1>
+      </div>
+      <div class="col-3 m-0 p-0 me-4 mt-1">
+        <mat-accordion class="m-0 p-0 g-0">
+          <mat-expansion-panel class="m-0 p-0 g-0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                @if (usuarioLogado) {
+                <img [src]="fotoURL" class="rounded-circle mx-2" style="width: 30px; height: 30px;">
+                {{usuario.userName}}
+                } @else {
+                Opcões:
+                }
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider class="my-2"></mat-divider>
+              <a class="nav-link bcp-cursor" mat-raised-button matTooltip="Login" (click)="login()">
+                Login
+              </a>
+              <mat-divider class="my-2"></mat-divider>
+              <a class="nav-link bcp-cursor" mat-raised-button matTooltip="Novo Usuário" (click)="register()">
+                Novo Usuário
+              </a>
+              @if (usuarioLogado) {
+                <mat-divider class="my-2"></mat-divider>
+                <a class="nav-link bcp-cursor m-1" mat-raised-button matTooltip="Sair" (click)="logout()">
+                <span class="m-0">Sair</span>
+              </a>
+              }
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<ngx-spinner bdColor="rgba(251,251,251,0.8)" size="medium" color="#000" type="square-jelly-box">
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>
