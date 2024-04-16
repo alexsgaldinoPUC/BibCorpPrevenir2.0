@@ -1,0 +1,111 @@
+<div class="container">
+  <mat-accordion>
+
+    @if (usuarioLogado) {
+      <mat-expansion-panel class="mat-elevation-z8">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="bcp-drawer-icon">person</mat-icon>
+            Usuário
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        @if (!usuarioAdmin) {
+          <mat-divider class="mt-2 mb-2" />
+          <a class="bcp-drawer-cursor" routerLink="emprestimo/solicitacoes">
+            Minhas Solicitações
+          </a>
+        }
+        <mat-divider class="mt-2 mb-2" />
+        <a class="bcp-drawer-cursor" routerLink="/pages/usuarios/perfil">
+          Perfil
+        </a>
+      </mat-expansion-panel>
+    }
+
+    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-drawer-icon">home</mat-icon>
+          Home
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      @if (!usuarioAdmin) {
+        <mat-divider class="mt-2 mb-2" />
+        <a class="bcp-drawer-cursor" routerLink="/pages/home/homePage">
+          Principal
+        </a>
+      } @else {
+        <mat-divider class="mt-2 mb-2" />
+        <a class="bcp-drawer-cursor" routerLink="pages/home/homeAdmin">
+          Administrador
+        </a>
+      }
+    </mat-expansion-panel>
+
+    @if (usuarioLogado) {
+      <mat-expansion-panel class="mat-elevation-z8 mt-2">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="bcp-drawer-icon">book</mat-icon>
+            Patrimônio
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        @if (usuarioAdmin) {
+          <mat-divider class="mt-2 mb-2" />
+          <a class="bcp-drawer-cursor" routerLink="/pages/patrimonios/novo">
+            Novo
+          </a>
+        }
+        <mat-divider class="mt-2 mb-2" />
+        <a class="bcp-drawer-cursor" routerLink="/pages/patrimonios/lista">
+          Lista
+        </a>
+      </mat-expansion-panel>
+    }
+  
+    @if (usuarioLogado) {
+      <mat-expansion-panel class="mat-elevation-z8 mt-2">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="bcp-drawer-icon">library_books</mat-icon>
+            Acervo
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        @if (usuarioAdmin) {
+          <mat-divider class="mt-2 mb-2" />
+          <a class="bcp-drawer-cursor" routerLink="acervo/novo">
+            Novo
+          </a>
+        }
+        <mat-divider class="mt-2 mb-2" />
+        <a class="bcp-drawer-cursor" routerLink="acervo/lista">
+          Lista
+        </a>
+      </mat-expansion-panel>
+  }
+  
+    @if (usuarioLogado) {
+      @if (usuarioAdmin) {
+      <mat-expansion-panel class="mat-elevation-z8 mt-2">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="bcp-drawer-icon">admin_panel_settings</mat-icon>
+            Administrador
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-divider class="mt-2 mb-2" />
+        <a class="bcp-drawer-cursor" routerLink="emprestimo/gerenciar">
+          Gerenciar
+        </a>
+      </mat-expansion-panel>
+      }
+    }
+
+  </mat-accordion>
+
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+    <p style="font-size: 20px; color: white">Carregando...</p>
+  </ngx-spinner>

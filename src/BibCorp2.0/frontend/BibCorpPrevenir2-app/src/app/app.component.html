@@ -1,0 +1,44 @@
+@if (showDrawer()) {
+<div class="container-fluid p-3">
+  <mat-drawer-container class="rounded-5 p-0 m-0 " [class.drawer-opened]="drawer.opened" autosize>
+      <mat-drawer #drawer [mode]="modeDrawer" [opened]="openedDrawer">
+        <div class="flex-column  mat-elevation-z8 justify-content-center">
+          <img src="../assets/images/thumbnail_logotipo.png" alt="Logotipo Prevenir"
+          class="bcp-logo-principal" (click)="drawer.close()">
+          <button matTooltip="Fechar Menu" mat-icon-button (click)="drawer.close()"  alt="Menu Recolher" class="position-absolute end-0">
+            <mat-icon>close</mat-icon>
+          </button>
+          <p class="bcp-texto-logo">Biblioteca Corporativa</p>
+      </div>
+      <app-drawer-navigator/>
+    </mat-drawer>
+    <mat-drawer-content>
+
+      @if (!drawer.opened) {
+
+        <div class="d-flex p-1">
+          <button matTooltip="Abrir Menu" mat-icon-button (click)="drawer.toggle()" alt="Menu Expandir">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <div>
+            <img src="../assets/images/thumbnail_logotipo.png"  alt="Logotipo Prevenir" class="bcp-logo-secundaria"
+            (click)="drawer.toggle()">
+          </div>
+          <div class="flex-grow-1 text-end mt-3">
+            <p style="color: var(--primary)">Biblioteca Corporativa</p>
+          </div>
+        </div>
+
+      }
+
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
+} @else {
+
+<div class="container-fluid p-4">
+  <router-outlet></router-outlet>
+</div>
+
+}

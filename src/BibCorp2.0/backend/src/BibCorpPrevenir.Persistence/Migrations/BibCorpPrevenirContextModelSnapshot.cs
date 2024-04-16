@@ -174,8 +174,8 @@ namespace BibCorpPrevenir.Persistence.Migrations
                     b.Property<string>("Sala")
                         .HasColumnType("longtext");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BibCorpPrevenir.Domain.Models.Patrimonios;
 using BibCorpPrevenir.Persistence.Interfaces.Contexts;
 using BibCorpPrevenir.Persistence.Interfaces.Contracts.Patrimonios;
@@ -101,7 +97,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoEmprestado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == true &&
+                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Liberado &&
                             (a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
@@ -112,7 +108,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoLiberado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == false &&
+                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Emprestado &&
                             (a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
@@ -136,12 +132,12 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                 if (parametrosPaginacao.PesquisarPor == "SituacaoEmprestado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == true);
+                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Liberado);
                 }
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoLiberado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == false);
+                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Emprestado);
                 }
             }
 
@@ -154,7 +150,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                       .AsNoTracking()
                       .FirstOrDefault(p => p.Id == patrimonioId);
 
-            patrimonioAlterado.Status = true;
+            patrimonioAlterado.Status = Domain.Enums.Patrimonio.PatrimonioStatus.Emprestado;
             patrimonioAlterado.DataIndisponibilidade = DateTime.Now.ToString("dd/MM/yyyy");
             patrimonioAlterado.DataAtualizacao = DateTime.Now;
 
@@ -169,7 +165,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                       .AsNoTracking()
                       .FirstOrDefault(p => p.Id == patrimonioId);
 
-            patrimonioAlterado.Status = false;
+            patrimonioAlterado.Status = Domain.Enums.Patrimonio.PatrimonioStatus.Liberado;
             patrimonioAlterado.DataIndisponibilidade = null;
             patrimonioAlterado.DataAtualizacao = DateTime.Now;
 

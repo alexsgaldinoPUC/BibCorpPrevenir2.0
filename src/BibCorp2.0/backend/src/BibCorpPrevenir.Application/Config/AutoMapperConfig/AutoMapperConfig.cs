@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using BibCorpPrevenir.Application.Dtos.Acervos;
 using BibCorpPrevenir.Application.Dtos.Emprestimos;

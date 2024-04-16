@@ -1,5 +1,0 @@
-export * from './cadastro'
-export * from './login'
-export * from './perfil'
-export * from './usuarios.component'
-export * from './usuarios.module'

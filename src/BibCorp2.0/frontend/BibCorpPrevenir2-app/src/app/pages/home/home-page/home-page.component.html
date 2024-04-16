@@ -1,0 +1,76 @@
+<div class="container-fluid p-3">
+  <div class="ms-2">
+    <p class="h5">Recentemente adicionado:</p>
+  </div>
+
+  <form [formGroup]="formHomePage" class="m-0 p-0 g-0">
+    <div fxLayout="row wrap" class="m-0 p-0 g-0">
+
+      <mat-form-field fxFlex="24" fxFlex.xs="100" fxFlex.sm="24" class="p-2">
+        <mat-label>Opção Pesquisa</mat-label>
+        <mat-select matNativeControl formControlName="opcaoPesquisa" (selectionChange)="filtroAcervo()">
+          <mat-option value="Todos">Todos</mat-option>
+          <mat-option value="Autor">Autor</mat-option>
+          <mat-option value="Titulo">Título</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50" fxFlex.xs="100" fxFlex.sm="24" class="p-2">
+        <mat-label>Argumento</mat-label>
+        <input matInput formControlName="argumento">
+        <button matSuffix mat-icon-button (click)="filtroAcervo()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="26" fxFlex.xs="100" fxFlex.sm="26" class="p-2">
+        <mat-label>Genero</mat-label>
+        <mat-select matNativeControl formControlName="opcaoGeneroRecentes"
+          (selectionChange)="filtroAcervo()">
+          <mat-option value="Todos">Todos</mat-option>
+          @for (genero of generos; track genero) {
+          <mat-option [value]="genero">{{genero}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  @if (acervosRecentes && acervosRecentes.length) {
+  <div fxLayout="row wrap" fxLayoutGap="10px grid">
+    @for (acervo of acervosRecentes; track acervo.id; let i = $index) {
+    <div fxFlex="25" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33" fxFlex.lg="25" fxFlex.xl="14">
+      <div class="card rounded-4 m-0 p-0 mx-1 ">
+        <div class="rounded-4 row card-header bcp-bg-white-010 m-0 p-0">
+          <img src="{{acervo.capaUrl}}" alt="Capa do livro" class="rounded-4 p-2">
+        </div>
+        <div class="row card-body m-0 p-0 mt-2">
+          <h1 class="card-title text-center">{{acervo.titulo}}</h1>
+          <p class="card-text mt-2">{{acervo.subTitulo}}</p>
+          <span class="h6 mat-elevation-z1 text-center text-primary">{{acervo.autor}}</span>
+          <span class="text-black">{{acervo.editora}}</span>
+          <h6 class="text-end">{{acervo.genero}}</h6>
+          <button mat-icon-button color="warn" (click)="favoritarAcervo(acervo.id)">
+            @if (isFavorito) {
+            <mat-icon>favorite</mat-icon>
+            } @else {
+            <mat-icon>favorite_border</mat-icon>
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+  @if (!acervosRecentes.length) {
+  <div colspan="8" class="text-center">
+    <h6>Não foram encontrados livros cadastrados</h6>
+  </div>
+  }
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>
