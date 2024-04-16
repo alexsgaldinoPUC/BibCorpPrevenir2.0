@@ -36,6 +36,7 @@ public class EmprestimosController : ControllerBase
   {
     try
     {
+      Console.WriteLine("GetALlEmprestimos: ");
       var emprestimos = await _emprestimoService.GetAllEmprestimosAsync();
 
       if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados");

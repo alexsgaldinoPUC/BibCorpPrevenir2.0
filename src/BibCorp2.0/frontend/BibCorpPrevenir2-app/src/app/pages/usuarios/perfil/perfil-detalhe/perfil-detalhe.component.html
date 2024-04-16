@@ -1,0 +1,65 @@
+<p>detalhe works!</p>
+<form class="container-fluid mt-2 " [formGroup]="formPerfil" (ngSubmit)="onSubmit()">
+  <div class="card shadow p-0 m-0 bcp-bg-secondary">
+    <div class="card-header text-center">
+      <span class="h1 text-white ">
+        Formulário de Perfil
+      </span>
+    </div>
+  </div>
+  <div class="form-row d-md-flex m-0 p-0 mt-2">
+    <mat-form-field class="col-6  p-1">
+      <mat-label>Nome Completo:</mat-label>
+      <input matInput type="text" formControlName="nome" [ngClass]="fieldValidator(ctrF.nome)">
+      <mat-error class="invalid-feedback">{{messageReturned(ctrF.nome, '')}}</mat-error>
+      <mat-icon matPrefix color="primary">badge</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="col-6  p-1">
+      <mat-label>e-mail:</mat-label>
+      <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)">
+      <mat-error class="invalid-feedback">{{messageReturned(ctrF.email, '')}}</mat-error>
+      <mat-icon matPrefix color="primary">mail</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="form-row d-md-flex m-0 p-0">
+    <mat-form-field class="col-6  p-1">
+      <mat-label>Telefone:</mat-label>
+      <input matInput type="text" formControlName="phoneNumber" [ngClass]="fieldValidator(ctrF.phoneNumber)">
+      <mat-error class="invalid-feedback">{{messageReturned(ctrF.phoneNumber, '')}}</mat-error>
+      <mat-icon matPrefix color="primary">phone</mat-icon>
+    </mat-form-field>
+  </div>
+  <h3 class="pt-1 border-bottom text-black">Mudar Senha</h3>
+  <p>Caso mude de senha, preencha os campos abaixo:</p>
+  <div class="form-row d-md-flex m-0 p-0">
+    <mat-form-field class="col-6  p-1">
+      <mat-label>Senha:</mat-label>
+      <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
+      <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
+      <mat-icon matPrefix color="primary">password</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="col-6  p-1">
+      <mat-label>Confirmar Senha:</mat-label>
+      <input matInput type="password" formControlName="confirmPassword"
+        [ngClass]="fieldValidator(ctrF.confirmPassword)">
+      <mat-error class="invalid-feedback">{{messageReturned(ctrF.confirmPassword, '')}}</mat-error>
+      <mat-icon matPrefix color="primary">check_circle</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="card-footer bcp-bg-secondary m-0 ">
+    <div class="d-flex ">
+      <button class="btn btn-danger ms-auto mx-1 my-1" (click)="resetForm($event)">
+        Cancelar
+      </button>
+      <button class="btn btn-primary mx-1 px-4 my-1" [disabled]="!formPerfil.valid">
+        Salvar
+      </button>
+    </div>
+  </div>
+</form>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>
+
+

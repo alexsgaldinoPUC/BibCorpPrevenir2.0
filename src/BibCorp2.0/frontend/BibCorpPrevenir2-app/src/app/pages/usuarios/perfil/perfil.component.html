@@ -1,0 +1,58 @@
+<div class="container-fluid mt-0 ms-0 pt-0 ps-0">
+  <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active"
+    routerLink="/pages/home/homepage">
+    <span class="mr-2">&larr;</span> Voltar
+  </button>
+
+  <div class="card p-0 m-1 text-black">
+    <div class="row p-1">
+      <div class="col-lg-3 pt-3">
+        <div class="card mb-3 bcp-bg-primary">
+          <div class="card-header bcp-bg-secondary align-items-center text-center p-1">
+            <input type="file" #file (change)="changePhoto($event)" style="display: none">
+            <div class="">
+              <img class="rounded-circle" [src]="fotoURL" (click)="file.click()" alt="Foto do perfil">
+              <div class="h5 text-center text-white">
+                {{usuario.email}}
+              </div>
+            </div>
+          </div>
+          <input type="file" #file (change)="changePhoto($event)" style="display: none">
+          <div class="align-self-center text-center pt-1">
+            <div class="card-body text-white">
+              <div class="h7 pb-1"><b>Nome: </b>{{usuario.nome}}</div>
+              <div class="h7 pb-1"><b>UserName: </b>{{usuario.userName}}</div>
+            </div>
+          </div>
+          <div class="card-footer bcp-bg-secondary">
+            <div class="card d-flex g-0 m-0 p-1">
+              <div class="card-header text-center shadow">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <div class="h5">1342</div>
+                    <div class="h6 text-muted">Total de Livros Lidos</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 p-0 pt-2">
+        <app-perfil-detalhe (changeFormValue)="getDataLoged($event)"></app-perfil-detalhe>
+      </div>
+
+    </div>
+    <div class="form-row ">
+      <h3 class="pt-3 border-bottom text-black">Livros Lidos</h3>
+      <div class="form-group col-12">
+        <label>Livros Lidos</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>

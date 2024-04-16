@@ -1,0 +1,50 @@
+@if (showCabecalho()) {
+<div class="bcp-bg-primary">
+  <div class="row m-0 p-0">
+    <div class="col mt-2 text-white d-flex">
+      <mat-icon class="bcp-title-icon-menu">{{iconTitle}}</mat-icon>
+      <h1>{{title}}</h1>
+    </div>
+    <div class="col-3 col-lg-2 m-0 p-0 mt-2">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <span>
+          @if (usuarioLogado) {
+          <img [src]="fotoURL" class="rounded-circle mx-2 bcp-avatar-title">
+          <span>{{usuario.userName}}</span>
+          } @else {
+          <span>Opcões:</span>
+          }
+        </span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <mat-menu-item class="bcp-menu-item">
+          <mat-icon class="bcp-title-icon">login</mat-icon>
+          <a class="bcp-cursor ms-2" routerLink="/pages/usuarios/login">
+            Login
+          </a>
+        </mat-menu-item>
+        <mat-divider class="mt-2 mb-2"></mat-divider>
+        <mat-menu-item class="bcp-menu-item">
+          <mat-icon class="bcp-title-icon">person_add</mat-icon>
+          <a class="bcp-cursor ms-2" (click)="register()">
+            Novo Usuário
+          </a>
+        </mat-menu-item>
+        <mat-divider class="mt-2 mb-2"></mat-divider>
+        @if (usuarioLogado) {
+        <mat-menu-item class="bcp-menu-item">
+          <mat-icon class="bcp-title-icon">logout</mat-icon>
+          <a class="bcp-cursor ms-2" (click)="logout()">
+            Sair
+          </a>
+        </mat-menu-item>
+        }
+      </mat-menu>
+    </div>
+  </div>
+</div>
+}
+
+<ngx-spinner bdColor="rgba(251,251,251,0.8)" size="medium" color="#000" type="square-jelly-box">
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>

@@ -1,0 +1,258 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Application\\BibCorpPrevenir.Application.csproj": {}
+  },
+  "projects": {
+    "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Application\\BibCorpPrevenir.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Application\\BibCorpPrevenir.Application.csproj",
+        "projectName": "BibCorpPrevenir.Application",
+        "projectPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Application\\BibCorpPrevenir.Application.csproj",
+        "packagesPath": "C:\\Users\\108093631\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\108093631\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\BibCorpPrevenir.Domain.csproj": {
+                "projectPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\BibCorpPrevenir.Domain.csproj"
+              },
+              "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Persistence\\BibCorpPrevenir.Persistence.csproj": {
+                "projectPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Persistence\\BibCorpPrevenir.Persistence.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.4.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.4.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\BibCorpPrevenir.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\BibCorpPrevenir.Domain.csproj",
+        "projectName": "BibCorpPrevenir.Domain",
+        "projectPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\BibCorpPrevenir.Domain.csproj",
+        "packagesPath": "C:\\Users\\108093631\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\108093631\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Persistence\\BibCorpPrevenir.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Persistence\\BibCorpPrevenir.Persistence.csproj",
+        "projectName": "BibCorpPrevenir.Persistence",
+        "projectPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Persistence\\BibCorpPrevenir.Persistence.csproj",
+        "packagesPath": "C:\\Users\\108093631\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\108093631\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\BibCorpPrevenir.Domain.csproj": {
+                "projectPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir.Domain\\BibCorpPrevenir.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.17, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

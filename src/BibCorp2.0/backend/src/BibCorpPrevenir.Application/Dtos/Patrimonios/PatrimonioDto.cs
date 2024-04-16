@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using BibCorpPrevenir.Application.Enums.Patrimonios;
 using BibCorpPrevenir.Domain.Models.Acervos;
 
 namespace BibCorpPrevenir.Application.Dtos.Patrimonios
@@ -21,7 +22,7 @@ namespace BibCorpPrevenir.Application.Dtos.Patrimonios
     [Display(Name = "Posição")]
     public string Posicao { get; set; }
     public string ISBN { get; set; }
-    public bool Status { get; set; }
+    public PatrimonioStatus Status { get; set; }
     public string DataCadastro { get; set; }
     public string DataAtualizacao { get; set; }
     public string DataIndisponibilidade { get; set; }

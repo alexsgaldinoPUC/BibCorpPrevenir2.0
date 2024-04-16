@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BibCorpPrevenir.api</name>
+    </assembly>
+    <members>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.GetAllAcervos">
+            <summary>
+            Obtém os dados de todos os acervos cadastrado na empresa
+            </summary>
+            <response code="200">Dados dos acervos cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.GetAcervoById(System.Int32)">
+            <summary>
+            Obtém os dados de um acervo específico
+            </summary>
+            <param name="acervoId">Identificador do acervo</param>
+            <response code="200">Dados do acervo consultado</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.GetAcervoByISBN(System.String)">
+            <summary>
+            Obtém os dados dos acervos associados à um ISBN
+            </summary>
+            <param name="ISBN">Identificador do acervo</param>
+            <response code="200">Dados do acervo consultado</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.CreateAcervo(BibCorpPrevenir.Application.Dtos.Acervos.AcervoDto)">
+            <summary>
+            Realiza a inclusão de um novo acervo
+            </summary>
+            <response code="200">Acervo cadastrado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.UpdateAcervo(System.Int32,BibCorpPrevenir.Application.Dtos.Acervos.AcervoDto)">
+            <summary>
+            Realiza a atualização dos dados de um acervo
+            </summary>
+            <param name="acervoId">Identificador do acervo</param>
+            <param name="acervoDto">Acervo cadastrado</param>
+            <response code="200">Acervo atualizado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.DeleteAcervo(System.Int32)">
+            <summary>
+            Realiza a exclusão de um acervo
+            </summary>
+            <param name="acervoId">Identificador do acervo</param>
+            <response code="200">Acervo excluído com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.GetAcervosRecentes(BibCorpPrevenir.Persistence.Util.Pages.Class.ParametrosPaginacao)">
+            <summary>
+            Obtém os dados dos acervos cadastrados recentemente na emrpesa
+            </summary>
+            <response code="200">Dados dos acervos cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.GetAcervosPaginacao(BibCorpPrevenir.Persistence.Util.Pages.Class.ParametrosPaginacao)">
+            <summary>
+            Obtém os dados dos acervos cadastrados na emrpesa
+            </summary>
+            <response code="200">Dados dos acervos cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Acervos.AcervosController.GetAcervosGoogleBooks(System.String)">
+            <summary>
+            Realiza a consulta dos acervos no Google Books
+            </summary>
+            <param name="isbn">número ISBN</param>
+            <response code="200">Consulta ao Google Books realizada</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.GetAllEmprestimos">
+            <summary>
+            Obtém os dados de todos os empréstimos cadastrados na empresa
+            </summary>
+            <response code="200">Dados dos empréstimos cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.GetEmprestimoById(System.Int32)">
+            <summary>
+            Obtém os dados de um empréstimo específico
+            </summary>
+            <param name="emprestimoId">Identificador do empréstimo</param>
+            <response code="200">Dados do empréstimo consultado</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.GetEmprestimosByUserName(System.String)">
+            <summary>
+            Obtém os dados dos empréstimos por usuário
+            </summary>
+            <param name="userName">Identificador do usuário</param>
+            <response code="200">Dados do empréstimo consultado</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.CreateEmprestimo(BibCorpPrevenir.Application.Dtos.Emprestimos.EmprestimoDto)">
+            <summary>
+            Realiza a inclusão de um novo empréstimo
+            </summary>
+            <response code="200">Empréstimo cadastrado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.UpdateAcervo(System.Int32,BibCorpPrevenir.Application.Dtos.Emprestimos.EmprestimoDto)">
+            <summary>
+            Realiza a atualização dos dados de um empréstimo
+            </summary>
+            <param name="emprestimoId">Identificador do empréstimo</param>
+            <param name="emprestimoDto">Empréstimo cadastrado</param>
+            <response code="200">Empréstimo atualizado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.DeleteEmprestimo(System.Int32)">
+            <summary>
+            Realiza a exclusão de um empréstimo
+            </summary>
+            <param name="emprestimoId">Identificador do empréstimo</param>
+            <response code="200">Empréstimo excluído com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.RenovarEmprestimo(System.Int32)">
+            <summary>
+            Realiza a renovação de um empréstimo por 30 dias
+            </summary>
+            <param name="emprestimoId">Identificador do empréstimo</param>
+            <response code="200">Empréstimo renovado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.AlteraLocalDeColeta(System.Int32,System.String)">
+            <summary>
+            Realiza a alteração do local de coleta do empréstimo
+            </summary>
+            <param name="emprestimoId">Identificador do empréstimo</param>
+            <param name="novoLocalColeta">Novo local de coleta</param>
+            <response code="200">Local de coleta atualizado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.GetEmprestimosByStatusAsync(BibCorpPrevenir.Application.Dtos.Emprestimos.TipoStatusEmprestimoDto[])">
+            <summary>
+            Obtém os dados dos empréstimos por status
+            </summary>
+            <param name="status">Status do empréstimo</param>
+            <response code="200">Dados dos empréstimos consultados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.GerenciarEmprestimos(System.Int32)">
+            <summary>
+            Realiza o gerenciamento do empréstimo
+            </summary>
+            <param name="emprestimoId">Identificador do empréstimo</param>
+            <response code="200">Empréstimo atualizado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorp.API.Controllers.Emprestimos.EmprestimosController.GetEmprestimosByFiltrosAsync(BibCorpPrevenir.Application.Dtos.Emprestimos.FiltroEmprestimoDto)">
+            <summary>
+            Obtém os dados dos empréstimos conforme o filtro realizado
+            </summary>
+            <param name="filtroEmprestimoDto">Filtros para pesquisa dos empréstimos</param>
+            <response code="200">Dados dos empréstimos consultados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.GetAllPatrimonios">
+            <summary>
+            Obtém os dados de todos os patrimônios cadastrados na empresa
+            </summary>
+            <response code="200">Dados dos patrimônios cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.GetAllPatrimoniosByISBN(System.String)">
+            <summary>
+            Obtém os dados de todos os patrimônios que possuem o mesmo ISBN
+            </summary>
+            <param name="isbn">Identificador do Acervo no Patrimônio</param>
+            <response code="200">Dados dos patrimônios cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.GetAllPatrimoniosLivres(System.String)">
+            <summary>
+            Obtém os dados de todos os patrimônios que não estão associados a um acervo a partir de um ISBN
+            </summary>
+            <param name="isbn">Identificador do Acervo no Patrimônio</param>
+            <response code="200">Dados dos patrimônios cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.GetPatrimonioById(System.Int32)">
+            <summary>
+            Obtém os dados de um patrimônio específico
+            </summary>
+            <param name="patrimonioId">Identificador do patrimônio</param>
+            <response code="200">Dados do patrimônio consultado</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.CreatePatrimonio(BibCorpPrevenir.Application.Dtos.Patrimonios.PatrimonioDto)">
+            <summary>
+            Realiza a inclusão de um novo patrimônio
+            </summary>
+            <response code="200">Patrimônio cadastrado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.UpdateAcervo(System.Int32,BibCorpPrevenir.Application.Dtos.Patrimonios.PatrimonioDto)">
+            <summary>
+            Realiza a atualização dos dados de um patrimônio
+            </summary>
+            <param name="patrimonioId">Identificador do patrimônio</param>
+            <param name="patrimonioDto">Patrimônio Cadastrado</param>
+            <response code="200">Patrimônio atualizado com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.DeletePatrimonio(System.Int32)">
+            <summary>
+            Realiza a exclusão de um patrimônio
+            </summary>
+            <param name="patrimonioId">Identificador do patrimônio</param>
+            <response code="200">Patrimônio excluído com sucesso</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+        <member name="M:BibCorpPrevenir.api.Controllers.Patrimonios.PatrimoniosController.GetPatrimoniosPaginacao(BibCorpPrevenir.Persistence.Util.Pages.Class.ParametrosPaginacao)">
+            <summary>
+            Obtém os dados dos patrimonios cadastrados na emrpesa com recurso de paginacao
+            </summary>
+            <response code="200">Dados dos patrimonios cadastrados</response>
+            <response code="400">Parâmetros incorretos</response>
+            <response code="500">Erro interno</response>
+        </member>
+    </members>
+</doc>
