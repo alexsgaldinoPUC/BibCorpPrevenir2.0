@@ -83,7 +83,6 @@ export class TitleNavigatorComponent {
             this.usuario.fotoURL === null
               ? "../../../../assets/images/not-available.png"
               : environment.fotoURL + this.usuario.fotoURL;
-          console.log(this.fotoURL);
         },
         error: (error: any) => {
           if (error.status == 401) {

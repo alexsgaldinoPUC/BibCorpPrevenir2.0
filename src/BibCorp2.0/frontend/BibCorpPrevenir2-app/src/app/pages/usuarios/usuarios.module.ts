@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CadastroComponent,
     LoginComponent,
     PerfilComponent,
-    PerfilDetalheComponent
+    PerfilDetalheComponent,
   ],
   exports: [
     UsuariosComponent,

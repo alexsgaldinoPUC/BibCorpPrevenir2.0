@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using BibCorp.API.Controllers.Uploads;
 using BibCorpPrevenir.API.Controllers.Uploads;
@@ -89,7 +90,10 @@ namespace BibCorpPrevenir.API
             services
                 .AddControllers()
                 // Já leva os enum convertidos na query
-                .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
+                .AddJsonOptions(options => {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        })
                 // Eliminar loop infinito da estrutura
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -171,9 +175,10 @@ namespace BibCorpPrevenir.API
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BibCorpPrevenir.API v1"));
 
- //           app.UseHttpsRedirection();
+//            app.UseHttpsRedirection();
 
             app.UseRouting();
+            
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -190,6 +195,7 @@ namespace BibCorpPrevenir.API
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
                 RequestPath = new PathString("/Resources")
             });
+
 
 
             app.UseEndpoints(endpoints =>

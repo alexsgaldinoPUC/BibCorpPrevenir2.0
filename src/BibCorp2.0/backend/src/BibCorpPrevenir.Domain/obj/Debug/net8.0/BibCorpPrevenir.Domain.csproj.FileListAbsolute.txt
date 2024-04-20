@@ -1,0 +1,13 @@
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\bin\Debug\net8.0\BibCorpPrevenir.Domain.deps.json
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\bin\Debug\net8.0\BibCorpPrevenir.Domain.dll
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\bin\Debug\net8.0\BibCorpPrevenir.Domain.pdb
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.csproj.AssemblyReference.cache
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.AssemblyInfoInputs.cache
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.AssemblyInfo.cs
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.csproj.CoreCompileInputs.cache
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.sourcelink.json
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.dll
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\refint\BibCorpPrevenir.Domain.dll
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\BibCorpPrevenir.Domain.pdb
+C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir.Domain\obj\Debug\net8.0\ref\BibCorpPrevenir.Domain.dll

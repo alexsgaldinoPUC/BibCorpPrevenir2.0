@@ -1,0 +1,9 @@
+<h1 mat-dialog-title class="text-center bcp-bg-primary text-white">Excluir {{data.nomePagina}}</h1>
+<div mat-dialog-content class="bcp-bg-white-020">
+  <p>Exclusão de dados de {{data.nomePagina}}, confirma?</p>
+  <p>#{{data.id}} - {{data.argumento}}?</p>
+</div>
+<div mat-dialog-actions class="bcp-bg-secondary text-white">
+  <button mat-button class="text-white" (click)="onNoClick()">Não</button>
+  <button mat-button class="text-white" [mat-dialog-close]="'Sim'" cdkFocusInitial>Ok</button>
+</div>
