@@ -62,7 +62,8 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
               //        .Include(p => p.Acervo)
               .AsNoTracking();
 
-            if (parametrosPaginacao.Argumento != null)
+                    Console.WriteLine(parametrosPaginacao.Argumento, parametrosPaginacao.PesquisarPor);
+            if (parametrosPaginacao.Argumento != "null")
             {
                 if (parametrosPaginacao.PesquisarPor == "Localizacao")
                 {
@@ -97,7 +98,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoEmprestado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Liberado &&
+                      .Where(a => a.Status == true &&
                             (a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
@@ -108,7 +109,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoLiberado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Emprestado &&
+                      .Where(a => a.Status == false &&
                             (a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
@@ -132,12 +133,12 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                 if (parametrosPaginacao.PesquisarPor == "SituacaoEmprestado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Liberado);
+                      .Where(a => a.Status == true);
                 }
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoLiberado")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Status == Domain.Enums.Patrimonio.PatrimonioStatus.Emprestado);
+                      .Where(a => a.Status == false);
                 }
             }
 
@@ -150,7 +151,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                       .AsNoTracking()
                       .FirstOrDefault(p => p.Id == patrimonioId);
 
-            patrimonioAlterado.Status = Domain.Enums.Patrimonio.PatrimonioStatus.Emprestado;
+            patrimonioAlterado.Status = true;
             patrimonioAlterado.DataIndisponibilidade = DateTime.Now.ToString("dd/MM/yyyy");
             patrimonioAlterado.DataAtualizacao = DateTime.Now;
 
@@ -165,7 +166,7 @@ namespace BibCorpPrevenir.Persistence.Interfaces.Packages.Patrimonios
                       .AsNoTracking()
                       .FirstOrDefault(p => p.Id == patrimonioId);
 
-            patrimonioAlterado.Status = Domain.Enums.Patrimonio.PatrimonioStatus.Liberado;
+            patrimonioAlterado.Status = false;
             patrimonioAlterado.DataIndisponibilidade = null;
             patrimonioAlterado.DataAtualizacao = DateTime.Now;
 

@@ -13,22 +13,24 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { DrawerNavigatorComponent, TitleNavigatorComponent } from '.';
-
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { DrawerNavigatorComponent, ModalDeleteComponent, TitleNavigatorComponent } from '.';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 @NgModule({
   declarations: [ 
-    DrawerNavigatorComponent, TitleNavigatorComponent
+    DrawerNavigatorComponent, TitleNavigatorComponent, ModalDeleteComponent
   ],
   imports: [
     AppRoutingModule,
@@ -42,6 +44,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     MatButtonModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,
@@ -64,6 +67,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     MatButtonModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,
@@ -74,6 +78,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSidenavModule,
 
     DrawerNavigatorComponent,
+    ModalDeleteComponent,
     TitleNavigatorComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

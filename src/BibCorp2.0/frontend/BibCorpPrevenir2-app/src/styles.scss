@@ -12,12 +12,18 @@
 .bcp-bg-primary {
   background-color: var(--primary);
 }
+
 .bcp-bg-primary-010 {
-  color: var(--primary-010);
+  background-color: var(--primary-010);
 }
 
 .bcp-bg-secondary {
   background-color: var(--secondary);
+  opacity: .9;
+}
+
+.bcp-bg-secondary-010 {
+  background-color: var(--secondary-010);
   opacity: .9;
 }
 

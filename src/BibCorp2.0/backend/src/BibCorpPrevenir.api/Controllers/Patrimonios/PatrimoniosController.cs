@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BibCorpPrevenir.api.Controllers.Patrimonios
 {
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PatrimoniosController : ControllerBase
     {
         private readonly IPatrimonioServices _patrimonioServices;
@@ -134,6 +134,7 @@ namespace BibCorpPrevenir.api.Controllers.Patrimonios
         {
             try
             {
+                Console.WriteLine("ISBNA: " + patrimonioDto.ISBN);
                 //      var acervo = await _acervoService.GetAcervoByISBNAsync(patrimonioDto.ISBN);
 
                 //      if (acervo != null) patrimonioDto.AcervoId = acervo.Id;

@@ -39,10 +39,8 @@ export class DrawerNavigatorComponent {
             this.usuarioAtivo.fotoURL === null
               ? "../../../../../assets/images/not-available.png"
               : environment.fotoURL + this.usuarioAtivo.fotoURL;
-          console.log(this.fotoURL);
 
           this.usuarioAdmin = this.usuarioAtivo.userName === "Admin";
-          console.log(this.usuarioLogado, this.usuarioAdmin);
         },
         error: (error: any) => {
           if (error.status == 401) {

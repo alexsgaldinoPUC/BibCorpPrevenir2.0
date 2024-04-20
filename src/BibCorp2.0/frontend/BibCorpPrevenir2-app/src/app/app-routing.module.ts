@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeAdminComponent, HomeComponent, HomePageComponent } from "./pages/home";
 import { CadastroComponent, LoginComponent, PerfilComponent, UsuariosComponent } from "./pages/usuarios";
+import { PatrimonioDetalheComponent, PatrimonioListaComponent, PatrimoniosComponent } from "./pages/patrimonios";
 
 const routes: Routes = [
   { path: "", redirectTo: "pages/home", pathMatch: "full" },
@@ -11,11 +12,13 @@ const routes: Routes = [
       import("./pages/acervos/acervos.module").then((m) => m.AcervosModule),
   },
   {
-    path: "pages/patrimonios",
-    loadChildren: () =>
-      import("./pages/patrimonios/patrimonios.module").then(
-        (m) => m.PatrimoniosModule
-      ),
+    path: "pages/patrimonios", component: PatrimoniosComponent,
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'lista'},
+      { path: 'lista', component: PatrimonioListaComponent },
+      { path: 'detalhe/:id', component: PatrimonioDetalheComponent },
+      { path: 'cadastrar', component: PatrimonioDetalheComponent },
+    ]
   },
   {
     path: "pages/emprestimos",

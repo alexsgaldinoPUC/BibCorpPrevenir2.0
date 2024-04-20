@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using BibCorpPrevenir.api.Util.Class;
 
 namespace BibCorpPrevenir.api.Util.Extensions.Pages
 {
-  public static class Paginacao
+    public static class Paginacao
   {
     public static void IncluirPaginacao(this HttpResponse response, int paginaCorrente, int itensPorPagina, int toalDeItens, int totalDePaginas)
     {
@@ -15,9 +11,9 @@ namespace BibCorpPrevenir.api.Util.Extensions.Pages
 
       var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-      response.Headers.Add("Paginacao", JsonSerializer.Serialize(paginacao, options));
+      response.Headers.Append("Paginacao", JsonSerializer.Serialize(paginacao, options));
 
-      response.Headers.Add("Access-Control-Expose-Headers", "Paginacao");
+      response.Headers.Append("Access-Control-Expose-Headers", "Paginacao");
     }
   }
 }

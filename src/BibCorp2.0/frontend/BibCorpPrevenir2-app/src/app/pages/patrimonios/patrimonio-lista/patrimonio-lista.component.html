@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <div class="p-2">
+    <p class="h5">Lista de Patrimônios:</p>
+  </div>
+
+  <form [formGroup]="formPatrimonioLista">
+    <div fxLayout="row wrap"  class="m-0 p-0 g-0">
+      <mat-form-field fxFlex="20" fxFlex.xs="100" fxFlex.sm="20" class="ms-2 p-2">
+        <mat-label>Filtrar por</mat-label>
+        <mat-select matNativeControl formControlName="opcaoPesquisa" (selectionChange)="getPatrimonios()">
+          <mat-option value="Todos">Todos</mat-option>
+          <mat-option value="Localizacao">Localização</mat-option>
+          <mat-option value="Sala">Sala</mat-option>
+          <mat-option value="Coluna">Coluna</mat-option>
+          <mat-option value="Prateleira">Prateleira</mat-option>
+          <mat-option value="Posicao">Posição</mat-option>
+          <mat-option value="ISBN">ISBN</mat-option>
+          <mat-option value="SituacaoEmprestado">Emprestados</mat-option>
+          <mat-option value="SituacaoLiberado">Disponíveis</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="79" fxFlex.xs="100" fxFlex.sm="50" class="p-2">
+        <mat-label>Argumento</mat-label>
+        <input matInput formControlName="argumento">
+        <button matSuffix mat-icon-button (click)="getPatrimonios()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </form>
+
+</div>
+
+<table class="table table-striped table-hover table-light rounded-3 ">
+  <thead class="table-primary">
+    <tr>
+      <th class="d-none d-md-table-cell d-flex justify-center">
+        <a class="text-white" (click)="alterarImagem()">
+          <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </a>
+      </th>
+      <th>#</th>
+      <th>ISBN</th>
+      <th class="d-none d-md-table-cell">Localização</th>
+      <th>Sala</th>
+      <th>coluna</th>
+      <th>Prateleira</th>
+      <th>Posição</th>
+      <th>Status</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  @if (patrimonios && patrimonios.length) {
+  <tbody>
+    @for (patrimonio of patrimonios; track patrimonio.id) {
+    <tr (click)="editarPatrimonio(patrimonio.id)" style="cursor: pointer">
+      <td>
+        <img [(ngbCollapse)]="!exibirImagem"
+          [src]='(patrimonio.acervo != null) ?  patrimonio.acervo.capaUrl : capaLivro' alt="" [style.width.px]="50"
+          [style.margin.px]="2">
+      </td>
+      <td>{{patrimonio.id}}</td>
+      <td>{{patrimonio.isbn}}</td>
+      <td>{{patrimonio.localizacao}}</td>
+      <td>{{patrimonio.sala}}</td>
+      <td>{{patrimonio.coluna}}</td>
+      <td>{{patrimonio.prateleira}}</td>
+      <td>{{patrimonio.posicao}}</td>
+      <td>{{(patrimonio.status) ? 'Emprestado' : 'Disponível'}}</td>
+      <td>
+        <div class="btn-group mx-1">
+          <a class="text-danger" (click)="abrirModal($event, patrimonio.id, patrimonio.isbn)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </div>
+      </td>
+    </tr>
+    }
+  </tbody>
+  }
+  @if (!patrimonios.length) {
+  <tfoot>
+    <td colspan="12" class="text-center" class="text-center">
+      <h4>Nenhum patrimônio encontrado</h4>
+    </td>
+  </tfoot>
+  }
+</table>
+<div class="card-footer d-flex p-1 m-0 bibcorp-bg-primary" *ngIf="patrimonios.length">
+  <div class="justify-content-center m-auto p-0 m-0 mt-3">
+    <ngb-pagination [collectionSize]="paginacao.itensPorPagina" [page]="paginacao.paginaCorrente"
+      [maxSize]="paginacao.totalDePaginas" [rotate]="true" [boundaryLinks]="true" [ellipses]="false"
+      (pageChange)="alteracaoDePagina($event)"></ngb-pagination>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>

@@ -11,8 +11,8 @@ namespace BibCorpPrevenir.Persistence.Util.Pages.Class
       set { tamanhoDaPagina = (value > TamanhoMaximoDaPagina) ? TamanhoMaximoDaPagina : value; }
     }
 
-    public string Argumento { get; set; }
     public string PesquisarPor { get; set; }
+    public string Argumento { get; set; }
     public string Genero { get; set; }
   }
 }
