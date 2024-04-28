@@ -1,0 +1,6 @@
+@BibCorpPrevenir2.api_HostAddress = http://localhost:5237
+
+GET {{BibCorpPrevenir2.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
