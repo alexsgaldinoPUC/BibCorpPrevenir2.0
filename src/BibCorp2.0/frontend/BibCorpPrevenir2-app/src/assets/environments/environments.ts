@@ -1,4 +1,4 @@
 export const environment = {
-  apiURL: 'http://localhost:5254/api/',
-  fotoURL: 'http://localhost:5254/resources/fotos/'
+  apiURL: 'http://localhost:5237/api/',
+  fotoURL: 'http://localhost:5237/resources/fotos/'
 }

@@ -5,6 +5,7 @@ import { UsuarioService } from '../../../services/usuario';
 import { UploadService } from '../../../services/upload';
 import { Usuario } from '../../../shared/models/interfaces/usuario';
 import { environment } from '../../../../assets/environments';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -12,6 +13,7 @@ import { environment } from '../../../../assets/environments';
   styleUrl: './perfil.component.scss'
 })
 export class PerfilComponent {
+  #router = inject(Router)
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
   #usuarioService = inject(UsuarioService);
@@ -49,7 +51,9 @@ export class PerfilComponent {
       .subscribe({
         next: () => {
           this.#toastrService.success("Foto atualizada!", "Sucesso!"),
-            this.getUsuarioLogado();
+          this.getUsuarioLogado();
+          this.#router.navigateByUrl("/pages/usuarios/perfil");
+          location.replace("/pages/usuarios/perfil");
         },
         error: (error: any) => {
           this.#toastrService.error(

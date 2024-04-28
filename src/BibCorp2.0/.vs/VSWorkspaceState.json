@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\src",
+    "\\backend\\src\\BibCorpPrevenir2.Application",
+    "\\backend\\src\\BibCorpPrevenir2.Domain",
+    "\\backend\\src\\BibCorpPrevenir2.Domain\\Exceptions",
+    "\\backend\\src\\BibCorpPrevenir2.Persistence"
+  ],
+  "SelectedNode": "\\backend\\src\\BibCorpPrevenir2.sln",
+  "PreviewInSolutionExplorer": false
+}
