@@ -87,8 +87,8 @@
   </tfoot>
   }
 </table>
-<div class="card-footer d-flex p-1 m-0 bibcorp-bg-primary" *ngIf="patrimonios.length">
-  <div class="justify-content-center m-auto p-0 m-0 mt-3">
+<div class="card-footer d-flex p-1 m-0 bcp-bg-primary" *ngIf="patrimonios.length">
+  <div class="justify-content-center m-auto p-0 m-0 my-1">
     <ngb-pagination [collectionSize]="paginacao.itensPorPagina" [page]="paginacao.paginaCorrente"
       [maxSize]="paginacao.totalDePaginas" [rotate]="true" [boundaryLinks]="true" [ellipses]="false"
       (pageChange)="alteracaoDePagina($event)"></ngb-pagination>

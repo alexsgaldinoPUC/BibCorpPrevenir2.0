@@ -64,7 +64,7 @@
         </a>
       </mat-expansion-panel>
     }
-  
+
     @if (usuarioLogado) {
       <mat-expansion-panel class="mat-elevation-z8 mt-2">
         <mat-expansion-panel-header>
@@ -76,17 +76,17 @@
 
         @if (usuarioAdmin) {
           <mat-divider class="mt-2 mb-2" />
-          <a class="bcp-drawer-cursor" routerLink="acervo/novo">
+          <a class="bcp-drawer-cursor" routerLink="pages/acervos/cadastrar">
             Novo
           </a>
         }
         <mat-divider class="mt-2 mb-2" />
-        <a class="bcp-drawer-cursor" routerLink="acervo/lista">
+        <a class="bcp-drawer-cursor" routerLink="pages/acervos/lista">
           Lista
         </a>
       </mat-expansion-panel>
   }
-  
+
     @if (usuarioLogado) {
       @if (usuarioAdmin) {
       <mat-expansion-panel class="mat-elevation-z8 mt-2">

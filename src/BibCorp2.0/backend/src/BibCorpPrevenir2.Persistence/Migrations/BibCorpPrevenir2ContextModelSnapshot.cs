@@ -31,35 +31,27 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AnoPublicacao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Autor")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("CapaUrl")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Comentarios")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DataCriacao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Edicao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Editora")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Genero")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ISBN")
@@ -79,15 +71,12 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Resumo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("SubTitulo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Titulo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

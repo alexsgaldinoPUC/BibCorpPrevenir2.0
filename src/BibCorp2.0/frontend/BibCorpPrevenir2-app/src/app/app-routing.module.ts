@@ -1,24 +1,50 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HomeAdminComponent, HomeComponent, HomePageComponent } from "./pages/home";
-import { CadastroComponent, LoginComponent, PerfilComponent, UsuariosComponent } from "./pages/usuarios";
-import { PatrimonioDetalheComponent, PatrimonioListaComponent, PatrimoniosComponent } from "./pages/patrimonios";
+import {
+  HomeAdminComponent,
+  HomeComponent,
+  HomePageComponent,
+} from "./pages/home";
+import {
+  CadastroComponent,
+  LoginComponent,
+  PerfilComponent,
+  UsuariosComponent,
+} from "./pages/usuarios";
+import {
+  PatrimonioDetalheComponent,
+  PatrimonioListaComponent,
+  PatrimoniosComponent,
+} from "./pages/patrimonios";
+import {
+  AcervoDetalheComponent,
+  AcervoEdicaoComponent,
+  AcervoListaComponent,
+  AcervosComponent,
+} from "./pages/acervos";
 
 const routes: Routes = [
   { path: "", redirectTo: "pages/home", pathMatch: "full" },
+  { path: "acervos", redirectTo: "acervos/lista", pathMatch: "full" },
   {
     path: "pages/acervos",
-    loadChildren: () =>
-      import("./pages/acervos/acervos.module").then((m) => m.AcervosModule),
+    component: AcervosComponent,
+    children: [
+      { path: "lista", component: AcervoListaComponent },
+      { path: "detalhe/:id", component: AcervoDetalheComponent },
+      { path: "editar/:id", component: AcervoEdicaoComponent },
+      { path: "cadastrar", component: AcervoEdicaoComponent },
+    ],
   },
   {
-    path: "pages/patrimonios", component: PatrimoniosComponent,
+    path: "pages/patrimonios",
+    component: PatrimoniosComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'lista'},
-      { path: 'lista', component: PatrimonioListaComponent },
-      { path: 'detalhe/:id', component: PatrimonioDetalheComponent },
-      { path: 'cadastrar', component: PatrimonioDetalheComponent },
-    ]
+      { path: "", pathMatch: "full", redirectTo: "lista" },
+      { path: "lista", component: PatrimonioListaComponent },
+      { path: "detalhe/:id", component: PatrimonioDetalheComponent },
+      { path: "cadastrar", component: PatrimonioDetalheComponent },
+    ],
   },
   {
     path: "pages/emprestimos",
@@ -27,22 +53,25 @@ const routes: Routes = [
         (m) => m.EmprestimosModule
       ),
   },
-  { path: 'pages/usuarios', component: UsuariosComponent,
+  {
+    path: "pages/usuarios",
+    component: UsuariosComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'login'},
-      { path: 'login', component: LoginComponent },
-      { path: 'perfil', component: PerfilComponent },
-      { path: 'cadastro', component: CadastroComponent }
-    ]
+      { path: "", pathMatch: "full", redirectTo: "login" },
+      { path: "login", component: LoginComponent },
+      { path: "perfil", component: PerfilComponent },
+      { path: "cadastro", component: CadastroComponent },
+    ],
   },
 
-  { path: 'pages/home', 
-    component: HomeComponent, 
+  {
+    path: "pages/home",
+    component: HomeComponent,
     children: [
       { path: "", redirectTo: "homePage", pathMatch: "full" },
       { path: "homePage", component: HomePageComponent },
-      { path: "homeAdmin", component: HomeAdminComponent }
-    ] 
+      { path: "homeAdmin", component: HomeAdminComponent },
+    ],
   },
 
   { path: "**", redirectTo: "pages/home", pathMatch: "full" },

@@ -1,6 +1,9 @@
 ﻿using BibCorpPrevenir2.api.Util.Extensions.Pages;
+using BibCorpPrevenir2.api.Util.Extensions.Security;
 using BibCorpPrevenir2.Application.Dtos.Acervos;
 using BibCorpPrevenir2.Application.Services.Contracts.Acervos;
+using BibCorpPrevenir2.Application.Services.Contracts.Usuarios;
+using BibCorpPrevenir2.Domain.Models.Usuarios;
 using BibCorpPrevenir2.Persistence.Util.Classes.Paginators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +17,16 @@ namespace BibCorpPrevenir2.api.Controllers.Acervos;
 public class AcervosController : Controller
 {
     private readonly IAcervoService _acervoService;
+    private readonly IUsuarioService _usuarioService;
 
     public AcervosController
     (
-        IAcervoService acervoService
+        IAcervoService acervoService,
+        IUsuarioService usuarioService
     )
     {
         _acervoService = acervoService;
+        _usuarioService = usuarioService;
     }
 
 
@@ -62,6 +68,13 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if ( usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var acervo = await _acervoService.GetAcervoByIdAsync(acervoId);
 
             if (acervo == null) return NotFound("Não existe acervo cadastrado para o Id informado");
@@ -87,6 +100,13 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var acervos = await _acervoService.GetAcervoByISBNAsync(ISBN);
 
             return Ok(acervos);
@@ -108,6 +128,18 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             var acervo = await _acervoService.GetAcervoByISBNAsync(acervoDto.ISBN);
 
             if (acervo != null) return BadRequest("Já existe um Acervo com o ISBN informado");
@@ -138,6 +170,18 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             var acervo = await _acervoService.UpdateAcervo(acervoId, acervoDto);
 
             if (acervo == null) return NotFound("Não existe acervo cadastrado para o Id informado");
@@ -163,6 +207,18 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             if (await _acervoService.DeleteAcervo(acervoId))
             {
                 return Ok(new { message = "OK" });
@@ -192,6 +248,13 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var acervos = await _acervoService.GetAcervosRecentesAsync(parametrosPaginacao);
 
             if (acervos == null) return NotFound("Não existem acervos cadastrados");
@@ -218,6 +281,13 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var acervos = await _acervoService.GetAcervosRecentesAsync(parametrosPaginacao);
 
             if (acervos == null) return NotFound("Não existem acervos cadastrados");
@@ -245,6 +315,18 @@ public class AcervosController : Controller
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             //var apikey = "AIzaSyAdqmSh-H-FC5TXVVEW0QBZaafCi7kI24E";
             var url = $"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}";
 

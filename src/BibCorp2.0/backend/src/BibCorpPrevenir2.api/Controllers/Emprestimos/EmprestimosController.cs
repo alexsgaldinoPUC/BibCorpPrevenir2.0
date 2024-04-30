@@ -1,6 +1,8 @@
-﻿using BibCorpPrevenir2.api.Util.Extentions.Exceptions;
+﻿using BibCorpPrevenir2.api.Util.Extensions.Security;
+using BibCorpPrevenir2.api.Util.Extentions.Exceptions;
 using BibCorpPrevenir2.Application.Dtos.Emprestimos;
 using BibCorpPrevenir2.Application.Services.Contracts.Emprestimos;
+using BibCorpPrevenir2.Application.Services.Contracts.Usuarios;
 using BibCorpPrevenir2.Domain.Enums.Emprestimo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +15,16 @@ namespace BibCorpPrevenir2.api.Controllers.Emrpestimos;
 public class EmprestimosController : ControllerBase
 {
     private readonly IEmprestimoService _emprestimoService;
+    private readonly IUsuarioService _usuarioService;
 
     public EmprestimosController
     (
-        IEmprestimoService emprestimoService
+        IEmprestimoService emprestimoService,
+        IUsuarioService usuarioService
     )
     {
         _emprestimoService = emprestimoService;
+        _usuarioService = usuarioService;
     }
 
 
@@ -35,6 +40,13 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             Console.WriteLine("GetALlEmprestimos: ");
             var emprestimos = await _emprestimoService.GetAllEmprestimosAsync();
 
@@ -61,6 +73,13 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var emprestimo = await _emprestimoService.GetEmprestimoByIdAsync(emprestimoId);
 
             if (emprestimo == null) return NotFound("Não existe empréstimo cadastrado para o Id informado");
@@ -87,6 +106,13 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var emprestimo = await _emprestimoService.GetEmprestimosByUserNameAsync(userName);
 
             if (emprestimo == null) return NotFound("Não existe empréstimo cadastrado para o nome de usuário informado");
@@ -112,6 +138,18 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             var createdEmprestimo = await _emprestimoService.CreateEmprestimo(emprestimoDto);
 
             if (createdEmprestimo != null) return Ok(createdEmprestimo);
@@ -142,6 +180,18 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             var emprestimo = await _emprestimoService.UpdateEmprestimo(emprestimoId, emprestimoDto);
 
             if (emprestimo == null) return NotFound("Não existe empréstimo cadastrado para o Id informado");
@@ -167,6 +217,18 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             if (await _emprestimoService.DeleteEmprestimo(emprestimoId))
             {
                 return Ok(new { message = "OK" });
@@ -196,6 +258,18 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             var emprestimoRenovado = await _emprestimoService.RenovarEmprestimo(emprestimoId);
 
             if (emprestimoRenovado == null) return NotFound("Não existe empréstimo cadastrado para renovação");
@@ -226,6 +300,13 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var emprestimoAlterado = await _emprestimoService.AlterarLocalDeColeta(emprestimoId, novoLocalColeta);
 
             if (emprestimoAlterado == null) return NotFound("Não existe empréstimo cadastrado para alteração");
@@ -256,6 +337,13 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var emprestimos = await _emprestimoService.GetEmprestimosByStatusAsync(status);
 
             if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados para os status informados");
@@ -281,6 +369,13 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var emprestimoAlterado = await _emprestimoService.GerenciarEmprestimos(emprestimoId);
 
             if (emprestimoAlterado == null) return NotFound("Não existe empréstimo cadastrado para gerenciamento");
@@ -306,6 +401,13 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var emprestimos = await _emprestimoService.GetEmprestimosByFiltrosAsync(filtroEmprestimoDto);
 
             if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados para os filtros informados");

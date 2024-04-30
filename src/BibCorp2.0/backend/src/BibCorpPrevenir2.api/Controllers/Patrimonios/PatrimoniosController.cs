@@ -1,6 +1,8 @@
 ﻿using BibCorpPrevenir2.api.Util.Extensions.Pages;
+using BibCorpPrevenir2.api.Util.Extensions.Security;
 using BibCorpPrevenir2.Application.Dtos.Patrimonios;
 using BibCorpPrevenir2.Application.Services.Contracts.Patrimonios;
+using BibCorpPrevenir2.Application.Services.Contracts.Usuarios;
 using BibCorpPrevenir2.Persistence.Util.Classes.Paginators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +15,16 @@ namespace BibCorpPrevenir2.api.Controllers.Patrimonios;
 public class PatrimoniosController : ControllerBase
 {
     private readonly IPatrimonioService _patrimonioServices;
-    //  private readonly IAcervoService _acervoService;
+    private readonly IUsuarioService _usuarioService;
 
     public PatrimoniosController
     (
-        IPatrimonioService patrimonioServices
-    //      IAcervoService acervoService
+        IPatrimonioService patrimonioServices,
+        IUsuarioService usuarioService
     )
     {
         _patrimonioServices = patrimonioServices;
-        //    _acervoService = acervoService;
+        _usuarioService = usuarioService;
     }
 
 
@@ -38,6 +40,13 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var patrimonios = await _patrimonioServices.GetAllPatrimoniosAsync();
 
             if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados");
@@ -62,6 +71,13 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var patrimonios = await _patrimonioServices.GetPatrimoniosByISBNAsync(isbn);
 
             if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados para este ISBN");
@@ -86,6 +102,13 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var patrimonios = await _patrimonioServices.GetAllPatrimoniosLivresAsync(isbn);
 
             if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados para este ISBN");
@@ -111,6 +134,13 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var patrimonio = await _patrimonioServices.GetPatrimonioByIdAsync(patrimonioId);
 
             if (patrimonio == null) return NotFound("Não existe patrimônio cadastrado para o Id informado");
@@ -135,6 +165,18 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             Console.WriteLine("ISBNA: " + patrimonioDto.ISBN);
             //      var acervo = await _acervoService.GetAcervoByISBNAsync(patrimonioDto.ISBN);
 
@@ -166,6 +208,18 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             var patrimonio = await _patrimonioServices.UpdatePatrimonio(patrimonioId, patrimonioDto);
 
             if (patrimonio == null) return NotFound("Não existe patrimônio cadastrado para o Id informado");
@@ -191,6 +245,18 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            if (usuario.UserName != "Admin")
+            {
+                return Unauthorized();
+            }
+
             if (await _patrimonioServices.DeletePatrimonio(patrimonioId))
             {
                 return Ok(new { message = "OK" });
@@ -219,6 +285,13 @@ public class PatrimoniosController : ControllerBase
     {
         try
         {
+            var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
             var patrimonios = await _patrimonioServices.GetPatrimoniosPaginacaoAsync(parametrosPaginacao);
 
             if (patrimonios == null) return NotFound("Não existem patrimonios cadastrados");

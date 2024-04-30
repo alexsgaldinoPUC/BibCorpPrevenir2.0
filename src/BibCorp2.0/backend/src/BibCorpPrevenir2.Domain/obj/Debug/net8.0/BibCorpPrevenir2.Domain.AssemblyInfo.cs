@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BibCorpPrevenir2.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf7b46f9126a4302619891afb2c52ad9fea6be49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff3e52f910924457346ce39be9b3e7e859f3e0b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("BibCorpPrevenir2.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BibCorpPrevenir2.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

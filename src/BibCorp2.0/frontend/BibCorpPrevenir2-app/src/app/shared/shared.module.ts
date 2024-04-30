@@ -25,11 +25,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     DrawerNavigatorComponent, TitleNavigatorComponent, ModalDeleteComponent
   ],
   imports: [
@@ -53,7 +55,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatMenuModule,
     MatSelectModule,
     MatSidenavModule,
-    
+    MatTooltipModule,
+
   ],
   exports: [
     AppRoutingModule,
@@ -76,6 +79,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatMenuModule,
     MatSelectModule,
     MatSidenavModule,
+    MatTooltipModule,
 
     DrawerNavigatorComponent,
     ModalDeleteComponent,

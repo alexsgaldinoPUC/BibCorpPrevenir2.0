@@ -1,25 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AcervosRoutingModule } from './acervos-routing.module';
-import { AcervosComponent } from './acervos.component';
-import { AcervoListaComponent } from './acervo-lista/acervo-lista.component';
-import { AcervoDetalheComponent } from './acervo-detalhe/acervo-detalhe.component';
-import { AcervoEditarComponent } from './acervo-editar/acervo-editar.component';
-import { AcervoNovoComponent } from './acervo-novo/acervo-novo.component';
+
+import { SharedModule } from '../../shared';
+import { AcervoDetalheComponent, AcervoEdicaoComponent, AcervoListaComponent, AcervosComponent } from '.';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PatrimonioService } from '../../services/patrimonio';
 
 
 @NgModule({
   declarations: [
     AcervosComponent,
+    AcervoEdicaoComponent,
     AcervoListaComponent,
     AcervoDetalheComponent,
-    AcervoEditarComponent,
-    AcervoNovoComponent
+  ],
+  exports: [
+    AcervosComponent,
+    AcervoEdicaoComponent,
+    AcervoListaComponent,
+    AcervoDetalheComponent,
   ],
   imports: [
     CommonModule,
-    AcervosRoutingModule
-  ]
+    ReactiveFormsModule,
+
+    SharedModule
+  ],
+  providers:  [ PatrimonioService]
 })
 export class AcervosModule { }
