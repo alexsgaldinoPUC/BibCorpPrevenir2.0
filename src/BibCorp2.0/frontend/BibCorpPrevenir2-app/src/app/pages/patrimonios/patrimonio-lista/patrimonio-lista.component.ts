@@ -22,7 +22,7 @@ export class PatrimonioListaComponent {
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
 
-  public formPatrimonioLista!: FormGroup;
+  public formPatrimonioLista = {} as FormGroup;
 
   // public animal!: string;
   // public name!: string;

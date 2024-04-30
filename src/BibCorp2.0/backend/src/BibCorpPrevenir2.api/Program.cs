@@ -1,12 +1,3 @@
-using BibCorpPrevenir2.Domain.Models.Usuarios;
-using BibCorpPrevenir2.Persistence.Contexts;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 using BibCorpPrevenir2.Application.Services.Contracts.Acervos;
 using BibCorpPrevenir2.Application.Services.Contracts.Emprestimos;
 using BibCorpPrevenir2.Application.Services.Contracts.Patrimonios;
@@ -17,6 +8,9 @@ using BibCorpPrevenir2.api.Util.Services.Interfaces.Contracts.Uploads;
 using BibCorpPrevenir2.Application.Services.Implements.Patrimonios;
 using BibCorpPrevenir2.Application.Services.Implements.Usuarios;
 using BibCorpPrevenir2.api.Util.Services.Interfaces.Implementations.Uploads;
+using BibCorpPrevenir2.Domain.Models.Usuarios;
+using BibCorpPrevenir2.Persistence.Configuration.Classes;
+using BibCorpPrevenir2.Persistence.Contexts;
 using BibCorpPrevenir2.Persistence.Interfaces.Contracts.Acervos;
 using BibCorpPrevenir2.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorpPrevenir2.Persistence.Interfaces.Contracts.Patrimonios;
@@ -27,7 +21,13 @@ using BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios;
 using BibCorpPrevenir2.Persistence.Interfaces.Implementations.Shared;
 using BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos;
 using BibCorpPrevenir2.Persistence.Interfaces.Implementations.Usuarios;
-using BibCorpPrevenir2.Persistence.Configuration.Classes;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using Microsoft.Extensions.FileProviders;
@@ -88,7 +88,8 @@ builder.Services
     .AddControllers()
     // Já leva os enum convertidos na query
     .AddJsonOptions(options => {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+//        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); trocado para nova tecnologia
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     })
     // Eliminar loop infinito da estrutura
