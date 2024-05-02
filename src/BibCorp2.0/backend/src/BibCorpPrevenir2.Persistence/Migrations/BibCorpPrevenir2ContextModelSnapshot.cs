@@ -110,11 +110,9 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("LocalDeColeta")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("LocalDeEntrega")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("PatrimonioId")
@@ -256,6 +254,9 @@ namespace BibCorpPrevenir2.Persistence.Migrations
 
                     b.Property<string>("FotoURL")
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Localizacao")
                         .HasColumnType("longtext");

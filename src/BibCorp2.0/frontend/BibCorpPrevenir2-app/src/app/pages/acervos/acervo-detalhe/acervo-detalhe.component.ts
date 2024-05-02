@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AcervoService } from "../../../services/acervo";
 import { ToastrService } from "ngx-toastr";
+import { UsuarioService } from "../../../services/usuario";
+import { Usuario } from "../../../shared/models/interfaces/usuario";
+import { environment } from "../../../../assets/environments";
 
 @Component({
   selector: "app-acervo-detalhe",
@@ -19,21 +22,57 @@ export class AcervoDetalheComponent {
   #router = inject(Router);
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
+  #usuarioService = inject(UsuarioService);
 
   public acervo = {} as Acervo;
+  public usuarioAtivo = {} as Usuario;
+
   public acervoParam: any = "";
   public comentarios: string = "";
+  public fotoURL: string = "";
 
-  abrirDialog() {
+  public usuarioLogado = false;
+  public disabledReservar = false;
+
+  public abrirDialog(patrimonioId: number) {
     this.#dialogRef.open(ModalEmprestarComponent, {
-      data: {},
-      id: "Emprestar",
+      data: {
+        patrimonioId: patrimonioId,
+        acervoId: this.acervo.id,
+        id: "Emprestar",
+      },
     });
   }
 
   public ngOnInit(): void {
     this.acervoParam = this.#activevateRouter.snapshot.paramMap.get("id");
+
+    this.getUserAtivo();
     this.getAcervoById();
+  }
+
+  public getUserAtivo(): void {
+    this.#spinnerService.show();
+
+    this.#usuarioService
+      .getUsuarioByUserName()
+      .subscribe({
+        next: (usuarioAtivo: Usuario) => {
+          this.usuarioAtivo = usuarioAtivo;
+          this.usuarioLogado = true;
+          this.fotoURL =
+            this.usuarioAtivo.fotoURL === null
+              ? "../../../../assets/images/not-available.png"
+              : environment.fotoURL + this.usuarioAtivo.fotoURL;
+        },
+        error: (error: any) => {
+          if (error.status == 401) this.usuarioLogado = false;
+          else
+            this.#toastrService.error("Falha ao recuperar usuario no sistema");
+          console.error(error);
+        },
+      })
+      .add(() => this.#spinnerService.hide());
   }
 
   public getAcervoById(): void {
@@ -62,8 +101,8 @@ export class AcervoDetalheComponent {
     this.#acervoService
       .saveAcervo(this.acervo)
       .subscribe({
-        next: (retorno: Acervo) => {
-          this.acervo = retorno;
+        next: (acervo: Acervo) => {
+          this.acervo = acervo;
           console.log(this.acervo);
           this.#toastrService.success(
             "Comentário incluído para o acervo!",
@@ -76,5 +115,14 @@ export class AcervoDetalheComponent {
         },
       })
       .add(() => this.#spinnerService.hide());
+  }
+
+  public obterStatusPatrimonio(_status: boolean): any {
+    if (!this.usuarioLogado || this.usuarioAtivo.userName === "Admin")
+      this.disabledReservar = true;
+    else if (_status) this.disabledReservar = true;
+    else this.disabledReservar = false;
+
+    return _status ? "Indisponível" : "Disponível";
   }
 }

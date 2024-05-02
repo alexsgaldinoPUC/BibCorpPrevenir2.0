@@ -16,7 +16,7 @@ export class UsuarioService {
   #http = inject(HttpClient);
   #loginService = inject(LoginService);
 
-  public baseURL = environment.apiURL + "Usuarios/";
+  public baseURL = `${environment.apiURL}Usuarios/`;
 
   public userLoged = {} as Usuario;
 
@@ -31,7 +31,6 @@ export class UsuarioService {
   }
 
   public getUsuarioByUserName(): Observable<Usuario> {
-    console.log("aqui2");
     return this.#http
       .get<Usuario>(this.baseURL + "getusername")
       .pipe(shareReplay());
@@ -44,7 +43,6 @@ export class UsuarioService {
   }
 
   public updateUser(model: UsuarioUpdate): Observable<void> {
-    console.log("usuarioService ", model.id);
     return this.#http.put<Usuario>(this.baseURL + "UpdateUsuario", model).pipe(
       take(1),
       map((user: Usuario) => {

@@ -1,40 +1,40 @@
 @if (showCabecalho()) {
 <div class="bcp-bg-primary">
-  <div class="row m-0 p-0">
-    <div class="col mt-2 text-white d-flex">
-      <mat-icon class="bcp-title-icon-menu">{{iconTitle}}</mat-icon>
+  <div fxLayout="row" class="m-0 px-2">
+    <div fxLayout="row" fxFlexFill fxFlex="70" class="mt-2 text-white">
+      <mat-icon class="bcp-title-menu-icon">{{iconTitle}}</mat-icon>
       <h1>{{title}}</h1>
     </div>
-    <div class="col-3 col-lg-2 m-0 p-0 mt-2">
+    <div fxLayout="row" fxFlex="30" fxLayoutAlign="end center" class="m-1 p-0">
       <button mat-button [matMenuTriggerFor]="menu">
         <span>
           @if (usuarioLogado) {
-          <img [src]="fotoURL" class="rounded-circle mx-2 bcp-avatar-title">
-          <span>{{usuario.userName}}</span>
+          <img [src]="fotoURL" class="rounded-circle mx-2 bcp-avatar">
+          <span class="text-white">{{usuario.userName}}</span>
           } @else {
-          <span>Opcões:</span>
+          <span class="text-white">Opcões:</span>
           }
         </span>
       </button>
-      <mat-menu #menu="matMenu">
-        <mat-menu-item class="bcp-menu-item">
-          <mat-icon class="bcp-title-icon">login</mat-icon>
+      <mat-menu #menu="matMenu" >
+        <mat-menu-item class="px-2">
+          <mat-icon class="bcp-drawer-icon">login</mat-icon>
           <a class="bcp-cursor ms-2" routerLink="/pages/usuarios/login">
             Login
           </a>
         </mat-menu-item>
         <mat-divider class="mt-2 mb-2"></mat-divider>
-        <mat-menu-item class="bcp-menu-item">
-          <mat-icon class="bcp-title-icon">person_add</mat-icon>
-          <a class="bcp-cursor ms-2" (click)="register()">
+        <mat-menu-item class="px-2">
+          <mat-icon class="bcp-drawer-icon">person_add</mat-icon>
+          <a class="ms-2" role="button" (click)="register()">
             Novo Usuário
           </a>
         </mat-menu-item>
         <mat-divider class="mt-2 mb-2"></mat-divider>
         @if (usuarioLogado) {
-        <mat-menu-item class="bcp-menu-item">
-          <mat-icon class="bcp-title-icon">logout</mat-icon>
-          <a class="bcp-cursor ms-2" (click)="logout()">
+        <mat-menu-item class="px-2">
+          <mat-icon class="bcp-drawer-icon">logout</mat-icon>
+          <a class="ms-2" role="button" (click)="logout()">
             Sair
           </a>
         </mat-menu-item>

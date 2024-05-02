@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-sucesso',
-  templateUrl: './modal-sucesso.component.html'
+  templateUrl: './modal-sucesso.component.html',
+  styleUrl: './modal-sucesso.component.scss'
 })
 export class ModalSucessoComponent {
   #router = inject(Router)

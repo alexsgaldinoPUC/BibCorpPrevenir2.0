@@ -35,7 +35,9 @@ namespace BibCorpPrevenir2.Application.Services.Implements.Emprestimos
         }
         public async Task<EmprestimoDto> CreateEmprestimo(EmprestimoDto emprestimoDto)
         {
+            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
             var acervo = await _acervoPersistence.GetAcervoByIdAsync(emprestimoDto.AcervoId);
+            Console.WriteLine(acervo.QtdeDisponivel);
             var qtdeDisponivelAcervo = acervo.QtdeDisponivel;
 
             if (qtdeDisponivelAcervo > 0)

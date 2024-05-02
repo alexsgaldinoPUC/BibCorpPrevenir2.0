@@ -3,35 +3,7 @@
   "WorkspaceRootPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.api\\controllers\\usuarios\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|solutionrelative:controllers\\usuarios\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.api\\controllers\\uploads\\uploadscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|solutionrelative:controllers\\uploads\\uploadscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.api\\controllers\\patrimonios\\patrimonioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|solutionrelative:controllers\\patrimonios\\patrimonioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.api\\controllers\\emprestimos\\emprestimoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|solutionrelative:controllers\\emprestimos\\emprestimoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.api\\controllers\\acervos\\acervoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|solutionrelative:controllers\\acervos\\acervoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.api\\util\\extensions\\security\\claimsprincipalextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|solutionrelative:util\\extensions\\security\\claimsprincipalextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1285A0FB-113D-4B2A-813B-B2E679464016}|BibCorpPrevenir2.api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\interfaces\\implementations\\acervos\\acervopersistence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5DFC8C73-9552-49E3-B1C3-B6902A6DDB6A}|..\\BibCorpPrevenir2.Application\\BibCorpPrevenir2.Application.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.application\\dtos\\usuarios\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,111 +13,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AcervosController.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Acervos\\AcervosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\Acervos\\AcervosController.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Acervos\\AcervosController.cs",
-              "RelativeToolTip": "Controllers\\Acervos\\AcervosController.cs",
-              "ViewState": "AQIAAGQBAAAAAAAAAAAkwEcBAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T19:19:58.73Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Usuarios\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\Usuarios\\UsuariosController.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Usuarios\\UsuariosController.cs",
-              "RelativeToolTip": "Controllers\\Usuarios\\UsuariosController.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "Title": "UsuarioDto.cs",
+              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Dtos\\Usuarios\\UsuarioDto.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Application\\Dtos\\Usuarios\\UsuarioDto.cs",
+              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Dtos\\Usuarios\\UsuarioDto.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Application\\Dtos\\Usuarios\\UsuarioDto.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAcwAsAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T20:33:49.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UploadsController.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Uploads\\UploadsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\Uploads\\UploadsController.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Uploads\\UploadsController.cs",
-              "RelativeToolTip": "Controllers\\Uploads\\UploadsController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T20:33:33.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PatrimoniosController.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Patrimonios\\PatrimoniosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\Patrimonios\\PatrimoniosController.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Patrimonios\\PatrimoniosController.cs",
-              "RelativeToolTip": "Controllers\\Patrimonios\\PatrimoniosController.cs",
-              "ViewState": "AQIAAP4AAAAAAAAAAAAqwCQBAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T20:29:26.3Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EmprestimosController.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Emprestimos\\EmprestimosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\Emprestimos\\EmprestimosController.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Controllers\\Emprestimos\\EmprestimosController.cs",
-              "RelativeToolTip": "Controllers\\Emprestimos\\EmprestimosController.cs",
-              "ViewState": "AQIAAJEBAAAAAAAAAAAiwJoBAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T20:17:27.607Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ClaimsPrincipalExtensions.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Util\\Extensions\\Security\\ClaimsPrincipalExtensions.cs",
-              "RelativeDocumentMoniker": "Util\\Extensions\\Security\\ClaimsPrincipalExtensions.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Util\\Extensions\\Security\\ClaimsPrincipalExtensions.cs",
-              "RelativeToolTip": "Util\\Extensions\\Security\\ClaimsPrincipalExtensions.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T19:45:57.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAKUAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T19:12:37.426Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AcervoPersistence.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "ViewState": "AQIAAKcAAAAAAAAAAAAuwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T18:37:20.556Z",
+              "WhenOpened": "2024-05-02T16:10:04.082Z",
               "EditorCaption": ""
             }
           ]

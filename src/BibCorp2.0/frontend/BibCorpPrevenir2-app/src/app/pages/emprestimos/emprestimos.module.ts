@@ -1,15 +1,28 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { EmprestimosComponent } from "./emprestimos.component";
+
 import { SharedModule } from "../../shared";
-import { ModalSucessoComponent } from "./modal-sucesso";
+import { EmprestimosComponent, GerenciarReservasComponent, ModalEmprestarComponent, ModalSucessoComponent } from ".";
+import { ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
-  declarations: [EmprestimosComponent, ModalSucessoComponent],
-  exports: [EmprestimosComponent, ModalSucessoComponent],
+  declarations: [
+    EmprestimosComponent, 
+    GerenciarReservasComponent,
+    ModalEmprestarComponent,
+    ModalSucessoComponent, 
+  ],
+  exports: [
+    EmprestimosComponent, 
+    GerenciarReservasComponent,
+    ModalEmprestarComponent,
+    ModalSucessoComponent, 
+  ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
 
     SharedModule
   ],

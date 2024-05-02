@@ -9,6 +9,7 @@ namespace BibCorpPrevenir2.Application.Dtos.Usuarios
     public class UsuarioUpdateDto
     {
         public int Id { get; set; }
+        public bool IsAdmin { get; set; } = false;
         public required string Nome { get; set; }
         public required string Email { get; set; }
         public string? PhoneNumber { get; set; }

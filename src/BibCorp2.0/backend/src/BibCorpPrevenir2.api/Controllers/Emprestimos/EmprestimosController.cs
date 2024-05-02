@@ -138,20 +138,18 @@ public class EmprestimosController : ControllerBase
     {
         try
         {
+            Console.WriteLine("-----------------------------------------------------");
+
             var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
 
             if (usuario == null)
             {
                 return Unauthorized();
             }
-
-            if (usuario.UserName != "Admin")
-            {
-                return Unauthorized();
-            }
-
             var createdEmprestimo = await _emprestimoService.CreateEmprestimo(emprestimoDto);
 
+            Console.WriteLine(createdEmprestimo.UserName);
+            Console.WriteLine("=====================================================");    
             if (createdEmprestimo != null) return Ok(createdEmprestimo);
 
             return BadRequest("Ocorreu um erro ao tentar incluir o empréstimo");

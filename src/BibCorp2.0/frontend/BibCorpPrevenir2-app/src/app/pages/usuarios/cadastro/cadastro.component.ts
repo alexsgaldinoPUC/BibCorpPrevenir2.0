@@ -10,10 +10,12 @@ import { FormValidator } from '../../../util/class';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrl: './cadastro.component.scss'
 })
 export class CadastroComponent {
+  // rotas
   #router = inject(Router);
+
+  // Serviços
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
   #usuarioService = inject(UsuarioService);

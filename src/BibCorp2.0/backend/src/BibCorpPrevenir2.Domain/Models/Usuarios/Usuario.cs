@@ -11,6 +11,7 @@ namespace BibCorpPrevenir2.Domain.Models.Usuarios
     public class Usuario : IdentityUser<int>
     {
         public required string Nome { get; set; }
+        public bool IsAdmin { get; set; } = false;
         public string? Localizacao { get; set; }
         public string? FotoURL { get; set; }
         public IEnumerable<Emprestimo>? Emprestimos { get; set; }   

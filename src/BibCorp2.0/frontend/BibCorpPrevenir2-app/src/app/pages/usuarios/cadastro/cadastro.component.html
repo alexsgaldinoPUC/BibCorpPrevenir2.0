@@ -1,58 +1,60 @@
-<div class="bcp-wrapper">
-  <div class="bcp-title">
-    <img src="../assets/images/thumbnail_logotipo.png" width="200px" alt="Logotipo Prevenir">
-    <div class="bcp-mensagem">
-      <p>Cadastre-se</p>
-    </div>
-  </div>
-  <div class="bcp-form-container">
-    <div class="bcp-form-inner">
-      <form #cadastroForm="ngForm" class="bcp-login" [formGroup]="formCadastro" (ngSubmit)="register()">
-        <div class="mt-5">
-          <mat-form-field class="col-12">
-            <mat-label>Nome completo:</mat-label>
-            <input matInput type="text" formControlName="nome" [ngClass]="fieldValidator(ctrF.nome)">
-            <mat-error class="invalid-feedback">{{messageReturned(ctrF.nome, '')}}</mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <mat-label>Nome de usuário:</mat-label>
-            <input matInput type="text" formControlName="userName" [ngClass]="fieldValidator(ctrF.userName)">
-            <mat-error class="invalid-feedback">{{messageReturned(ctrF.userName, '')}}</mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <mat-label>Telefone:</mat-label>
-            <input matInput type="text" formControlName="phoneNumber" [ngClass]="fieldValidator(ctrF.phoneNumber)">
-            <mat-error class="invalid-feedback">{{messageReturned(ctrF.phoneNumber, '')}}</mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <mat-label>e-mail:</mat-label>
-            <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)">
-            <mat-error class="invalid-feedback">{{messageReturned(ctrF.email, '')}}</mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <mat-label>Senha:</mat-label>
-            <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
-            <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
-          </mat-form-field>
-          <div class="flex row">
-            <button class="btn btn-primary m-0 " [disabled]="!formCadastro.valid">
+<div class="container" fxFlex="40">
+  <div class="rounded-5 bg-white px-4 py-2 m-2" fxLayout="column" fxLayoutAlign="space-around center">
+    <img src="../assets/images/thumbnail_logotipo.png" class="bcp-logotipo-pagina ms-4" alt="Logotipo Prevenir">
+    <div class="rounded-4 mat-elevation-z8 mb-3" fxFlexFill>
+      <h1 class="text-center">Cadastre-se</h1>
+      <div class="px-4 ">
+        <form [formGroup]="formCadastro" (submit)="register()">
+          <div class="mt-1">
+            <mat-form-field fxFlexFill>
+              <mat-label>Nome completo:</mat-label>
+              <input matInput type="text" formControlName="nome" [ngClass]="fieldValidator(ctrF.nome)">
+              <mat-error class="invalid-feedback m-0">{{messageReturned(ctrF.nome, '')}}</mat-error>
+              <mat-icon matPrefix color="primary">badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlexFill>
+              <mat-label>Nome de usuário:</mat-label>
+              <input matInput type="text" formControlName="userName" [ngClass]="fieldValidator(ctrF.userName)">
+              <mat-error class="invalid-feedback m-0">{{messageReturned(ctrF.userName, '')}}</mat-error>
+              <mat-icon matPrefix color="primary">account_box</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlexFill>
+              <mat-label>Telefone:</mat-label>
+              <input matInput type="phone" prefix="+55" formControlName="phoneNumber"
+                [ngClass]="fieldValidator(ctrF.phoneNumber)">
+              <mat-error class="invalid-feedback m-0">{{messageReturned(ctrF.phoneNumber, '')}}</mat-error>
+              <mat-icon matPrefix color="primary">phone</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlexFill>
+              <mat-label>e-mail:</mat-label>
+              <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)">
+              <mat-error class="invalid-feedback m-0">{{messageReturned(ctrF.email, '')}}</mat-error>
+              <mat-icon matPrefix color="primary">mail</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlexFill>
+              <mat-label>Senha:</mat-label>
+              <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
+              <mat-error class="invalid-feedback m-0">{{messageReturned(ctrF.password, '')}}</mat-error>
+              <mat-icon matPrefix color="primary">password</mat-icon>
+            </mat-form-field>
+            <button fxFlexFill class="btn btn-primary m-0 p-2" [disabled]="!formCadastro.valid">
               Cadastre-se
             </button>
-          </div>
-          <div class="bcp-signup-link mt-2">
-            <div routerLinkActive="active">
-              Já tem uma conta? <a routerLink="/pages/usuarios/login">Faça login</a>
+            <div class="my-2" fxLayout="row" fxLayoutAlign="space-around center">
+              <div routerLinkActive="active">
+                Já tem uma conta? <a routerLink="/pages/usuarios/login">Faça login</a>
+              </div>
+              <div routerLinkActive="active">
+                <a (click)="reloadPrincipal()" class="link" role="button"><b>Acessar o acervo</b></a>
+              </div>
             </div>
-            <div id="bcp-acessar-acervo" routerLinkActive="active">
-              <a (click)="reloadPrincipal()" style="cursor:pointer">Acessar o acervo</a>
-            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
-  <p style="font-size: 20px; color: white">Carregando...</p>
-</ngx-spinner>
+  <!-- <div class="text-white">
+    {{formCadastro.value | json}}
+    {{formCadastro.status }}
+  </div> -->

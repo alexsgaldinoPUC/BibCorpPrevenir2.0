@@ -7,8 +7,7 @@ import { environment } from '../../../../assets/environments';
 
 @Component({
   selector: 'app-drawer-navigator',
-  templateUrl: './drawer-navigator.component.html',
-  styleUrl: './drawer-navigator.component.scss'
+  templateUrl: './drawer-navigator.component.html'
 })
 export class DrawerNavigatorComponent {
   #spinnerService = inject(NgxSpinnerService);
@@ -16,7 +15,6 @@ export class DrawerNavigatorComponent {
   #usuarioService = inject(UsuarioService);
 
   public usuarioLogado = false;
-  public usuarioAdmin = false;
 
   public usuarioAtivo = {} as Usuario;
 
@@ -40,7 +38,6 @@ export class DrawerNavigatorComponent {
               ? "../../../../../assets/images/not-available.png"
               : environment.fotoURL + this.usuarioAtivo.fotoURL;
 
-          this.usuarioAdmin = this.usuarioAtivo.userName === "Admin";
         },
         error: (error: any) => {
           if (error.status == 401) {

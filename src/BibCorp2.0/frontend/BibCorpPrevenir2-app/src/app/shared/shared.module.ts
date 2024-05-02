@@ -22,10 +22,20 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LoginService, UsuarioService } from '../services/usuario';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from '../util/security';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AcervoService } from '../services/acervo';
+import { PatrimonioService } from '../services/patrimonio';
+import { EmprestimoService } from '../services/emprestimo';
+import { RouterModule } from '@angular/router';
+import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
 
 
@@ -41,7 +51,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CommonModule,
     FlexModule,
     NgbModule,
-    NgxSpinnerModule,
+    NgxMaskDirective,
+    NgxSpinnerModule.forRoot({ type: "square-jelly-box"}),
+    RouterModule,
     ToastrModule.forRoot(),
 
     MatButtonModule,
@@ -66,6 +78,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FlexModule,
     NgbModule,
     NgxSpinnerModule,
+    RouterModule,
     ToastrModule,
 
     MatButtonModule,
@@ -85,6 +98,22 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ModalDeleteComponent,
     TitleNavigatorComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  providers: [
+    AcervoService,
+    EmprestimoService,
+    LoginService,
+    PatrimonioService,
+    UsuarioService,
+
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline', color: 'primary' }},
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+
+    provideAnimationsAsync(),
+    provideNativeDateAdapter(),
+    provideEnvironmentNgxMask()
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 })
 export class SharedModule { }

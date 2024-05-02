@@ -1,6 +1,5 @@
 <div class="container">
   <mat-accordion>
-
     @if (usuarioLogado) {
       <mat-expansion-panel class="mat-elevation-z8">
         <mat-expansion-panel-header>
@@ -9,14 +8,14 @@
             Usuário
           </mat-panel-title>
         </mat-expansion-panel-header>
-        @if (!usuarioAdmin) {
+        @if (!usuarioAtivo.isAdmin) {
           <mat-divider class="mt-2 mb-2" />
-          <a class="bcp-drawer-cursor" routerLink="emprestimo/solicitacoes">
-            Minhas Solicitações
+          <a routerLink="emprestimo/solicitacoes">
+            Solicitações
           </a>
         }
         <mat-divider class="mt-2 mb-2" />
-        <a class="bcp-drawer-cursor" routerLink="/pages/usuarios/perfil">
+        <a routerLink="/pages/usuarios/perfil">
           Perfil
         </a>
       </mat-expansion-panel>
@@ -30,14 +29,14 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      @if (!usuarioAdmin) {
+      @if (!usuarioAtivo.isAdmin) {
         <mat-divider class="mt-2 mb-2" />
-        <a class="bcp-drawer-cursor" routerLink="/pages/home/homePage">
+        <a routerLink="/pages/home/homePage">
           Principal
         </a>
       } @else {
         <mat-divider class="mt-2 mb-2" />
-        <a class="bcp-drawer-cursor" routerLink="pages/home/homeAdmin">
+        <a routerLink="pages/home/homeAdmin">
           Administrador
         </a>
       }
@@ -52,14 +51,14 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        @if (usuarioAdmin) {
+        @if (usuarioAtivo.isAdmin) {
           <mat-divider class="mt-2 mb-2" />
-          <a class="bcp-drawer-cursor" routerLink="/pages/patrimonios/cadastrar">
+          <a routerLink="/pages/patrimonios/cadastrar">
             Novo
           </a>
         }
         <mat-divider class="mt-2 mb-2" />
-        <a class="bcp-drawer-cursor" routerLink="/pages/patrimonios/lista">
+        <a routerLink="/pages/patrimonios/lista">
           Lista
         </a>
       </mat-expansion-panel>
@@ -74,21 +73,21 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        @if (usuarioAdmin) {
+        @if (usuarioAtivo.isAdmin) {
           <mat-divider class="mt-2 mb-2" />
-          <a class="bcp-drawer-cursor" routerLink="pages/acervos/cadastrar">
+          <a routerLink="pages/acervos/cadastrar">
             Novo
           </a>
         }
         <mat-divider class="mt-2 mb-2" />
-        <a class="bcp-drawer-cursor" routerLink="pages/acervos/lista">
+        <a routerLink="pages/acervos/lista">
           Lista
         </a>
       </mat-expansion-panel>
   }
 
     @if (usuarioLogado) {
-      @if (usuarioAdmin) {
+      @if (usuarioAtivo.isAdmin) {
       <mat-expansion-panel class="mat-elevation-z8 mt-2">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -97,7 +96,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-divider class="mt-2 mb-2" />
-        <a class="bcp-drawer-cursor" routerLink="emprestimo/gerenciar">
+        <a routerLink="pages/emprestimos/gerenciarReservas">
           Gerenciar
         </a>
       </mat-expansion-panel>
@@ -105,7 +104,3 @@
     }
 
   </mat-accordion>
-
-  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
-    <p style="font-size: 20px; color: white">Carregando...</p>
-  </ngx-spinner>

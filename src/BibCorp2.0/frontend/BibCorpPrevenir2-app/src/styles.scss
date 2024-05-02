@@ -9,35 +9,9 @@
 @import "./assets/scss/index";
 
 
-.bcp-bg-primary {
-  background-color: var(--primary);
-}
 
-.bcp-bg-primary-010 {
-  background-color: var(--primary-010);
-}
 
-.bcp-bg-secondary {
-  background-color: var(--secondary);
-  opacity: .9;
-}
 
-.bcp-bg-secondary-010 {
-  background-color: var(--secondary-010);
-  opacity: .9;
-}
-
-.bcp-bg-white {
-  background-color: var(--white);
-  opacity: .9;
-  color: black;
-}
-
-.bcp-bg-white-010 {
-  background-color: var(--white-010);
-  opacity: .9;
-  color: black;
-}
 
 .imageDetail {
     max-width:300px;
@@ -45,6 +19,9 @@
     width: auto;
     height: auto;
 }
+
+
+
 
 
 

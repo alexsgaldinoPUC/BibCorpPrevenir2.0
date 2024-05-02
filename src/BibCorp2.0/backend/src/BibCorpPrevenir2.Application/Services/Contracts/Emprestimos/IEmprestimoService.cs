@@ -15,8 +15,8 @@ namespace BibCorpPrevenir2.Application.Services.Contracts.Emprestimos
         Task<IEnumerable<EmprestimoDto>> GetEmprestimosByUserNameAsync(string userName);
         Task<IEnumerable<EmprestimoDto>> GetEmprestimosByAcervoIdAsync(int acervoId);
         Task<IEnumerable<EmprestimoDto>> GetEmprestimosByPatrimonioIdAsync(int patrimonioId);
-        Task<EmprestimoDto> CreateEmprestimo(EmprestimoDto acervoDto);
-        Task<EmprestimoDto> UpdateEmprestimo(int emprestimoId, EmprestimoDto acervoDto);
+        Task<EmprestimoDto> CreateEmprestimo(EmprestimoDto emprestimoDto);
+        Task<EmprestimoDto> UpdateEmprestimo(int emprestimoId, EmprestimoDto emprestimoDto);
         Task<bool> DeleteEmprestimo(int emprestimoId);
         Task<EmprestimoDto> RenovarEmprestimo(int emprestimoId);
         Task<EmprestimoDto> AlterarLocalDeColeta(int emprestimoId, string novoLocalColeta);

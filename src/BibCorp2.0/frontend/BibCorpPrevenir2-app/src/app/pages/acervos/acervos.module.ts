@@ -3,30 +3,31 @@ import { CommonModule } from '@angular/common';
 
 
 import { SharedModule } from '../../shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { AcervoDetalheComponent, AcervoEdicaoComponent, AcervoListaComponent, AcervosComponent } from '.';
-import { ReactiveFormsModule } from '@angular/forms';
-import { PatrimonioService } from '../../services/patrimonio';
 
 
 @NgModule({
   declarations: [
     AcervosComponent,
+    AcervoDetalheComponent,
     AcervoEdicaoComponent,
     AcervoListaComponent,
-    AcervoDetalheComponent,
   ],
   exports: [
     AcervosComponent,
+    AcervoDetalheComponent,
     AcervoEdicaoComponent,
     AcervoListaComponent,
-    AcervoDetalheComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
+    RouterLink,
 
     SharedModule
   ],
-  providers:  [ PatrimonioService]
 })
 export class AcervosModule { }

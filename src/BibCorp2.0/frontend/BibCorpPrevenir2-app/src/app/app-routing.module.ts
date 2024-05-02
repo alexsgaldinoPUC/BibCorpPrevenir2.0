@@ -22,19 +22,31 @@ import {
   AcervoListaComponent,
   AcervosComponent,
 } from "./pages/acervos";
+import {
+  EmprestimosComponent,
+  GerenciarReservasComponent,
+} from "./pages/emprestimos";
 
 const routes: Routes = [
   { path: "", redirectTo: "pages/home", pathMatch: "full" },
-  { path: "acervos", redirectTo: "acervos/lista", pathMatch: "full" },
+
+  { path: "acervos", redirectTo: "pages/acervos/lista", pathMatch: "full" },
   {
     path: "pages/acervos",
     component: AcervosComponent,
     children: [
+      { path: "", pathMatch: "full", redirectTo: "lista" },
       { path: "lista", component: AcervoListaComponent },
       { path: "detalhe/:id", component: AcervoDetalheComponent },
       { path: "editar/:id", component: AcervoEdicaoComponent },
       { path: "cadastrar", component: AcervoEdicaoComponent },
     ],
+  },
+
+  {
+    path: "patrimonios",
+    redirectTo: "pages/patrimonios/lista",
+    pathMatch: "full",
   },
   {
     path: "pages/patrimonios",
@@ -46,12 +58,27 @@ const routes: Routes = [
       { path: "cadastrar", component: PatrimonioDetalheComponent },
     ],
   },
+
+  {
+    path: "emprestimos",
+    redirectTo: "pages/emprestimos/gerenciarReservas",
+    pathMatch: "full",
+  },
   {
     path: "pages/emprestimos",
-    loadChildren: () =>
-      import("./pages/emprestimos/emprestimos.module").then(
-        (m) => m.EmprestimosModule
-      ),
+    component: EmprestimosComponent,
+    children: [
+      { path: "", pathMatch: "full", redirectTo: "gerenciarReservas" },
+      { path: "gerenciarReservas", component: GerenciarReservasComponent },
+      { path: "detalhe/:id", component: PatrimonioDetalheComponent },
+      { path: "cadastrar", component: PatrimonioDetalheComponent },
+    ],
+  },
+
+  {
+    path: "usuarios",
+    redirectTo: "pages/usuarios/login",
+    pathMatch: "full",
   },
   {
     path: "pages/usuarios",

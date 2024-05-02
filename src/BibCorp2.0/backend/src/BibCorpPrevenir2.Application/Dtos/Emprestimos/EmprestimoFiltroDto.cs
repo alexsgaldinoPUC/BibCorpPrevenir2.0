@@ -11,8 +11,8 @@ namespace BibCorpPrevenir2.Application.Dtos.Emprestimos
     {
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
-        public List<string> Usuarios { get; set; }
-        public List<EmprestimoStatus> Status { get; set; }
+        public List<string>? Usuarios { get; set; }
+        public List<EmprestimoStatus>? Status { get; set; }
     }
 
 }
