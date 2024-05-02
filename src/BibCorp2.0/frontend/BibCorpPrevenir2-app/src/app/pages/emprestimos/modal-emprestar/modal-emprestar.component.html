@@ -1,41 +1,46 @@
-<div class="modal-content-vertical-large" id="Emprestar">
-  <h3>Empréstimo</h3>
 
-  <div class="dropdown">
-    <label for="local-entrega" style="width: 100%;">Local de entrega:</label>
-    <select id="local-entrega" class="custom-dropdown" style="width: 100%;">
-      <option value="belo-horizonte">Matriz</option>
-      <option value="sabara">Contorno</option>
-      <option value="sabara">Betim</option>
-      <option value="sabara">Caetes</option>
-      <option value="sabara">Galeria do Ouvidor</option>
-      <option value="sabara">Justinópolis</option>
-      <option value="sabara">Nova Lima</option>
-      <option value="sabara">Raposos</option>
-      <option value="sabara">Ribeirão das Neves</option>
-      <option value="sabara">Sabará</option>
-      <option value="sabara">Santa Luzia</option>
-      <option value="sabara">Venda Nova</option>
-    </select>
+<div class="modal-content-vertical-large">
+  <div class="p-2">
+    <p class="h5">Solicitação de Reserva</p>
   </div>
 
-  <div class="dropdown">
-    <label for="local-coleta" style="width: 100%;">Local de coleta:</label>
-    <select id="local-coleta" class="custom-dropdown" style="width: 100%;">
-      <option value="belo-horizonte">Matriz</option>
-      <option value="sabara">Contorno</option>
-      <option value="sabara">Betim</option>
-      <option value="sabara">Caetes</option>
-      <option value="sabara">Galeria do Ouvidor</option>
-      <option value="sabara">Justinópolis</option>
-      <option value="sabara">Nova Lima</option>
-      <option value="sabara">Raposos</option>
-      <option value="sabara">Ribeirão das Neves</option>
-      <option value="sabara">Sabará</option>
-      <option value="sabara">Santa Luzia</option>
-      <option value="sabara">Venda Nova</option>
-    </select>
-  </div>
+  <form [formGroup]="formModalSolicitacao">
+    <div fxLayout="row wrap"  class="emprestimo">
+      <mat-form-field fxFlex="1000" class="ms-2 p-2">
+        <mat-label>Local Entrega</mat-label>
+        <mat-select matNativeControl formControlName="localEnvio" >
+          <mat-option value="Matriz">Matriz</mat-option>
+          <mat-option value="Contorno">Contorno</mat-option>
+          <mat-option value="Betim">Betim</mat-option>
+          <mat-option value="Caetés">Caetés</mat-option>
+          <mat-option value="Galeria do Ouvidor">Galeria do Ouvidor</mat-option>
+          <mat-option value="Justinópolis">Justinópolis</mat-option>
+          <mat-option value="Nova Lima">Nova Lima</mat-option>
+          <mat-option value="Raposos">Raposos</mat-option>
+          <mat-option value="Ribeirão das Neves">Ribeirão das Neves</mat-option>
+          <mat-option value="Sabará">Sabará</mat-option>
+          <mat-option value="Santa Luzia">Santa Luzia</mat-option>
+          <mat-option value="Venda Nova">Ribeirão das Neves</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <button class="btn btn-orange" (click)="fecharModalEmprestarEAbrirModalSucesso()">Emprestar</button>
-</div>
+      <mat-form-field fxFlex="1000" class="ms-2 p-2">
+        <mat-label>Local Devolução</mat-label>
+        <mat-select matNativeControl formControlName="localDevolucao">
+          <mat-option value="Matriz">Matriz</mat-option>
+          <mat-option value="Contorno">Contorno</mat-option>
+          <mat-option value="Betim">Betim</mat-option>
+          <mat-option value="Caetés">Caetés</mat-option>
+          <mat-option value="Galeria do Ouvidor">Galeria do Ouvidor</mat-option>
+          <mat-option value="Justinópolis">Justinópolis</mat-option>
+          <mat-option value="Nova Lima">Nova Lima</mat-option>
+          <mat-option value="Raposos">Raposos</mat-option>
+          <mat-option value="Ribeirão das Neves">Ribeirão das Neves</mat-option>
+          <mat-option value="Sabará">Sabará</mat-option>
+          <mat-option value="Santa Luzia">Santa Luzia</mat-option>
+          <mat-option value="Venda Nova">Ribeirão das Neves</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button class="btn btn-orange" (click)="novoEmprestimo()">Reservar</button>
+  </form>

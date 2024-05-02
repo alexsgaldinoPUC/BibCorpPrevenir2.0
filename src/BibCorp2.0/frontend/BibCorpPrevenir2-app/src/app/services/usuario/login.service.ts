@@ -14,15 +14,13 @@ import { environment } from '../../../assets/environments';
 })
 export class LoginService {
   #http = inject(HttpClient);
+  #currentUserSource = new ReplaySubject<Usuario>(1);
 
-  public baseURL = environment.apiURL + "Usuarios/";
+  public baseURL = `${environment.apiURL}Usuarios/`;
 
-  private currentUserSource = new ReplaySubject<Usuario>(1);
-  public currentUser$ = this.currentUserSource.asObservable();
+  public currentUser$ = this.#currentUserSource.asObservable();
 
   public login(_model: any): Observable<void> {
-    console.log("Aqui 3: ")
-    console.log(_model);
     return this.#http.post<Usuario>(this.baseURL + "Login", _model).pipe(
       take(1),
       map((response: Usuario) => {
@@ -36,18 +34,18 @@ export class LoginService {
 
   public setCurrentUser(_usuario: Usuario): void {
     localStorage.setItem(Constants.LOCAL_STORAGE_NAME, JSON.stringify(_usuario));
-    this.currentUserSource.next(_usuario);
+    this.#currentUserSource.next(_usuario);
   }
 
   public logout(): void {
     localStorage.removeItem(Constants.LOCAL_STORAGE_NAME);
-    this.currentUserSource.next(null as any);
-    this.currentUserSource.complete();
+    this.#currentUserSource.next(null as any);
+    this.#currentUserSource.complete();
   }
 
   public userLoged(usuario: Usuario): void {
     localStorage.setItem(Constants.LOCAL_STORAGE_NAME, JSON.stringify(usuario));
-    this.currentUserSource.next(usuario);
+    this.#currentUserSource.next(usuario);
   }
 
 }

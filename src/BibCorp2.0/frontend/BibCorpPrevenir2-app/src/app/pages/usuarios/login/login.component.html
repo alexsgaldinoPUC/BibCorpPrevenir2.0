@@ -1,44 +1,42 @@
-<div class="bcp-wrapper">
-  <div class="bcp-title">
-    <img src="../assets/images/thumbnail_logotipo.png" width="250px" alt="Logotipo Prevenir">
-    <div class="bcp-login-mensagem">
-      <p class="bcp-primary">Seja Bem-vindo!</p>
-    </div>
-    <div class="bcp-login-orientacao">
-      <p>Preencha os seus dados de login para acessar</p>
+<div class="container" fxFlex="40">
+  <div class="rounded-5 bg-white px-4 py-2 m-2" fxLayout="column" fxLayoutAlign="space-around center">
+    <img src="../assets/images/thumbnail_logotipo.png" class="bcp-logotipo-pagina ms-4" alt="Logotipo Prevenir">
+    <h1 class="text-primary">Seja Bem-vindo!</h1>
+    <div class="rounded-4 mat-elevation-z8 mb-3" fxFlexFill>
+      <h1 class="text-center">Preencha os seus dados</h1>
+      <div class="px-4">
+        <form [formGroup]="formLogin" (submit)="login()">
+          <div class="mt-1">
+            <mat-form-field fxFlexFill>
+              <mat-label>Nome de Usuário:</mat-label>
+              <input matInput type="text" formControlName="userName" [ngClass]="fieldValidator(ctrF.userName)">
+              <mat-error class="invalid-feedback m-0">{{messageReturned(ctrF.userName, '')}}</mat-error>
+              <mat-icon matPrefix color="primary">account_box</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlexFill>
+              <mat-label>Senha:</mat-label>
+              <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
+              <mat-error class="invalid-feedback m-0">{{messageReturned(ctrF.password, '')}}</mat-error>
+              <mat-icon matPrefix color="primary">password</mat-icon>
+            </mat-form-field>
+            <button fxFlexFill class="btn btn-primary m-0 p-2 " [disabled]="!formLogin.valid">
+              Entrar
+            </button>
+            <div class="my-2" fxLayout="row" fxLayoutAlign="space-around center">
+              <div routerLinkActive="active">
+                Novo por aqui? <a routerLink="/pages/usuarios/cadastro">Cadastre-se</a>
+              </div>
+              <div routerLinkActive="active">
+                <a (click)="reloadPrincipal()" class="link " role="button"><b>Acessar o acervo</b></a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  <div class="bcp-form-container">
-    <div class="bcp-form-inner">
-      <form #loginForm="ngForm" class="bcp-login" [formGroup]="formLogin" (ngSubmit)="login()">
-        <mat-form-field class="col-12 mt-5">
-          <mat-label>Nome de Usuário:</mat-label>
-          <input matInput type="text" formControlName="userName" [ngClass]="fieldValidator(ctrF.userName)">
-          <mat-error class="invalid-feedback">{{messageReturned(ctrF.userName, '')}}</mat-error>
-        </mat-form-field>
-        <mat-form-field class="col-12">
-          <mat-label>Senha:</mat-label>
-          <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
-          <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
-        </mat-form-field>
-        <div class="flex row">
-          <button class="btn btn-primary m-0 p-2 " [disabled]="!formLogin.valid">
-            Entrar
-          </button>
-        </div>
-        <div class="bcp-signup-link mt-2" >
-          <div >
-            Novo por aqui? <a routerLink="/pages/usuarios/cadastro">Cadastre-se</a>
-          </div>
-          <div id="bcp-acessar-acervo">
-            <a (click)="reloadPrincipal()">Acessar o acervo</a>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
-  <p style="font-size: 20px; color: white">Carregando...</p>
-</ngx-spinner>
+  <!-- <div class="text-white">
+    {{formLogin.value | json}}
+    {{formLogin.status }}
+  </div> -->

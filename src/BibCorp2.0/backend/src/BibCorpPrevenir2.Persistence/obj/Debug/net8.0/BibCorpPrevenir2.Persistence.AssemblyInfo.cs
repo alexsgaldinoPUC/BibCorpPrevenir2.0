@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BibCorpPrevenir2.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff3e52f910924457346ce39be9b3e7e859f3e0b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+893341bca1a7b9ea3169b81197bc7454f40487c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("BibCorpPrevenir2.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BibCorpPrevenir2.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

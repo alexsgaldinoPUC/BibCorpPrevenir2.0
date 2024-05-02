@@ -1,5 +1,6 @@
 export interface UsuarioUpdate{
     id: number
+    isAdmin: boolean
     nome: string
     localizacao: string
     email: string

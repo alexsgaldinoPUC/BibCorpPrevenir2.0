@@ -9,13 +9,15 @@ import { FormValidator } from '../../../util/class';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
+  // Rotas
+  #router = inject(Router);
+
+  //Serviços
   #loginService = inject(LoginService);
   #spinnerService = inject(NgxSpinnerService);
-  #router = inject(Router);
   #toastrService = inject(ToastrService);
 
   public formLogin = {} as FormGroup;

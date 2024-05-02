@@ -35,7 +35,13 @@ namespace BibCorpPrevenir2.Application.Services.Implements.Usuarios
         {
             try
             {
+                if (usuarioDto.UserName.Contains("Admin"))
+                {
+                    usuarioDto.IsAdmin = true;
+                }
+
                 var usuario = _mapper.Map<Usuario>(usuarioDto);
+
                 var usurarioCriado = await _userManager.CreateAsync(usuario, usuarioDto.Password);
 
                 if (usurarioCriado.Succeeded)

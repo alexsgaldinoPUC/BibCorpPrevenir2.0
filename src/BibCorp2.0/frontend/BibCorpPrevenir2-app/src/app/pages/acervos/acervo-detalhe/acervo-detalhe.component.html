@@ -1,120 +1,133 @@
-<!-- Container de informações do livro -->
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-12 col-md-6">
-      <div class="card bcp-bg-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header text-white bcp-bg-secondary">{{acervo.titulo}}</div>
-        <div class="card-body">
-          <ul class="list-group list-group-flush custom-list">
-            <li class="list-group-item text-white bcp-bg-primary"><b>Autor:</b> {{acervo.autor}}</li>
-            <li class="list-group-item text-white bcp-bg-primary"><b>Edição:</b> {{acervo.edicao}}</li>
-            <li class="list-group-item text-white bcp-bg-primary"><b>Data de Publicação:</b>
-              {{acervo.anoPublicacao}}</li>
-            <li class="list-group-item text-white bcp-bg-primary"><b>Editora:</b> {{acervo.editora}}</li>
-            <li class="list-group-item text-white bcp-bg-primary"><b>Páginas:</b> {{acervo.qtdPaginas}}</li>
-          </ul>
+<div class="container mt-2 d-flex flex-column align-items-start">
+  <div class="position-relative">
+    <div class="row g-0">
+      <!-- Card das informações do livro e imagem -->
+      <div fxFlex="60">
+        <div class="card bg-white mb-3"
+          style="border: 20px solid #fff; border-radius: 15px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+          <div class="card-body"
+            style="background-color: #fff; color: #000; border-radius: 0 15px 15px 0; position: relative; border-top: none;">
+            <h2 class="card-title" style="margin-left: 150px;">{{acervo.titulo}}</h2>
+            <p style="margin-left: 150px; margin-top: 40px;"><b>Autor: </b>
+              <span style="text-decoration: underline;">{{acervo.autor}}</span> <br>
+              <b>Edição: </b>{{acervo.edicao}} <br>
+              <b>Data de publicação: </b>{{acervo.anoPublicacao}} <br>
+              <b>Editora: </b>{{acervo.editora}} <br>
+              <b>Páginas: </b>{{acervo.qtdPaginas}}
+              <!-- Adicione outras informações relevantes aqui -->
+            </p>
+          </div>
+          <img src={{acervo.capaUrl}} alt="Capa do livro" class="img-fluid rounded-start"
+            style="border-radius: 15px; object-fit: cover; object-position: top; width: 150px; height: 225px; position: absolute; top: 0; left: 0; margin-top: 10px;">
+        </div>
+      </div>
+      <!-- Card de exemplares -->
+      <div fxFlex="40">
+        <div class="card bg-white text-dark"
+          style="max-width: 20rem; margin-top: 20px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+          <div class="card-header bg-white"></div>
+          <div class="table-responsive">
+            <div id="titulo-tabelapatrimonios">
+              <p>Exemplares</p>
+            </div>
+            <table class="table bg-white">
+              <thead>
+                <tr class="change-color">
+                  <th>#</th>
+                  <th>ID</th>
+                  <th>Status</th>
+                  <th>Opções</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (patrimonio of acervo.patrimonios; track patrimonio.id; let i=$count) {
+                <tr>
+                  <td>{{i}}</td>
+                  <td class="change-color">{{patrimonio.id}}</td>
+                  <td class="status">{{obterStatusPatrimonio(patrimonio.status)}}</td>
+                  <td>
+                    <button class="btn btn-orange reserve-button" [disabled]="disabledReservar"
+                      (click)="abrirDialog(patrimonio.id)" data-bs-toggle="modal"
+                      data-bs-target="modalEmprestar">Reservar</button>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Tabela -->
-    <div class="col-12 col-md-6">
-      <div class="card text-white bcp-bg-secondary mb-3" style="max-width: 25rem;">
-        <div class="card-header bcp-bg-secondary"></div>
-        <div class="table-responsive">
-          <table class="table bcp-bg-secondary">
-            <thead>
-              <tr class="change-color">
-                <th class="text-white">#</th>
-                <th class="text-white">ID</th>
-                <th class="text-white">Status</th>
-                <th class="text-white">Empréstimo</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (patrimonio of acervo.patrimonios; track patrimonio.id; let i=$count) {
-              <tr>
-                <td>{{i+1}}</td>
-                <td class="change-color">{{patrimonio.id}}</td>
-                <td class="status">Disponível</td>
-                <td><button class="btn btn-orange reserve-button" (click)="abrirDialog()" data-bs-toggle="modal"
-                    data-bs-target="modalEmprestar">Emprestar</button></td>
-              </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Container de Sinopse  -->
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-lg-11 col-12">
-      <div class="card bcp-bg-primary text-white">
-        <div class="card-body">
-          <h5 class="card-title">Sinopse</h5>
-          <p class="card-text">{{acervo.resumo}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-8 offset-lg-1 col-12 mt-4">
-      <h5>Comentários</h5>
-      <form class="mb-4">
-        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
-          <div class="d-flex flex-start w-100">
-            <img class="rounded-circle shadow-1-strong me-3" src="../../../../assets/images/backgroundImageBibCorp.jpg"
-              alt="avatar" width="40" height="40" />
-            <div class="form-outline w-100" style="margin-bottom: 0;">
-              <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff; margin-bottom: 0;"
-                placeholder="Comente o que achou desta obra..." (ngModel)="comentarios"></textarea>
-              <label class="form-label" for="textAreaExample"></label>
+    <!-- Container de Sinopse -->
+    <div class="container mt-4" style="margin-bottom: 20px; ">
+      <div class="row">
+        <div fxFlex="100">
+          <div class="card bg-white mb-3 text-black" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+            <div class="card-body">
+              <h2 class="card-title mat-elevation-z8">Sinopse</h2>
+              <p class="card-text">{{acervo.resumo}}</p>
             </div>
           </div>
-          <div class="float-end mt-1 pt-1">
-            <button type="button" class="btn btn-primary btn-sm me-2" (click)="salvarAcervo()">Enviar</button>
-            <button type="button" class="btn btn-outline-primary btn-sm">Cancelar</button>
-          </div>
-        </div>
-      </form>
-
-      <div class="mt-4">
-        <h6>Comentários Recentes</h6>
-        <br>
-        <div class="row">
-          <div class="col">
-            <ul class="no-bullets">
-              <li>
-                <div class="d-flex align-items-center">
-                  <img class="rounded-circle shadow-1-strong me-3" src="../../../../assets/images/user.jpg" alt="avatar"
-                    width="65" height="65" />
-                  <div>
-                    <p class="mb-1">Arnel Pineda <span class="small">- 2 horas atrás</span>
-                    </p>
-                    <p class="small mb-0">{{acervo.comentarios}}</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <ul class="no-bullets">
-              <li>
-                <div class="d-flex align-items-center">
-                  <img class="rounded-circle shadow-1-strong me-3" src="../../../../assets/images/user2.jpeg"
-                    alt="avatar" width="65" height="65" />
-                  <div>
-                    <p class="mb-1">Nina Dobrev <span class="small">- Agora</span></p>
-                    <p class="small mb-0">{{acervo.comentarios}}</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<br><br>
+<div class="col-lg-8 offset-lg-1 col-12 mt-2">
+  <form class="mb-4">
+    <h2 class="mat-elevation-z8">Comentários</h2>
+    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+      <div class="d-flex flex-start w-100">
+        <img class="rounded-circle shadow-1-strong me-3" [src]="fotoURL" alt="avatar" width="40" height="40" />
+        <div class="form-outline w-100" style="margin-bottom: 0;">
+          <label class="form-label" for="textAreaExample">Comentários</label>
+          <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff; margin-bottom: 0;"
+            placeholder="Comente o que achou desta obra..." (ngModel)="comentarios"></textarea>
+        </div>
+      </div>
+      <div class="float-end mt-1 pt-1">
+        <button type="button" class="btn btn-primary btn-sm me-2" (click)="salvarAcervo()">Enviar</button>
+        <button type="button" class="btn btn-outline-primary btn-sm">Cancelar</button>
+      </div>
+    </div>
+  </form>
+
+
+  <div class="mt-4">
+    <h2 class="mat-elevation-z8">Comentários Recentes</h2>
+    <br>
+    <div class="row">
+      <div fxFlex="100">
+        <ul class="no-bullets">
+          <li>
+            <div class="d-flex align-items-center">
+              <img class="rounded-circle shadow-1-strong me-3" src="../../../../assets/images/user.jpg" alt="avatar"
+                width="65" height="65" />
+              <div>
+                <p class="mb-1">
+                  Arnel Pineda
+                  <span class="small">- 2 horas atrás</span>
+                </p>
+                <p class="small mb-0">{{acervo.comentarios}}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="no-bullets">
+          <li>
+            <div class="d-flex align-items-center">
+              <img class="rounded-circle shadow-1-strong me-3" src="../../../../assets/images/user2.jpeg" alt="avatar"
+                width="65" height="65" />
+              <div>
+                <p class="mb-1">Nina Dobrev <span class="small">- Agora</span></p>
+                <p class="small mb-0">{{acervo.comentarios}}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

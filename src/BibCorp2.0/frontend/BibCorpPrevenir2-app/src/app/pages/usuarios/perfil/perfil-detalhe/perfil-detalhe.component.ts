@@ -8,8 +8,7 @@ import { FormValidator } from '../../../../util/class';
 
 @Component({
   selector: 'app-perfil-detalhe',
-  templateUrl: './perfil-detalhe.component.html',
-  styleUrl: './perfil-detalhe.component.scss'
+  templateUrl: './perfil-detalhe.component.html'
 })
 export class PerfilDetalheComponent {
 

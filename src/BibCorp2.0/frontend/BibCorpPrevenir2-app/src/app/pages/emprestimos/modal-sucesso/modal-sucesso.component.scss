@@ -1,0 +1,53 @@
+.custom-modal {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  width: 450px;
+  height: 350px;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 19px;
+  color: black;
+  margin: 0;
+  font-weight: bold;
+}
+
+.modal-subtitle {
+  font-size: 16px;
+  color: black;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.btn {
+  height: 40px;
+}
+
+.btn-orange {
+  background-color: #FF9D4E;
+  border: none;
+  transition: background-color 0.3s;
+  color: white;
+  width: 5px;
+  margin-right: 10px;
+  margin-bottom: 4px;
+}
+
+.btn-blue {
+  background-color: #00BFFF;
+  border: none;
+  transition: background-color 0.3s;
+  color: white;
+  width: 50px; /* Ajuste a largura desejada aqui */
+  margin-left: 10px;
+}
+
+.custom-modal .btn-blue {
+  margin-left: 15px;
+}

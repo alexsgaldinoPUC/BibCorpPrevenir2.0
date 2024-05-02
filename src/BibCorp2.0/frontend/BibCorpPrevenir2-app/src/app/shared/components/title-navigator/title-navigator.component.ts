@@ -8,10 +8,13 @@ import { environment } from '../../../../assets/environments';
 
 @Component({
   selector: 'app-title-navigator',
-  templateUrl: './title-navigator.component.html',
-  styleUrl: './title-navigator.component.scss'
+  templateUrl: './title-navigator.component.html'
 })
 export class TitleNavigatorComponent {
+  // Rotas
+  #router = inject(Router);
+
+  // Services
   #loginService = inject(LoginService)
   #spinnerService = inject(NgxSpinnerService)
   #usuarioService = inject(UsuarioService);
@@ -31,11 +34,11 @@ export class TitleNavigatorComponent {
   public fotoURL = "";
 
   public showCabecalho(): boolean {
-    return this.router.url != "/pages/usuarios/login" && this.router.url != "/pages/usuarios/cadastro";
+    return this.#router.url != "/pages/usuarios/login" && this.#router.url != "/pages/usuarios/cadastro";
   }
 
-  constructor(private router: Router) {
-    router.events.subscribe((verifyUser) => {
+  constructor() {
+    this.#router.events.subscribe((verifyUser) => {
       if (verifyUser instanceof NavigationEnd)
         this.#loginService.currentUser$.subscribe((userActive) => {
           this.usuarioLogado = userActive !== null;
@@ -50,22 +53,22 @@ export class TitleNavigatorComponent {
   }
 
   public listNavigate(): void {
-    this.router.navigate([`/${this.title?.toLocaleLowerCase()}/list`])
+    this.#router.navigate([`/${this.title?.toLocaleLowerCase()}/list`])
   }
 
   public login(): void {
-    this.router.navigateByUrl("/pages/usuairos/login");
+    this.#router.navigateByUrl("/pages/usuairos/login");
     location.replace("/pages/usuarios/login");
   }
 
   public register(): void {
-    this.router.navigateByUrl("/pages/usuarios/cadastro");
+    this.#router.navigateByUrl("/pages/usuarios/cadastro");
     location.replace("/pages/usuarios/cadastro");
   }
 
   public logout(): void {
     this.#loginService.logout();
-    this.router.navigateByUrl("/pages/home/homePage");
+    this.#router.navigateByUrl("/pages/home/homePage");
     location.replace("/pages/home/homePage");
 
   }

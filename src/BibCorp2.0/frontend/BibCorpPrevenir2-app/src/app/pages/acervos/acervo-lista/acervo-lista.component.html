@@ -68,7 +68,7 @@
         }
         @if (!usuarioAdmin) {
         <div class="btn-group mx-1">
-          <a class="text-secondary" (click)="detalheAcervo(acervo.id)" matTooltip="Detalhe">
+          <a class="text-secondary" (click)="detalheAcervo($event, acervo.id)" matTooltip="Detalhe">
             <mat-icon>loupe</mat-icon>
           </a>
         </div>

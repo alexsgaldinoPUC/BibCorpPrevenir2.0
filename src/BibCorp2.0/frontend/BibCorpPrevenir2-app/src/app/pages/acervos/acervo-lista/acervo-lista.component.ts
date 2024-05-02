@@ -185,13 +185,15 @@ export class AcervoListaComponent {
       .add(() => this.#spinnerService.hide());
   }
 
-  public editarAcervo(acerovId: number): void {
-    this.#router.navigate([`pages/acervos/editar/${acerovId}`]);
+  public editarAcervo(acervoId: number): void {
+    this.#router.navigate([`pages/acervos/editar/${acervoId}`]);
   }
 
-  public detalheAcervo(acerovId: number): void {
+  public detalheAcervo(event: any, acervoId: number): void {
+    event.stopPropagation();
+
     console.log("detalheAcervo")
-     this.#router.navigate([`pages/acervos/detalhe/${acerovId}`]);
+     this.#router.navigate([`pages/acervos/detalhe/${acervoId}`], { skipLocationChange: false});
   }
 
   public alteracaoDePagina(event: any): void {

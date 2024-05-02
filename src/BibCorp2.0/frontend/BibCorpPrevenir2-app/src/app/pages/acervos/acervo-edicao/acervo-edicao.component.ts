@@ -166,6 +166,7 @@ export class AcervoEdicaoComponent implements OnInit {
       .replace(/-/g, "");
 
     this.acervo.qtdeEmTransito = 0;
+    this.acervo.qtdeEmprestada = 0;
 
     this.#acervoService
       .getAcervoByISBN(this.ctrF.isbn.value)

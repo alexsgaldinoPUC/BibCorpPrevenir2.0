@@ -49,7 +49,9 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
               .AsNoTracking()
               .Where(p => p.Id == patrimonioId);
 
+#pragma warning disable CS8603 // Possible null reference return.
             return await query.FirstOrDefaultAsync();
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public async Task<IEnumerable<Patrimonio>> GetPatrimoniosByISBNAsync(string ISBN)
@@ -68,69 +70,68 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
               //        .Include(p => p.Acervo)
               .AsNoTracking();
 
-            Console.WriteLine(parametrosPaginacao.Argumento, parametrosPaginacao.PesquisarPor);
             if (parametrosPaginacao.Argumento != "null")
             {
                 if (parametrosPaginacao.PesquisarPor == "Localizacao")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+                      .Where(a => a.Localizacao!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()));
                 }
                 else if (parametrosPaginacao.PesquisarPor == "Sala")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+                      .Where(a => a.Sala!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()));
                 }
                 else if (parametrosPaginacao.PesquisarPor == "Coluna")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+                      .Where(a => a.Coluna!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()));
                 }
                 else if (parametrosPaginacao.PesquisarPor == "Prateleira")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Prateleira.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+                      .Where(a => a.Prateleira!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()));
                 }
                 else if (parametrosPaginacao.PesquisarPor == "Posicao")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Posicao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+                      .Where(a => a.Posicao!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()));
                 }
                 else if (parametrosPaginacao.PesquisarPor == "ISBN")
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.ISBN.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+                      .Where(a => a.ISBN.ToLower().Contains(parametrosPaginacao!.Argumento!.ToLower()));
                 }
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoEmprestado")
                 {
                     query = _context.Patrimonios
                       .Where(a => a.Status == Domain.Enums.Patrimonios.PatrimonioStatus.Emprestado &&
-                            (a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Prateleira.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Posicao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                            (a.Localizacao!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()) ||
+                             a.Sala!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                             a.Coluna!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                             a.Prateleira!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                             a.Posicao!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.ISBN.ToLower().Contains(parametrosPaginacao.Argumento.ToLower())));
                 }
                 else if (parametrosPaginacao.PesquisarPor == "SituacaoLiberado")
                 {
                     query = _context.Patrimonios
                       .Where(a => a.Status == Domain.Enums.Patrimonios.PatrimonioStatus.Liberado &&
-                            (a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Prateleira.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                             a.Posicao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                            (a.Localizacao!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()) ||
+                             a.Sala!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                             a.Coluna!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                             a.Prateleira!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                             a.Posicao!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                              a.ISBN.ToLower().Contains(parametrosPaginacao.Argumento.ToLower())));
                 }
                 else
                 {
                     query = _context.Patrimonios
-                      .Where(a => a.Localizacao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                                  a.Sala.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                                  a.Coluna.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                                  a.Prateleira.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                                  a.Posicao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                      .Where(a => a.Localizacao!.ToLower().Contains(parametrosPaginacao.Argumento!.ToLower()) ||
+                                  a.Sala!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                                  a.Coluna!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                                  a.Prateleira!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                                  a.Posicao!.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                                   a.ISBN.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
                 }
             }
@@ -157,7 +158,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
                       .AsNoTracking()
                       .FirstOrDefault(p => p.Id == patrimonioId);
 
-            patrimonioAlterado.Status = Domain.Enums.Patrimonios.PatrimonioStatus.Emprestado;
+            patrimonioAlterado!.Status = Domain.Enums.Patrimonios.PatrimonioStatus.Emprestado;
             patrimonioAlterado.DataIndisponibilidade = DateTime.Now.ToString("dd/MM/yyyy");
             patrimonioAlterado.DataAtualizacao = DateTime.Now;
 
@@ -172,7 +173,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
                       .AsNoTracking()
                       .FirstOrDefault(p => p.Id == patrimonioId);
 
-            patrimonioAlterado.Status = Domain.Enums.Patrimonios.PatrimonioStatus.Liberado;
+            patrimonioAlterado!.Status = Domain.Enums.Patrimonios.PatrimonioStatus.Liberado;
             patrimonioAlterado.DataIndisponibilidade = null;
             patrimonioAlterado.DataAtualizacao = DateTime.Now;
 

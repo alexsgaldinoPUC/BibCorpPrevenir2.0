@@ -10,6 +10,7 @@ namespace BibCorpPrevenir2.Application.Dtos.Usuarios
     public class UsuarioDto
     {
         public int Id { get; set; }
+        public bool IsAdmin { get; set; } = false;
         public required string Nome { get; set; }
         public string? Localizacao { get; set; }
         public string? FotoURL { get; set; }

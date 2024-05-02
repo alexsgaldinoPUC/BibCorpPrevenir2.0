@@ -50,7 +50,9 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Usuarios
              .AsNoTracking()
              .Where(u => u.Id == usuarioId);
 
+#pragma warning disable CS8603 // Possible null reference return.
             return await query.FirstOrDefaultAsync();
+#pragma warning restore CS8603 // Possible null reference return.
         }
         public async Task<Usuario> GetUsuarioByUserNameAsync(string userName)
 
@@ -61,9 +63,11 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Usuarios
                 //          .Include(u => u.Emprestimos)
                 //          .ThenInclude(e => e.Patrimonio)
                 .AsNoTracking()
-                .Where(c => c.UserName.ToLower() == userName.ToLower());
+                .Where(c => c.UserName!.ToLower() == userName.ToLower());
 
+#pragma warning disable CS8603 // Possible null reference return.
             return await query.SingleOrDefaultAsync();
+#pragma warning restore CS8603 // Possible null reference return.
         }
     }
 }

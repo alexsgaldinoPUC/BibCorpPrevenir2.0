@@ -6,6 +6,7 @@ using BibCorpPrevenir2.Persistence.Contexts;
 using BibCorpPrevenir2.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorpPrevenir2.Persistence.Interfaces.Contracts.Shared;
 using BibCorpPrevenir2.Persistence.Interfaces.Implementations.Shared;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
@@ -46,7 +47,9 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
               .AsNoTracking()
               .Where(a => a.Id == emprestimoId);
 
+#pragma warning disable CS8603 // Possible null reference return.
             return await query.FirstOrDefaultAsync();
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public async Task<IEnumerable<Emprestimo>> GetEmprestimosByUserNameAsync(string userName)
@@ -55,8 +58,13 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
               .Include(e => e.Patrimonios)
               .Include(e => e.Acervo)
               .AsNoTracking()
-              .Where(e => e.UserName == userName)
               .OrderBy(e => e.Id);
+
+            if (userName != "Admin")
+            {
+                query = query
+                    .Where(e => e.UserName == userName);
+            }
 
             return await query.ToListAsync();
         }
@@ -90,7 +98,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
               .FirstOrDefault(e => e.Id == emprestimoId);
 
 
-            var dataPrevistaDevolucaoAtual = emprestimoRenovado.DataPrevistaDevolucao;
+            var dataPrevistaDevolucaoAtual = emprestimoRenovado!.DataPrevistaDevolucao;
             var novaDataPrevistaDevolucao = dataPrevistaDevolucaoAtual.AddDays(_persistenceConfiguration.PrazoRenovacao);
 
             emprestimoRenovado.DataPrevistaDevolucao = novaDataPrevistaDevolucao;
@@ -113,7 +121,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
               .AsNoTracking()
               .FirstOrDefault(e => e.Id == emprestimoId);
 
-            emprestimoAlterado.LocalDeColeta = novoLocalColeta;
+            emprestimoAlterado!.LocalDeColeta = novoLocalColeta;
 
             Update(emprestimoAlterado);
 
@@ -150,7 +158,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
               .AsNoTracking()
               .FirstOrDefault(e => e.Id == emprestimoId);
 
-            if (emprestimoAlterado.Acao == EmprestimoAcao.Aprovar)
+            if (emprestimoAlterado!.Acao == EmprestimoAcao.Aprovar)
             {
                 emprestimoAlterado.Status = EmprestimoStatus.Emprestado;
             }
@@ -181,7 +189,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
             var emprestimosConsultadosPorUsuarioEStatus = new List<Emprestimo>();
 
 
-            if (filtroEmprestimo.Usuarios.Any() && filtroEmprestimo.Status.Any())
+            if (filtroEmprestimo.Usuarios.Any() && filtroEmprestimo.Status!.Any())
             {
 
                 foreach (var usuario in filtroEmprestimo.Usuarios)
@@ -197,7 +205,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
 
                 foreach (var emprestimo in emprestimosConsultadosPorUsuario)
                 {
-                    foreach (var status in filtroEmprestimo.Status)
+                    foreach (var status in filtroEmprestimo.Status!)
                     {
                         if (emprestimo.Status == status)
                         {
@@ -225,9 +233,9 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
 
                 return emprestimosConsultadosPorUsuario;
             }
-            else if (filtroEmprestimo.Status.Any())
+            else if (filtroEmprestimo.Status!.Any())
             {
-                foreach (var status in filtroEmprestimo.Status)
+                foreach (var status in filtroEmprestimo.Status!)
                 {
                     IQueryable<Emprestimo> query = _context.Emprestimos
                       .Include(e => e.Acervo)
