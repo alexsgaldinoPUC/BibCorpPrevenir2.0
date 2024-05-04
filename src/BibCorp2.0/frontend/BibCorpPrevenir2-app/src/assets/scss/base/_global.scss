@@ -1,5 +1,5 @@
 .bcp-avatar {
-  width: 40px; 
+  width: 40px;
   height: 40px;
 }
 
@@ -37,6 +37,22 @@
   transform: scale(1.2);
   color: var(--primary-010);
   margin-right: 4px;
+}
+
+.bcp-imagem-lateral {
+  max-width:400px;
+  max-height:300px;
+  width: auto;
+  height: auto;
+}
+
+.bcp-logo-principal {
+  width: 180px;
+  height: 120px;
+}
+
+.bcp-logo-secundaria {
+  width: 70px;
 }
 
 .bcp-logotipo-pagina {

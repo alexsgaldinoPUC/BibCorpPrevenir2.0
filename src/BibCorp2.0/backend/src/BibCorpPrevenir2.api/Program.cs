@@ -87,8 +87,9 @@ builder.Services
 builder.Services
     .AddControllers()
     // Já leva os enum convertidos na query
-    .AddJsonOptions(options => {
-//        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); trocado para nova tecnologia
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     })
@@ -144,20 +145,20 @@ builder.Services.AddSwaggerGen(options =>
     });
 
     options.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                {
-                    {
-                        new OpenApiSecurityScheme {
-                        Reference = new OpenApiReference {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        },
-                        Scheme = "oauth2",
-                        Name = "Bearer",
-                        In = ParameterLocation.Header
-                        },
-                        new List<string>()
-                    }
-                });
+        {
+            {
+                new OpenApiSecurityScheme {
+                Reference = new OpenApiReference {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
+                },
+                new List<string>()
+            }
+        });
 });
 
 var app = builder.Build();

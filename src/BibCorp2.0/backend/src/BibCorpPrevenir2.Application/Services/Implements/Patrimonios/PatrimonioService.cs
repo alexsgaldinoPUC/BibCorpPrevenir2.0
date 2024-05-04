@@ -2,14 +2,9 @@
 using BibCorpPrevenir2.Application.Dtos.Patrimonios;
 using BibCorpPrevenir2.Application.Services.Contracts.Patrimonios;
 using BibCorpPrevenir2.Domain.Models.Patrimonios;
+using BibCorpPrevenir2.Persistence.Interfaces.Contracts.Acervos;
 using BibCorpPrevenir2.Persistence.Interfaces.Contracts.Patrimonios;
-using BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios;
 using BibCorpPrevenir2.Persistence.Util.Classes.Paginators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BibCorpPrevenir2.Application.Services.Implements.Patrimonios
 {
@@ -19,6 +14,7 @@ namespace BibCorpPrevenir2.Application.Services.Implements.Patrimonios
         private readonly IMapper _mapper;
         public PatrimonioService(
             IPatrimonioPersistence patrimonioPersistence,
+            IAcervoPersistence acervoPersistence,
             IMapper mapper)
         {
             _patrimonioPersistence = patrimonioPersistence;
@@ -69,7 +65,6 @@ namespace BibCorpPrevenir2.Application.Services.Implements.Patrimonios
         {
             try
             {
-                Console.WriteLine("aquiiiiiiiii");
                 var patrimonios = await _patrimonioPersistence.GetAllPatrimoniosAsync();
 
                 if (patrimonios == null) return null;
@@ -126,6 +121,7 @@ namespace BibCorpPrevenir2.Application.Services.Implements.Patrimonios
                 var patrimonio = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioId);
 
                 if (patrimonio == null) return null;
+
 
                 var patrimonioUpdate = _mapper.Map(patrimoioDto, patrimonio);
 

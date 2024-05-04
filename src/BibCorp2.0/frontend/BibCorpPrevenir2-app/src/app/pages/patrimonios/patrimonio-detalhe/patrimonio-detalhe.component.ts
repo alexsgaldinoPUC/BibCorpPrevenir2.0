@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit, inject } from "@angular/core";
 import {
   FormBuilder,
@@ -5,27 +6,31 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { FormValidator } from "../../../util/class";
-import { Patrimonio } from "../../../shared/models/interfaces/patrimonio";
-import { ActivatedRoute, Router } from "@angular/router";
-import { NgxSpinnerService } from "ngx-spinner";
-import { PatrimonioService } from "../../../services/patrimonio/patrimonio.service";
-import { ToastrService } from "ngx-toastr";
-import { AcervoService } from "../../../services/acervo";
-import { Acervo } from "../../../shared/models/interfaces/acervo";
 import { formatDate } from "@angular/common";
+
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+
+import { FormValidator } from "../../../util/class";
+
+import { Patrimonio } from "../../../shared/models/interfaces/patrimonio";
+import { Acervo } from "../../../shared/models/interfaces/acervo";
+
+import { AcervoService } from "../../../services/acervo";
+import { PatrimonioService } from "../../../services/patrimonio";
 
 @Component({
   selector: "app-patrimonio-detalhe",
   templateUrl: "./patrimonio-detalhe.component.html",
-  styleUrl: "./patrimonio-detalhe.component.scss",
 })
 export class PatrimonioDetalheComponent implements OnInit {
-  #acervoService = inject(AcervoService);
   #activevateRouter = inject(ActivatedRoute);
   #formBuilder = inject(FormBuilder);
-  #patrimonioService = inject(PatrimonioService);
   #router = inject(Router);
+
+  #acervoService = inject(AcervoService);
+  #patrimonioService = inject(PatrimonioService);
+
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
 
@@ -35,8 +40,9 @@ export class PatrimonioDetalheComponent implements OnInit {
 
   public patrimonio = {} as Patrimonio;
   public patrimonioParam: any = "";
+  public acervo = {} as Acervo;
 
-  public editMode: Boolean = false;
+  public editMode: boolean = false;
 
   public capaPatrimonio: string =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU";
@@ -47,10 +53,9 @@ export class PatrimonioDetalheComponent implements OnInit {
 
   ngOnInit() {
     this.formValidator();
-    
+
     this.patrimonioParam = this.#activevateRouter.snapshot.paramMap.get("id");
     this.editMode = this.patrimonioParam != null ? true : false;
-    console.log("ngOnInit",this.editMode )
 
     if (this.editMode) this.getPatrimonio();
   }
@@ -101,31 +106,25 @@ export class PatrimonioDetalheComponent implements OnInit {
 
   public getPatrimonio(): void {
     this.#spinnerService.show();
-    
+
     this.#patrimonioService
-    .getPatrimonioById(+this.patrimonioParam)
-    .subscribe({
-      next: (patrimonio: Patrimonio) => {
-        this.patrimonio = patrimonio;
-        
-        this.formPatrimonio.patchValue(this.patrimonio);
-        this.ctrF.patrimonioId.setValue(this.patrimonio.id);
-        console.log("------------------- getPatrimonio -------------------")
-          console.log("date: ", this.patrimonio.dataCadastro)
-          this.ctrF.dataCadastro.setValue(this.patrimonio.dataCadastro);
-          this.patrimonio.status = false;
+      .getPatrimonioById(+this.patrimonioParam)
+      .subscribe({
+        next: (patrimonio: Patrimonio) => {
+          this.patrimonio = patrimonio;
+          this.formPatrimonio.patchValue(this.patrimonio);
+          this.ctrF.patrimonioId.setValue(this.patrimonio.id);
+
           this.corTexto = this.patrimonio.status
             ? "text-danegr"
             : "text-success";
-          console.log(this.corTexto);
+
           this.ctrF.statusTela.setValue(
             this.patrimonio.status ? "Emprestado" : "Liberado"
           );
 
           if (patrimonio.acervo?.capaUrl)
             this.capaPatrimonio = patrimonio.acervo.capaUrl;
-
-          console.log(patrimonio);
         },
         error: (error: any) => {
           this.#toastrService.error("Falha ao recuperar Patrimonio", "Erro!");
@@ -149,7 +148,6 @@ export class PatrimonioDetalheComponent implements OnInit {
       .subscribe({
         next: (novoPatrimonio: Patrimonio) => {
           this.#toastrService.success("Patrimonio cadastrado!", "Sucesso!");
-          this.getAcervo(this.patrimonio.isbn);
           window.location.reload;
           this.#router.navigateByUrl(
             `/pages/patrimonios/detalhe/${novoPatrimonio.id}`
@@ -170,8 +168,8 @@ export class PatrimonioDetalheComponent implements OnInit {
       id: this.ctrF.patrimonioId.value,
       ...this.formPatrimonio.value,
     };
-    this.patrimonio.dataCadastro = new Date().toISOString();
-    console.log(this.patrimonio);
+
+    this.patrimonio.dataAtualizacao = new Date().toISOString();
     this.#patrimonioService
       .savePatrimonio(this.patrimonio)
       .subscribe({
@@ -180,26 +178,6 @@ export class PatrimonioDetalheComponent implements OnInit {
         },
         error: (error: any) => {
           this.#toastrService.error("Falha ao atualizar Patrimônio.", "Erro!");
-          console.error(error);
-        },
-      })
-      .add(() => this.#spinnerService.hide());
-  }
-
-  public getAcervo(isbn: string): void {
-    this.#spinnerService.show();
-
-    this.#acervoService
-      .getAcervoByISBN(isbn)
-      .subscribe({
-        next: (acervo: Acervo) => {
-          if (acervo.capaUrl) this.capaPatrimonio = this.#acervoService.baseURL;
-        },
-        error: (error: any) => {
-          this.#toastrService.error(
-            "Falha ao recuperar Acervo por ISBN.",
-            "Erro!"
-          );
           console.error(error);
         },
       })

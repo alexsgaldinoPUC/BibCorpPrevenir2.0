@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BibCorpPrevenir2.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialdatabaseproject : Migration
+    public partial class InitialIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,7 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ISBN = table.Column<string>(type: "varchar(255)", nullable: true)
+                    ISBN = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Titulo = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -83,8 +83,9 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "longtext", nullable: true)
+                    Nome = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    IsAdmin = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Localizacao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FotoURL = table.Column<string>(type: "longtext", nullable: true)
@@ -134,7 +135,7 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Posicao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ISBN = table.Column<string>(type: "varchar(255)", nullable: true)
+                    ISBN = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<int>(type: "int", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -281,7 +282,7 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserName = table.Column<string>(type: "varchar(255)", nullable: true)
+                    UserName = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<int>(type: "int", nullable: false),
                     DataEmprestimo = table.Column<DateTime>(type: "datetime(6)", nullable: false),

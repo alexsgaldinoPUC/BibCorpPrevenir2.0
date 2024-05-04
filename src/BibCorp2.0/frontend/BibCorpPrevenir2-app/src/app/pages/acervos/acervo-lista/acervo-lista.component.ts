@@ -66,7 +66,6 @@ export class AcervoListaComponent {
           if (usuario.userName === "Admin") this.usuarioAdmin = true;
         },
         error: (error: any) => {
-          console.log("aqui 2");
           this.#toastrService.error("Erro ao carregar Usuário", "Erro!");
           console.error(error);
         },
@@ -94,7 +93,6 @@ export class AcervoListaComponent {
           this.paginacao = retorno.paginacao;
         },
         error: (error: any) => {
-          console.log("aqui 2");
           this.#toastrService.error("Erro ao carregar Acervos", "Erro!");
           console.error(error);
         },
@@ -107,10 +105,8 @@ export class AcervoListaComponent {
 
     this.acervoId = acervoId;
     this.acervoISBN = acervoISBN;
-    console.log(this.acervoId);
 
     this.validarAcervo(this.acervoId);
-    console.log("alocado? ", this.acervoAlocado);
   }
 
   public confirmarDelecao(): void {
@@ -150,7 +146,6 @@ export class AcervoListaComponent {
       .subscribe({
         next: (acervo: Acervo) => {
           this.acervo = acervo;
-          console.log("valida ", this.acervo);
           if (this.acervo.qtdeEmTransito + this.acervo.qtdeEmprestada > 0)
             this.acervoAlocado = true;
 
@@ -164,7 +159,6 @@ export class AcervoListaComponent {
             });
 
             dialogRef.afterClosed().subscribe((result) => {
-              console.log("The dialog was closed", result);
               if (result) this.confirmarDelecao();
             });
           } else {
@@ -192,8 +186,7 @@ export class AcervoListaComponent {
   public detalheAcervo(event: any, acervoId: number): void {
     event.stopPropagation();
 
-    console.log("detalheAcervo")
-     this.#router.navigate([`pages/acervos/detalhe/${acervoId}`], { skipLocationChange: false});
+    this.#router.navigate([`pages/acervos/detalhe/${acervoId}`], { skipLocationChange: false});
   }
 
   public alteracaoDePagina(event: any): void {

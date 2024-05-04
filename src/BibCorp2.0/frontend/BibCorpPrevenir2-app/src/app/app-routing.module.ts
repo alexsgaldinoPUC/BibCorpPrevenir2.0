@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import {
-  HomeAdminComponent,
   HomeComponent,
   HomePageComponent,
 } from "./pages/home";
@@ -24,6 +23,7 @@ import {
 } from "./pages/acervos";
 import {
   EmprestimosComponent,
+  GerenciarEmprestimosComponent,
   GerenciarReservasComponent,
 } from "./pages/emprestimos";
 
@@ -72,6 +72,7 @@ const routes: Routes = [
       { path: "gerenciarReservas", component: GerenciarReservasComponent },
       { path: "detalhe/:id", component: PatrimonioDetalheComponent },
       { path: "cadastrar", component: PatrimonioDetalheComponent },
+      { path: "gerenciarEmprestimos", component: GerenciarEmprestimosComponent },
     ],
   },
 
@@ -97,7 +98,6 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "homePage", pathMatch: "full" },
       { path: "homePage", component: HomePageComponent },
-      { path: "homeAdmin", component: HomeAdminComponent },
     ],
   },
 

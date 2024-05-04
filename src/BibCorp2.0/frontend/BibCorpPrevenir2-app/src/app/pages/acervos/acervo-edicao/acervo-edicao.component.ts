@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from "@angular/router";
   templateUrl: "./acervo-edicao.component.html",
   styleUrls: ["./acervo-edicao.component.scss"],
 })
-export class AcervoEdicaoComponent implements OnInit {
+export class AcervoEdicaoComponent {
   #acervoService = inject(AcervoService);
   #activevateRouter = inject(ActivatedRoute);
   #formBuilder = inject(FormBuilder);
@@ -33,7 +33,7 @@ export class AcervoEdicaoComponent implements OnInit {
   public acervo = {} as Acervo;
 
   public patrimonio = {} as Patrimonio;
-  public patrimonios: Patrimonio[] = [];
+  public patrimonios = [] as Patrimonio[];
 
   public acervoParam: any = "";
 
@@ -85,9 +85,10 @@ export class AcervoEdicaoComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(30),
-          Validators.maxLength(1200),
+          Validators.maxLength(5000),
         ],
       ],
+      capaUrl: ["", Validators.required],
       anoPublicacao: [
         "",
         [Validators.required, Validators.minLength(4), Validators.maxLength(4)],
@@ -105,7 +106,6 @@ export class AcervoEdicaoComponent implements OnInit {
       qtdPaginas: ["0"],
       qtdeDisponivel: ["0"],
       qtdeEmprestada: ["0"],
-      capaUrl: ["", Validators.required],
     });
   }
 
@@ -138,14 +138,12 @@ export class AcervoEdicaoComponent implements OnInit {
       .subscribe({
         next: (acervo: Acervo) => {
           this.acervo = acervo;
+
           this.formAcervo.patchValue(this.acervo);
-          if (acervo.capaUrl) {
-            this.capaPatrimonio = acervo.capaUrl
-          }
           this.ctrF.acervoId.setValue(this.acervo.id);
-          if (!this.editMode) {
-            this.getPatrimonios();
-          }
+          this.getPatrimonios();
+
+          if (this.acervo.capaUrl) this.capaPatrimonio = this.acervo.capaUrl;
         },
         error: (error: any) => {
           this.#toastrService.error("Falha ao recuperar Acervo", "Erro!");
@@ -159,14 +157,12 @@ export class AcervoEdicaoComponent implements OnInit {
     this.#spinnerService.show();
 
     this.acervo = { ...this.formAcervo.value };
+    console.log(this.acervo);
 
     this.acervo.dataCriacao = new Date()
       .toISOString()
       .slice(0, 10)
       .replace(/-/g, "");
-
-    this.acervo.qtdeEmTransito = 0;
-    this.acervo.qtdeEmprestada = 0;
 
     this.#acervoService
       .getAcervoByISBN(this.ctrF.isbn.value)
@@ -196,10 +192,6 @@ export class AcervoEdicaoComponent implements OnInit {
       .createAcervo(this.acervo)
       .subscribe({
         next: (novoAcervo: Acervo) => {
-          for (let patrimonio of this.patrimonios) {
-            patrimonio.acervoId = novoAcervo.id;
-            this.updateAcervoIdPatrimonio(patrimonio);
-          }
           this.#toastrService.success("Acervo cadastrado!", "Sucesso!");
           window.location.reload;
           this.#router.navigateByUrl(`/acervos/edicao/${novoAcervo.id}`);
@@ -244,6 +236,7 @@ export class AcervoEdicaoComponent implements OnInit {
   public getPatrimonios(): void {
     this.#spinnerService.show();
 
+    console.log(this.ctrF.isbn.value);
     this.#patrimonioService
       .getPatrimoniosByISBN(this.ctrF.isbn.value)
       .subscribe({
@@ -252,7 +245,7 @@ export class AcervoEdicaoComponent implements OnInit {
             console.log(patrimonios);
             this.patrimonios = patrimonios;
             this.ctrF.qtdeAcervos.setValue(this.patrimonios.length);
-            this.getGoogleBook(this.ctrF.isbn.value);
+            if (!this.editMode) this.getGoogleBook(this.ctrF.isbn.value);
           } else
             this.#toastrService.error(
               "Não existe patrimônio cadastrado para o ISBN informado",
@@ -268,20 +261,23 @@ export class AcervoEdicaoComponent implements OnInit {
   }
 
   public getGoogleBook(isbn: string): void {
-    this.#acervoService.getGoogleBooks(isbn).subscribe({
-      next: (book: Acervo) => {
-        if (book != null) {
-          this.acervo = book;
-          this.formAcervo.patchValue(this.acervo);
-        }
-      },
-      error: (error: any) => {
-        this.#toastrService.error(
-          "Falha ao recuperar Acervo do Google Books ",
-          "Erro!"
-        );
-        console.error(error);
-      },
-    });
+    this.#acervoService
+      .getGoogleBooks(isbn)
+      .subscribe({
+        next: (book: Acervo) => {
+          if (book != null) {
+            this.acervo = book;
+            this.formAcervo.patchValue(this.acervo);
+          }
+        },
+        error: (error: any) => {
+          this.#toastrService.error(
+            "Falha ao recuperar Acervo do Google Books ",
+            "Erro!"
+          );
+          console.error(error);
+        },
+      })
+      .add(() => this.#spinnerService.hide());
   }
 }
