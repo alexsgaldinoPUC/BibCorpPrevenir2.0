@@ -1,6 +1,7 @@
 ﻿using BibCorpPrevenir2.api.Util.Extensions.Pages;
 using BibCorpPrevenir2.api.Util.Extensions.Security;
 using BibCorpPrevenir2.Application.Dtos.Patrimonios;
+using BibCorpPrevenir2.Application.Services.Contracts.Acervos;
 using BibCorpPrevenir2.Application.Services.Contracts.Patrimonios;
 using BibCorpPrevenir2.Application.Services.Contracts.Usuarios;
 using BibCorpPrevenir2.Persistence.Util.Classes.Paginators;
@@ -14,16 +15,19 @@ namespace BibCorpPrevenir2.api.Controllers.Patrimonios;
 [Route("api/[controller]")]
 public class PatrimoniosController : ControllerBase
 {
-    private readonly IPatrimonioService _patrimonioServices;
+    private readonly IAcervoService _acervoService;
+    private readonly IPatrimonioService _patrimonioService;
     private readonly IUsuarioService _usuarioService;
 
     public PatrimoniosController
     (
-        IPatrimonioService patrimonioServices,
+        IAcervoService aervoService,
+        IPatrimonioService patrimonioService,
         IUsuarioService usuarioService
     )
     {
-        _patrimonioServices = patrimonioServices;
+        _acervoService = aervoService;
+        _patrimonioService = patrimonioService;
         _usuarioService = usuarioService;
     }
 
@@ -47,7 +51,7 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            var patrimonios = await _patrimonioServices.GetAllPatrimoniosAsync();
+            var patrimonios = await _patrimonioService.GetAllPatrimoniosAsync();
 
             if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados");
 
@@ -78,7 +82,7 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            var patrimonios = await _patrimonioServices.GetPatrimoniosByISBNAsync(isbn);
+            var patrimonios = await _patrimonioService.GetPatrimoniosByISBNAsync(isbn);
 
             if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados para este ISBN");
 
@@ -109,7 +113,7 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            var patrimonios = await _patrimonioServices.GetAllPatrimoniosLivresAsync(isbn);
+            var patrimonios = await _patrimonioService.GetAllPatrimoniosLivresAsync(isbn);
 
             if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados para este ISBN");
 
@@ -141,7 +145,7 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            var patrimonio = await _patrimonioServices.GetPatrimonioByIdAsync(patrimonioId);
+            var patrimonio = await _patrimonioService.GetPatrimonioByIdAsync(patrimonioId);
 
             if (patrimonio == null) return NotFound("Não existe patrimônio cadastrado para o Id informado");
 
@@ -172,17 +176,25 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            if (usuario.UserName != "Admin")
+            if (!usuario.IsAdmin)
             {
                 return Unauthorized();
             }
 
             Console.WriteLine("ISBNA: " + patrimonioDto.ISBN);
-            //      var acervo = await _acervoService.GetAcervoByISBNAsync(patrimonioDto.ISBN);
+            var acervo = await _acervoService.GetAcervoByISBNAsync(patrimonioDto.ISBN);
 
-            //      if (acervo != null) patrimonioDto.AcervoId = acervo.Id;
+            if (acervo != null)
+            {
+                patrimonioDto.AcervoId = acervo.Id;
+                acervo.QtdeDisponivel += 1;
 
-            var createdPatrimonio = await _patrimonioServices.CreatePatrimonio(patrimonioDto);
+                var acervoAlterado = await _acervoService.UpdateAcervo(acervo.Id, acervo);
+
+                if (acervoAlterado != null) BadRequest("Ocorreu um erro ao tentar atualizar o acervo ao incluir o patrimônio");
+            }
+
+            var createdPatrimonio = await _patrimonioService.CreatePatrimonio(patrimonioDto);
 
             if (createdPatrimonio != null) return Ok(createdPatrimonio);
 
@@ -215,12 +227,12 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            if (usuario.UserName != "Admin")
+            if (!usuario.IsAdmin)
             {
                 return Unauthorized();
             }
 
-            var patrimonio = await _patrimonioServices.UpdatePatrimonio(patrimonioId, patrimonioDto);
+            var patrimonio = await _patrimonioService.UpdatePatrimonio(patrimonioId, patrimonioDto);
 
             if (patrimonio == null) return NotFound("Não existe patrimônio cadastrado para o Id informado");
 
@@ -252,12 +264,12 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            if (usuario.UserName != "Admin")
+            if (!usuario.IsAdmin)
             {
                 return Unauthorized();
             }
 
-            if (await _patrimonioServices.DeletePatrimonio(patrimonioId))
+            if (await _patrimonioService.DeletePatrimonio(patrimonioId))
             {
                 return Ok(new { message = "OK" });
             }
@@ -292,7 +304,7 @@ public class PatrimoniosController : ControllerBase
                 return Unauthorized();
             }
 
-            var patrimonios = await _patrimonioServices.GetPatrimoniosPaginacaoAsync(parametrosPaginacao);
+            var patrimonios = await _patrimonioService.GetPatrimoniosPaginacaoAsync(parametrosPaginacao);
 
             if (patrimonios == null) return NotFound("Não existem patrimonios cadastrados");
 

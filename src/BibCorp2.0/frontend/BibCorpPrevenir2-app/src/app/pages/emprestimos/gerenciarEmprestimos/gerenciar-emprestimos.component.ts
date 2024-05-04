@@ -9,11 +9,11 @@ import { Usuario } from "../../../shared/models/interfaces/usuario";
 import { formatDate } from "@angular/common";
 
 @Component({
-  selector: "app-home-admin",
-  templateUrl: "./home-admin.component.html",
-  styleUrl: "./home-admin.component.scss",
+  selector: "app-gerenciar-emprestimos",
+  templateUrl: "./gerenciar-emprestimos.component.html",
+  styleUrl: "./gerenciar-emprestimos.component.scss",
 })
-export class HomeAdminComponent {
+export class GerenciarEmprestimosComponent {
   #emprestimoService = inject(EmprestimoService);
   #formBuilder = inject(FormBuilder);
   #spinnerService = inject(NgxSpinnerService);

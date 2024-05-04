@@ -2,6 +2,7 @@
 using BibCorpPrevenir2.api.Util.Extensions.Security;
 using BibCorpPrevenir2.Application.Dtos.Acervos;
 using BibCorpPrevenir2.Application.Services.Contracts.Acervos;
+using BibCorpPrevenir2.Application.Services.Contracts.Patrimonios;
 using BibCorpPrevenir2.Application.Services.Contracts.Usuarios;
 using BibCorpPrevenir2.Domain.Models.Usuarios;
 using BibCorpPrevenir2.Persistence.Util.Classes.Paginators;
@@ -17,15 +18,18 @@ namespace BibCorpPrevenir2.api.Controllers.Acervos;
 public class AcervosController : Controller
 {
     private readonly IAcervoService _acervoService;
+    private readonly IPatrimonioService _patrimonioService; 
     private readonly IUsuarioService _usuarioService;
 
     public AcervosController
     (
         IAcervoService acervoService,
+        IPatrimonioService patrimonioService,
         IUsuarioService usuarioService
     )
     {
         _acervoService = acervoService;
+        _patrimonioService = patrimonioService;
         _usuarioService = usuarioService;
     }
 
@@ -95,7 +99,7 @@ public class AcervosController : Controller
     /// <response code="400">Parâmetros incorretos</response>
     /// <response code="500">Erro interno</response>
 
-    [HttpGet("{ISBN}/isbn")]
+    [HttpGet("{ISBN}/ISBN")]
     public async Task<IActionResult> GetAcervoByISBN(string ISBN)
     {
         try
@@ -126,6 +130,7 @@ public class AcervosController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateAcervo(AcervoDto acervoDto)
     {
+            Console.WriteLine("CreateAcervo ------------------------------------------------------------------------------------");
         try
         {
             var usuario = await _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
@@ -135,7 +140,7 @@ public class AcervosController : Controller
                 return Unauthorized();
             }
 
-            if (usuario.UserName != "Admin")
+            if (!usuario.IsAdmin)
             {
                 return Unauthorized();
             }
@@ -144,7 +149,26 @@ public class AcervosController : Controller
 
             if (acervo != null) return BadRequest("Já existe um Acervo com o ISBN informado");
 
+            var patrimonios = _patrimonioService.GetPatrimoniosByISBNAsync(acervoDto.ISBN);
+
+
+            if (patrimonios.Result.Count() > 0)
+            {
+                acervoDto.QtdeDisponivel = patrimonios.Result.Count();
+                acervoDto.QtdeEmprestada = 0;
+                acervoDto.QtdeEmTransito = 0;
+            }
+
             var createdAcervo = await _acervoService.CreateAcervo(acervoDto);
+
+            foreach (var patrimonio in patrimonios.Result)
+            {
+                Console.WriteLine("QtdePatrimonios: " + patrimonios.Result.Count() + " " + patrimonio.Id);
+                patrimonio.AcervoId = createdAcervo.Id;
+                var patrimonioAlterado = await _patrimonioService.UpdatePatrimonio(patrimonio.Id, patrimonio);
+
+                if (patrimonioAlterado == null) return BadRequest("Ocorreu um erro ao tentar alterar o patrimônio para incluir o acervo");
+            }
 
             if (createdAcervo != null) return Ok(createdAcervo);
 
@@ -322,9 +346,9 @@ public class AcervosController : Controller
                 return Unauthorized();
             }
 
-            if (usuario.UserName != "Admin")
+            if (!usuario.IsAdmin)
             {
-                return Unauthorized();
+               return Unauthorized();
             }
 
             //var apikey = "AIzaSyAdqmSh-H-FC5TXVVEW0QBZaafCi7kI24E";

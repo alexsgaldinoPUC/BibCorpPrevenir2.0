@@ -24,7 +24,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
         public async Task<IEnumerable<Patrimonio>> GetAllPatrimoniosAsync()
         {
             IQueryable<Patrimonio> query = _context.Patrimonios
-              //        .Include(p => p.Acervo)
+              .Include(p => p.Acervo)
               .AsNoTracking()
               .OrderBy(p => p.Id);
 
@@ -34,7 +34,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
         public async Task<IEnumerable<Patrimonio>> GetAllPatrimoniosLivresAsync(string isbn)
         {
             IQueryable<Patrimonio> query = _context.Patrimonios
-              //        .Include(p => p.Acervo)
+              .Include(p => p.Acervo)
               .AsNoTracking()
               .Where(p => p.ISBN == isbn && p.AcervoId == null)
               .OrderBy(p => p.Id);
@@ -45,7 +45,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
         public async Task<Patrimonio> GetPatrimonioByIdAsync(int patrimonioId)
         {
             IQueryable<Patrimonio> query = _context.Patrimonios
-              //        .Include(p => p.Acervo)
+              .Include(p => p.Acervo)
               .AsNoTracking()
               .Where(p => p.Id == patrimonioId);
 
@@ -57,7 +57,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
         public async Task<IEnumerable<Patrimonio>> GetPatrimoniosByISBNAsync(string ISBN)
         {
             IQueryable<Patrimonio> query = _context.Patrimonios
-              //        .Include(p => p.Acervo)
+              .Include(p => p.Acervo)
               .AsNoTracking()
               .Where(p => p.ISBN == ISBN)
               .OrderBy(p => p.ISBN);
@@ -67,7 +67,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Patrimonios
         public async Task<ListaDePaginas<Patrimonio>> GetPatrimoniosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao)
         {
             IQueryable<Patrimonio> query = _context.Patrimonios
-              //        .Include(p => p.Acervo)
+              .Include(p => p.Acervo)
               .AsNoTracking();
 
             if (parametrosPaginacao.Argumento != "null")

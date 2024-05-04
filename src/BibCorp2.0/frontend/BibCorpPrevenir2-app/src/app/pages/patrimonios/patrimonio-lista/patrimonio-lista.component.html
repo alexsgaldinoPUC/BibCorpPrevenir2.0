@@ -54,7 +54,7 @@
   @if (patrimonios && patrimonios.length) {
   <tbody>
     @for (patrimonio of patrimonios; track patrimonio.id) {
-    <tr (click)="editarPatrimonio(patrimonio.id)" style="cursor: pointer">
+    <tr (click)="editarPatrimonio(patrimonio.id)" role="button">
       <td>
         <img [(ngbCollapse)]="!exibirImagem"
           [src]='(patrimonio.acervo != null) ?  patrimonio.acervo.capaUrl : capaLivro' alt="" [style.width.px]="50"
@@ -82,19 +82,17 @@
   @if (!patrimonios.length) {
   <tfoot>
     <td colspan="12" class="text-center" class="text-center">
-      <h4>Nenhum patrimônio encontrado</h4>
+      <h3>Nenhum patrimônio encontrado</h3>
     </td>
   </tfoot>
   }
 </table>
-<div class="card-footer d-flex p-1 m-0 bcp-bg-primary" *ngIf="patrimonios.length">
-  <div class="justify-content-center m-auto p-0 m-0 my-1">
-    <ngb-pagination [collectionSize]="paginacao.itensPorPagina" [page]="paginacao.paginaCorrente"
-      [maxSize]="paginacao.totalDePaginas" [rotate]="true" [boundaryLinks]="true" [ellipses]="false"
-      (pageChange)="alteracaoDePagina($event)"></ngb-pagination>
+@if (patrimonios.length) {
+  <div class="card-footer d-flex p-1 m-0 bcp-bg-primary" >
+    <div class="justify-content-center m-auto p-0 m-0 my-1">
+      <ngb-pagination [collectionSize]="paginacao.itensPorPagina" [page]="paginacao.paginaCorrente"
+        [maxSize]="paginacao.totalDePaginas" [rotate]="true" [boundaryLinks]="true" [ellipses]="false"
+        (pageChange)="alteracaoDePagina($event)"></ngb-pagination>
+    </div>
   </div>
-</div>
-
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
-  <p style="font-size: 20px; color: white">Carregando...</p>
-</ngx-spinner>
+}

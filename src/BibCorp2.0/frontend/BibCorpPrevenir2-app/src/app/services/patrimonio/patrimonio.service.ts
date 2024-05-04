@@ -14,7 +14,6 @@ export class PatrimonioService {
   baseURL =`${environment.apiURL}Patrimonios/`;
 
   public getPatrimonios(): Observable<Patrimonio[]> {
-    console.log(this.baseURL);
     return this.#http.get<Patrimonio[]>(this.baseURL).pipe(take(3));
   }
 
@@ -52,7 +51,6 @@ export class PatrimonioService {
     argumento: string = '',
     pesquisarPor: string = "Todos"
   ): Observable<ResultadoPaginado<Patrimonio[]>> {
-    console.log(this.baseURL);
     const resultadoPaginado: ResultadoPaginado<Patrimonio[]> =
       new ResultadoPaginado<Patrimonio[]>();
 
@@ -67,7 +65,6 @@ export class PatrimonioService {
         "TamanhoDaPagina",
         itensPorPagina.toString()
       );
-      console.log("pesquisarPor",resultadoPaginado.resultado)
       parametrosHttp = parametrosHttp.append("PesquisarPor", pesquisarPor);
     }
 

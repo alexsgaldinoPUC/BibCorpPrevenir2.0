@@ -1,11 +1,11 @@
 <div class="container-fluid">
-  <form class="container-fluid mt-2" [formGroup]="formPatrimonio">
-    <div class="card rounded mat-elevation-z8">
+  <form class="my-2" [formGroup]="formPatrimonio">
+    <div class="card rounded mat-elevation-z4">
       <div class="card-header rounded text-center text-white bcp-bg-secondary">
         <h1 class="mt-2">Formulário de Patrimônios</h1>
       </div>
       <div class="card-body p-0 mt-1 bg-white  text-black">
-        <div class="row m-0 mb-5">
+        <div class="row m-0 mb-1">
           <div fxFlex="67">
             @if (editMode) {
             <h4 class="border-bottom mt-2 mb-2">
@@ -62,7 +62,7 @@
             <h4 class="border-bottom mt-2">
               Dados de Cadastro
             </h4>
-            <div class="form-row d-md-flex">
+            <div fxLayout="row">
               <mat-form-field fxFlex="25" class="p-1">
                 <mat-label>Número ISBN:</mat-label>
                 <input matInput type="text" formControlName="isbn" [ngClass]="fieldValidator(ctrF.isbn)">
@@ -99,7 +99,7 @@
           </div>
           <div fxFlex="33" class="mt-5">
             <div class="aligns-self-center text-center">
-              <img class="imageDetail" [src]="capaPatrimonio" alt="Card imagem imageDetail">
+              <img class="bcp-imagem-lateral" [src]="capaPatrimonio" alt="Card imagem imageDetail">
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@
     </div>
   </form>
 </div>
-<!--
-  <p>Form Value: {{formPatrimonio.value | json}}</p>
-  <p>Form Status: {{formPatrimonio.status | json}}</p>
--->
+
+  <!-- <p>Form Value: {{formPatrimonio.value | json}}</p>
+  <p>Form Status: {{formPatrimonio.status | json}}</p> -->
+

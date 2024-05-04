@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorpPrevenir2.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpPrevenir2Context))]
-    [Migration("20240428190855_Review-nullable-Patrimonios")]
-    partial class ReviewnullablePatrimonios
+    [Migration("20240504114621_Initial-Identity")]
+    partial class InitialIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,35 +34,27 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AnoPublicacao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Autor")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("CapaUrl")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Comentarios")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DataCriacao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Edicao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Editora")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Genero")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ISBN")
@@ -82,15 +74,12 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Resumo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("SubTitulo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Titulo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -124,11 +113,9 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("LocalDeColeta")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("LocalDeEntrega")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("PatrimonioId")
@@ -175,7 +162,6 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Coluna")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DataAtualizacao")
@@ -185,7 +171,6 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DataIndisponibilidade")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ISBN")
@@ -193,19 +178,15 @@ namespace BibCorpPrevenir2.Persistence.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Localizacao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Posicao")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Prateleira")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Sala")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Status")
@@ -276,6 +257,9 @@ namespace BibCorpPrevenir2.Persistence.Migrations
 
                     b.Property<string>("FotoURL")
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Localizacao")
                         .HasColumnType("longtext");

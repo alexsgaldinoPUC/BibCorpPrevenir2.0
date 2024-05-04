@@ -17,19 +17,17 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 export class PatrimonioListaComponent {
   #dialog = inject(MatDialog);
   #formBuilder = inject(FormBuilder)
-  #patrimonioService = inject(PatrimonioService);
   #router = inject(Router);
+
+  #patrimonioService = inject(PatrimonioService);
+
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
 
   public formPatrimonioLista = {} as FormGroup;
 
-  // public animal!: string;
-  // public name!: string;
-
   public patrimonios: Patrimonio[] = [];
   public patrimonio!: Patrimonio;
-  // public PatrimonioFiltrados: any = [];
 
   public paginacao = {} as Paginacao;
 
@@ -42,7 +40,6 @@ export class PatrimonioListaComponent {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU";
 
   filtroPatrimonio() {
-     console.log("Filtro");
      this.getPatrimonios();
   }
 
@@ -68,7 +65,7 @@ export class PatrimonioListaComponent {
 
   public getPatrimonios(): void {
     this.#spinnerService.show();
-  console.log(this.ctrF.opcaoPesquisa.value, this.ctrF.argumento.value)
+
     this.#patrimonioService
       .getPatrimoniosPaginacao(
         this.paginacao.paginaCorrente,
@@ -80,10 +77,8 @@ export class PatrimonioListaComponent {
         next: (retorno: ResultadoPaginado<Patrimonio[]>) => {
           this.patrimonios = retorno.resultado;
           this.paginacao = retorno.paginacao;
-          console.log(this.patrimonios);
         },
         error: (error: any) => {
-          console.log("aqui 2");
           this.#toastrService.error("Erro ao carregar Patrimônios", "Erro!");
           console.error(error);
         },
@@ -103,7 +98,7 @@ export class PatrimonioListaComponent {
     this.#patrimonioService.getPatrimonioById(patrimonioId).subscribe({
       next: (patrimonio: Patrimonio) => {
         this.patrimonio = patrimonio;
-        if (this.patrimonio.acervoId === null) {
+        if (this.patrimonio.acervoId === null || this.patrimonio.acervoId == 0) {
           const dialogRef = this.#dialog.open(ModalDeleteComponent, {
             data: {
               nomePagina: "Patrimônios",
@@ -112,7 +107,6 @@ export class PatrimonioListaComponent {
             },
           });
           dialogRef.afterClosed().subscribe((result) => {
-            console.log("The dialog was closed", result);
             if (result) this.confirmarDelecao();
           });
         } else {
@@ -131,13 +125,13 @@ export class PatrimonioListaComponent {
     this.#patrimonioService
       .deletePatrimonio(this.patrimonioId)
       .subscribe({
-        next: (result: any) => {
-          if (result == null)
+        next: (patrimonioExcluido: any) => {
+          if (patrimonioExcluido == null)
             this.#toastrService.error(
               "Patrimonio não pode se excluído.",
               "Erro!"
             );
-          if (result.message == "OK") {
+          if (patrimonioExcluido.message == "OK") {
             this.#toastrService.success(
               "Patrimonio excluído com sucesso",
               "Excluído!"

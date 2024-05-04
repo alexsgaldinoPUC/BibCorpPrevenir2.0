@@ -17,24 +17,20 @@ export class AcervoService {
     fisltrarPor?: string,
     TipoFiltro?: string
   ): Observable<Acervo[]> {
-    console.log(this.baseURL);
-    return this.#http.get<Acervo[]>(this.baseURL).pipe(take(3));
+      return this.#http.get<Acervo[]>(this.baseURL).pipe(take(3));
   }
 
   public getGoogleBooks(isbn: string): Observable<Acervo> {
-    console.log(this.baseURL);
     return this.#http
       .get<Acervo>(`${this.baseURL}External/${isbn}/googlebooks`)
       .pipe(take(3));
   }
 
   public getAcervoById(id: number): Observable<Acervo> {
-    console.log(this.baseURL);
     return this.#http.get<Acervo>(`${this.baseURL}${id}`).pipe(take(3));
   }
 
   public getAcervoByISBN(isbn: string): Observable<Acervo> {
-    console.log(this.baseURL);
     return this.#http.get<Acervo>(`${this.baseURL}${isbn}/ISBN`).pipe(take(3));
   }
 
@@ -43,7 +39,6 @@ export class AcervoService {
   }
 
   public saveAcervo(acervo: Acervo): Observable<Acervo> {
-    console.log(this.baseURL);
     return this.#http
       .put<Acervo>(`${this.baseURL}${acervo.id}`, acervo)
       .pipe(take(3));
@@ -62,7 +57,6 @@ export class AcervoService {
     pesquisarPor: string = "Todos",
     genero: string = "Todos"
   ): Observable<ResultadoPaginado<Acervo[]>> {
-    console.log(this.baseURL);
     const resultadoPaginado: ResultadoPaginado<Acervo[]> =
       new ResultadoPaginado<Acervo[]>();
 
@@ -113,7 +107,6 @@ export class AcervoService {
     pesquisarPor: string = "Todos",
     genero: string = "Todos"
   ): Observable<ResultadoPaginado<Acervo[]>> {
-    console.log(this.baseURL);
     const resultadoPaginado: ResultadoPaginado<Acervo[]> =
       new ResultadoPaginado<Acervo[]>();
 
