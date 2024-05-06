@@ -57,8 +57,7 @@
     <tr (click)="editarPatrimonio(patrimonio.id)" role="button">
       <td>
         <img [(ngbCollapse)]="!exibirImagem"
-          [src]='(patrimonio.acervo != null) ?  patrimonio.acervo.capaUrl : capaLivro' alt="" [style.width.px]="50"
-          [style.margin.px]="2">
+          [src]='(patrimonio.acervo != null) ?  patrimonio.acervo.capaUrl : capaLivro' alt="" class="bcp-imagem-lista mx-2">
       </td>
       <td>{{patrimonio.id}}</td>
       <td>{{patrimonio.isbn}}</td>

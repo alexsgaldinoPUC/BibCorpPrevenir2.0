@@ -3,11 +3,11 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-modal-sucesso',
-  templateUrl: './modal-sucesso.component.html',
-  styleUrl: './modal-sucesso.component.scss'
+  selector: 'app-emprestimo-modal-sucesso',
+  templateUrl: './emprestimo-modal-sucesso.component.html',
+  styleUrl: './emprestimo-modal-sucesso.component.scss'
 })
-export class ModalSucessoComponent {
+export class EmprestimoModalSucessoComponent {
   #router = inject(Router)
   #dialog = inject (MatDialog)
 
