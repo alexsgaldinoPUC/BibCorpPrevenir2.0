@@ -67,7 +67,7 @@ console.log("aqui", listaDeStatus)
       .pipe(take(3))
   }
 
-  public gerenciarEmprestimo(emprestimoId: number, gerenciamentoEmprestimo: string): Observable<Emprestimo> {
+  public gerenciarEmprestimo(emprestimoId: number, gerenciamentoEmprestimo: Emprestimo): Observable<Emprestimo> {
     return this.#http.patch<Emprestimo>(`${this.baseURL}${emprestimoId}/GerenciamentoEmprestimo`, gerenciamentoEmprestimo)
       .pipe(take(3));
   }

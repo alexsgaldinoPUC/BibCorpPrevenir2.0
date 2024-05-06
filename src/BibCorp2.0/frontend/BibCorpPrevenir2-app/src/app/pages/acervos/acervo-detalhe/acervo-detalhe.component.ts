@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { Acervo } from "../../../shared/models/interfaces/acervo";
-import { ModalEmprestarComponent } from "../../emprestimos";
+import { EmprestimoModalEmprestarComponent } from "../../emprestimos";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -27,7 +27,7 @@ export class AcervoDetalheComponent {
   public acervo = {} as Acervo;
   public usuarioAtivo = {} as Usuario;
 
-  public acervoParam: any = "";
+  public acervoParam = "" as any;
   public comentarios: string = "";
   public fotoURL: string = "";
 
@@ -35,7 +35,7 @@ export class AcervoDetalheComponent {
   public disabledReservar = false;
 
   public abrirDialog(patrimonioId: number) {
-    this.#dialogRef.open(ModalEmprestarComponent, {
+    this.#dialogRef.open(EmprestimoModalEmprestarComponent, {
       data: {
         patrimonioId: patrimonioId,
         acervoId: this.acervo.id,
@@ -118,11 +118,10 @@ export class AcervoDetalheComponent {
   }
 
   public obterStatusPatrimonio(_status: boolean): any {
-    if (!this.usuarioLogado || this.usuarioAtivo.userName === "Admin")
+    if (!this.usuarioLogado || this.usuarioAtivo.isAdmin)
       this.disabledReservar = true;
     else if (_status) this.disabledReservar = true;
     else this.disabledReservar = false;
-
     return _status ? "Indisponível" : "Disponível";
   }
 }

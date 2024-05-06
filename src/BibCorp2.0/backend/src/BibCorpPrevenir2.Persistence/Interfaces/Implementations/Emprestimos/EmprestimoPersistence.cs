@@ -102,7 +102,7 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
             var novaDataPrevistaDevolucao = dataPrevistaDevolucaoAtual.AddDays(_persistenceConfiguration.PrazoRenovacao);
 
             emprestimoRenovado.DataPrevistaDevolucao = novaDataPrevistaDevolucao;
-            emprestimoRenovado.Status = Domain.Enums.Emprestimo.EmprestimoStatus.Renovado;
+            emprestimoRenovado.Status = EmprestimoStatus.Renovado;
             emprestimoRenovado.QtdeDiasEmprestimo += _persistenceConfiguration.PrazoRenovacao;
 
             Update(emprestimoRenovado);
@@ -133,23 +133,31 @@ namespace BibCorpPrevenir2.Persistence.Interfaces.Implementations.Emprestimos
                 throw new CoreException("Não foi possível alterar o local de coleta");
         }
 
-        public Task<IEnumerable<Emprestimo>> GetEmprestimosByStatusAsync(EmprestimoStatus[] status)
+        public async Task<IEnumerable<Emprestimo>> GetEmprestimosByStatusAsync(EmprestimoStatus[] status)
         {
 
             var emprestimosConsultados = new List<Emprestimo>();
 
             foreach (var tipoStatusEmprestimo in status)
             {
-                IQueryable<Emprestimo> query = _context.Emprestimos
+                var query = _context.Emprestimos
                  .Include(e => e.Acervo)
-                 .Include(e => e.Patrimonios)
+                    .ThenInclude(e => e.Patrimonios)
+                 //.Include(e => e.Patrimonios)
                  .AsNoTracking()
-                 .Where(e => e.Status == tipoStatusEmprestimo)
-                 .OrderBy(e => e.Id);
+                 .Where(e => e.Status == tipoStatusEmprestimo && e.PatrimonioId == e.Patrimonios.Id)
+                 .OrderBy(e => e.Id );
 
-                emprestimosConsultados.AddRange(query);
+                var emprestimos = await query.ToListAsync();
+
+                foreach (var emprestimo in emprestimos)
+                {
+                    emprestimo.Acervo.Patrimonios = emprestimo.Acervo.Patrimonios
+                        .Where(p => p.Id == emprestimo.PatrimonioId);
+                }
+                emprestimosConsultados.AddRange(emprestimos);
             }
-            return Task.FromResult<IEnumerable<Emprestimo>>(emprestimosConsultados);
+            return emprestimosConsultados;
         }
 
         public async Task<Emprestimo> GerenciarEmprestimos(int emprestimoId)

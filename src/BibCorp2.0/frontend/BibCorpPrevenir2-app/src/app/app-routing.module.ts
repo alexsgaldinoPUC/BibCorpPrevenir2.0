@@ -25,6 +25,8 @@ import {
   EmprestimosComponent,
   GerenciarEmprestimosComponent,
   GerenciarReservasComponent,
+  HistoricoComponent,
+  MinhasReservasComponent,
 } from "./pages/emprestimos";
 
 const routes: Routes = [
@@ -73,6 +75,8 @@ const routes: Routes = [
       { path: "detalhe/:id", component: PatrimonioDetalheComponent },
       { path: "cadastrar", component: PatrimonioDetalheComponent },
       { path: "gerenciarEmprestimos", component: GerenciarEmprestimosComponent },
+      { path: "minhasReservas", component: MinhasReservasComponent },
+      { path: "historico", component: HistoricoComponent },
     ],
   },
 

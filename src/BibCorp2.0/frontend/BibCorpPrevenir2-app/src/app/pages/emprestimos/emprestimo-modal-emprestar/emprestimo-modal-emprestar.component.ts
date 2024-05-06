@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
-import { ModalSucessoComponent } from "../modal-sucesso";
+import { EmprestimoModalSucessoComponent } from "../emprestimo-modal-sucesso";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Emprestimo } from "../../../shared/models/interfaces/emprestimo";
@@ -11,11 +11,11 @@ import { ToastrService } from "ngx-toastr";
 import { EmprestimoService } from "../../../services/emprestimo";
 
 @Component({
-  selector: "app-modal-emprestar",
-  templateUrl: "./modal-emprestar.component.html",
-  styleUrl: "./modal-emprestar.component.scss",
+  selector: "app-emprestimo-modal-emprestar",
+  templateUrl: "./emprestimo-modal-emprestar.component.html",
+  styleUrl: "./emprestimo-modal-emprestar.component.scss",
 })
-export class ModalEmprestarComponent implements OnInit {
+export class EmprestimoModalEmprestarComponent implements OnInit {
   #dialog = inject(MatDialog);
   #emprestimoService = inject(EmprestimoService);
   #formBuilder = inject(FormBuilder);
@@ -43,13 +43,15 @@ export class ModalEmprestarComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public dataInput: { patrimonioId: number; acervoId: number; id: string } //   private acervoService: AcervoService,
-  ) //   private patrimonioService: PatrimonioService,
-  {
-  }
-  
+    public dataInput: { patrimonioId: number; acervoId: number; id: string } //   private acervoService: AcervoService, //   private patrimonioService: PatrimonioService,
+  ) {}
+
   ngOnInit(): void {
-    console.log("input: ",this.dataInput.acervoId ,this.dataInput.patrimonioId)
+    console.log(
+      "input: ",
+      this.dataInput.acervoId,
+      this.dataInput.patrimonioId
+    );
     this.acervoParam = this.dataInput.acervoId;
     this.patrimonioParam = this.dataInput.patrimonioId;
 
@@ -74,7 +76,7 @@ export class ModalEmprestarComponent implements OnInit {
       this.#dialog.closeAll();
     }
 
-    this.#dialog.open(ModalSucessoComponent, {
+    this.#dialog.open(EmprestimoModalSucessoComponent, {
       data: { localEntrega: this.emprestimo.localDeEntrega },
       id: "Sucesso",
     });
@@ -116,32 +118,32 @@ export class ModalEmprestarComponent implements OnInit {
 
   public novoEmprestimo(): void {
     this.#spinnerService.show();
-    
+
     let dataEmprestimo = new Date();
     this.emprestimo.dataEmprestimo = this.formatarData(dataEmprestimo);
-    
+
     let dataPrevista = new Date();
     dataPrevista.setDate(dataPrevista.getDate() + 30);
-    
+
     this.emprestimo.dataPrevistaDevolucao = this.formatarData(dataPrevista);
-    
+
     let dataDevolucao = new Date("0001/01/01");
     this.emprestimo.dataDevolucao = this.formatarData(dataDevolucao);
-    
+
     this.emprestimo.qtdeDiasAtraso = 0;
     this.emprestimo.qtdeDiasEmprestimo = 30;
-    
+
     this.emprestimo.status = 1;
-    
+
     this.emprestimo.acervoId = +this.acervoParam;
     this.emprestimo.patrimonioId = this.patrimonioParam;
 
     this.emprestimo.localDeColeta = this.ctrF.localDevolucao.value;
     this.emprestimo.localDeEntrega = this.ctrF.localEnvio.value;
-    
+
     this.emprestimo.userName = this.usuarioAtivo.userName;
-    
-    console.log("emprestimo: ", this.emprestimo)
+
+    console.log("emprestimo: ", this.emprestimo);
     this.#emprestimoService
       .createEmprestimo(this.emprestimo)
       .subscribe({
@@ -156,8 +158,10 @@ export class ModalEmprestarComponent implements OnInit {
               "O livro escolhido não possui exemplares disponíveis para empréstimo no momento"
             );
           } else {
-            this.#toastrService.error("Ocorreu um erro ao tentar cadastrar o empréstimo");
-            console.log(error)
+            this.#toastrService.error(
+              "Ocorreu um erro ao tentar cadastrar o empréstimo"
+            );
+            console.log(error);
           }
         },
       })

@@ -31,15 +31,15 @@
           <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_off'}}</mat-icon>
         </a>
       </th>
-      <th class="text-white">#</th>
-      <th class="text-white">ISBN</th>
-      <th class="text-white">Gênero</th>
-      <th class="text-white">Título</th>
-      <th class="text-white">Publicação</th>
-      <th class="text-white">Editora</th>
-      <th class="text-white">Edição</th>
-      <th class="text-white">Páginas</th>
-      <th class="text-white">Opções</th>
+      <th>#</th>
+      <th>ISBN</th>
+      <th>Gênero</th>
+      <th>Título</th>
+      <th>Publicação</th>
+      <th>Editora</th>
+      <th>Edição</th>
+      <th>Páginas</th>
+      <th>Opções</th>
     </tr>
   </thead>
   @if (acervos && acervos.length) {
@@ -47,8 +47,7 @@
     @for (acervo of acervos; track acervo.id) {
     <tr (click)="editarAcervo(acervo.id)" style="cursor: pointer">
       <td>
-        <img [(ngbCollapse)]="!exibirImagem" src="{{acervo.capaUrl}}" alt="Capa do livro" [style.width.px]="50"
-          [style.margin.px]="2">
+        <img [(ngbCollapse)]="!exibirImagem" src="{{acervo.capaUrl}}" alt="Capa do livro" class="bcp-imagem-lista mx-2">
       </td>
       <td>{{acervo.id}}</td>
       <td>{{acervo.isbn}}</td>
@@ -97,6 +96,3 @@
   </div>
 </div>
 }
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
-  <p style="font-size: 20px; color: white">Carregando...</p>
-</ngx-spinner>

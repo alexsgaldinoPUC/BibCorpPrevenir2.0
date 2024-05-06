@@ -1,24 +1,24 @@
 <div class="container">
   <mat-accordion>
     @if (usuarioLogado) {
-      <mat-expansion-panel class="mat-elevation-z8">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon class="bcp-drawer-icon">person</mat-icon>
-            Usuário
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        @if (!usuarioAtivo.isAdmin) {
-          <mat-divider class="mt-2 mb-2" />
-          <a routerLink="emprestimo/solicitacoes">
-            Solicitações
-          </a>
-        }
-        <mat-divider class="mt-2 mb-2" />
-        <a routerLink="/pages/usuarios/perfil">
-          Perfil
-        </a>
-      </mat-expansion-panel>
+    <mat-expansion-panel class="mat-elevation-z8">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-drawer-icon">person</mat-icon>
+          Usuário
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      @if (!usuarioAtivo.isAdmin) {
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="/pages/emprestimos/minhasReservas">
+        Minhas Reservas
+      </a>
+      }
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="/pages/usuarios/perfil">
+        Perfil
+      </a>
+    </mat-expansion-panel>
     }
 
     <mat-expansion-panel class="mat-elevation-z8 mt-2">
@@ -29,78 +29,76 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      @if (!usuarioAtivo.isAdmin) {
-        <mat-divider class="mt-2 mb-2" />
-        <a routerLink="/pages/home/homePage">
-          Principal
-        </a>
-      } @else {
-        <mat-divider class="mt-2 mb-2" />
-        <a routerLink="pages/home/homeAdmin">
-          Administrador
-        </a>
-      }
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="/pages/home/homePage">
+        Principal
+      </a>
+
     </mat-expansion-panel>
 
     @if (usuarioLogado) {
-      <mat-expansion-panel class="mat-elevation-z8 mt-2">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon class="bcp-drawer-icon">book</mat-icon>
-            Patrimônio
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-drawer-icon">book</mat-icon>
+          Patrimônio
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-        @if (usuarioAtivo.isAdmin) {
-          <mat-divider class="mt-2 mb-2" />
-          <a routerLink="/pages/patrimonios/cadastrar">
-            Novo
-          </a>
-        }
-        <mat-divider class="mt-2 mb-2" />
-        <a routerLink="/pages/patrimonios/lista">
-          Lista
-        </a>
-      </mat-expansion-panel>
+      @if (usuarioAtivo.isAdmin) {
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="/pages/patrimonios/cadastrar">
+        Novo
+      </a>
+      }
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="/pages/patrimonios/lista">
+        Lista
+      </a>
+    </mat-expansion-panel>
     }
 
     @if (usuarioLogado) {
-      <mat-expansion-panel class="mat-elevation-z8 mt-2">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon class="bcp-drawer-icon">library_books</mat-icon>
-            Acervo
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-drawer-icon">library_books</mat-icon>
+          Acervo
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-        @if (usuarioAtivo.isAdmin) {
-          <mat-divider class="mt-2 mb-2" />
-          <a routerLink="pages/acervos/cadastrar">
-            Novo
-          </a>
-        }
-        <mat-divider class="mt-2 mb-2" />
-        <a routerLink="pages/acervos/lista">
-          Lista
-        </a>
-      </mat-expansion-panel>
-  }
+      @if (usuarioAtivo.isAdmin) {
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="pages/acervos/cadastrar">
+        Novo
+      </a>
+      }
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="pages/acervos/lista">
+        Lista
+      </a>
+    </mat-expansion-panel>
+    }
 
     @if (usuarioLogado) {
-      @if (usuarioAtivo.isAdmin) {
-      <mat-expansion-panel class="mat-elevation-z8 mt-2">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon class="bcp-drawer-icon">admin_panel_settings</mat-icon>
-            Administrador
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-divider class="mt-2 mb-2" />
-        <a routerLink="pages/emprestimos/gerenciarReservas">
-          Gerenciar
-        </a>
-      </mat-expansion-panel>
-      }
+    @if (usuarioAtivo.isAdmin) {
+    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="bcp-drawer-icon">admin_panel_settings</mat-icon>
+          Administrador
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="pages/emprestimos/gerenciarReservas">
+        Gerenciar Reservas
+      </a>
+      <mat-divider class="mt-2 mb-2" />
+      <a routerLink="pages/emprestimos/historico">
+        Histórico de Reservas
+      </a>
+    </mat-expansion-panel>
+    }
     }
 
   </mat-accordion>

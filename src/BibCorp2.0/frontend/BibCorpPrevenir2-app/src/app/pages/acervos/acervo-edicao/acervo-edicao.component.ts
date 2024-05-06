@@ -157,7 +157,6 @@ export class AcervoEdicaoComponent {
     this.#spinnerService.show();
 
     this.acervo = { ...this.formAcervo.value };
-    console.log(this.acervo);
 
     this.acervo.dataCriacao = new Date()
       .toISOString()
@@ -186,8 +185,6 @@ export class AcervoEdicaoComponent {
   }
 
   public criarAcervo(): void {
-    console.log("Patrimonios ", this.patrimonios);
-    console.log("aCervo ", this.acervo);
     this.#acervoService
       .createAcervo(this.acervo)
       .subscribe({
@@ -209,7 +206,7 @@ export class AcervoEdicaoComponent {
       next: (patrimonio: Patrimonio) => {},
       error: (error: any) => {
         this.#toastrService.error("Falha ao atualizar patrimonios", "Erro!");
-        console.log(error);
+        console.error(error);
       },
     });
   }
@@ -236,13 +233,11 @@ export class AcervoEdicaoComponent {
   public getPatrimonios(): void {
     this.#spinnerService.show();
 
-    console.log(this.ctrF.isbn.value);
     this.#patrimonioService
       .getPatrimoniosByISBN(this.ctrF.isbn.value)
       .subscribe({
         next: (patrimonios: Patrimonio[]) => {
           if (patrimonios.length != 0) {
-            console.log(patrimonios);
             this.patrimonios = patrimonios;
             this.ctrF.qtdeAcervos.setValue(this.patrimonios.length);
             if (!this.editMode) this.getGoogleBook(this.ctrF.isbn.value);

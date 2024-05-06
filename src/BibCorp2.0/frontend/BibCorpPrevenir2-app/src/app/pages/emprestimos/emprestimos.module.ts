@@ -1,32 +1,53 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-
 import { SharedModule } from "../../shared";
-import { EmprestimosComponent, GerenciarEmprestimosComponent, GerenciarReservasComponent, ModalEmprestarComponent, ModalSucessoComponent } from ".";
-import { ReactiveFormsModule } from "@angular/forms";
-
+import {
+  EmprestimoModalEmprestarComponent,
+  EmprestimosComponent,
+  GerenciarEmprestimosComponent,
+  GerenciarReservasComponent,
+  MinhasReservasComponent,
+  EmprestimoModalSucessoComponent,
+  EmprestimoModalLocalComponent,
+  EmprestimoModalAlteracaoComponent,
+  HistoricoComponent,
+} from ".";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { RouterLink } from "@angular/router";
+import { NgbCollapseModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
     EmprestimosComponent,
     GerenciarEmprestimosComponent,
     GerenciarReservasComponent,
-    ModalEmprestarComponent,
-    ModalSucessoComponent,
+    MinhasReservasComponent,
+    EmprestimoModalEmprestarComponent,
+    EmprestimoModalSucessoComponent,
+    EmprestimoModalLocalComponent,
+    EmprestimoModalAlteracaoComponent,
+    HistoricoComponent
   ],
   exports: [
     EmprestimosComponent,
     GerenciarEmprestimosComponent,
     GerenciarReservasComponent,
-    ModalEmprestarComponent,
-    ModalSucessoComponent,
+    MinhasReservasComponent,
+    EmprestimoModalEmprestarComponent,
+    EmprestimoModalSucessoComponent,
+    EmprestimoModalLocalComponent,
+    EmprestimoModalAlteracaoComponent,
+    HistoricoComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    NgbCollapseModule,
+    NgbModule,
     ReactiveFormsModule,
-
-    SharedModule
+    RouterLink,
+    SharedModule,
   ],
 })
 export class EmprestimosModule {}

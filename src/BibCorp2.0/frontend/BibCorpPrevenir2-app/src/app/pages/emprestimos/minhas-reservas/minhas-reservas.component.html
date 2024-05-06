@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="p-2">
+    <p class="h5">Minhas Solicitações:</p>
+  </div>
+  <div class="contianer m-0 ps-3">
+    <div class="p-3">
+      @if (emprestimos && emprestimos.length) {
+      <div class="row">
+        @for (emprestimo of emprestimos; track emprestimo.id) {
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+          <div class="card text-black bcp-bg-white mb-3" style="max-width: 20rem;">
+            <div class="card-header text-white text-center bcp-bg-secondary">
+              <p class="h2">{{emprestimo.acervo.titulo}} </p>
+              <p class="h3">{{emprestimo.acervo.autor}}</p>
+            </div>
+            <div class="card-body bcp-bg-white-010">
+              <h4 class="card-title text-center"><b>{{emprestimo.acervo.subTitulo}}</b></h4>
+              <img src="{{emprestimo.acervo.capaUrl}}" alt="Capa do livro"
+                style="max-width: 270px; max-width: 220px; width: fit-content; height: fit-content;margin: auto;display: block">
+              <br>
+              <p>minhas-reservas works!</p>
+              <p class="h5 text-center">Empréstimo:</p>
+              <p class="h6"><b>Solicitação:</b> {{formatarData(emprestimo.dataEmprestimo)}}</p>
+              <p class="h6"><b>Previsão Devolução:</b> {{formatarData(emprestimo.dataPrevistaDevolucao)}}</p>
+              <p class="h6"><b>Situação:</b> {{obterStatus(emprestimo)}}</p>
+            </div>
+            <div class="card-footer">
+              <button fxFlexFill class="btn btn-warning m-0 p-1"
+                (click)="abrirDialogRenovacao(emprestimo.id, emprestimo.acervo.titulo, emprestimo.dataPrevistaDevolucao)"
+                data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
+              <button fxFlexFill class="btn btn-info m-0 mt-2 p-1  "
+                (click)="abrirDialogAlteracao(emprestimo.id, emprestimo.localDeColeta)" data-bs-toggle="modal"
+                data-bs-target="modalAlterar">Alterar local de coleta</button>
+            </div>
+          </div>
+        </div>
+
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- {{emprest | json}} -->

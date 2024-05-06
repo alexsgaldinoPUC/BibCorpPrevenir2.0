@@ -1,187 +1,80 @@
-<!-- FILTRO -->
 <div class="container-fluid">
   <div class="p-2">
-    <p class="h5">Lista de Patrimônios:</p>
+    <p class="h5">Gerenciamento de Reservas:</p>
   </div>
-
-  <form [formGroup]="formReservasFiltro">
-    <div fxLayout="row wrap"  class="m-0 p-0 g-0">
-      <mat-form-field fxFlex="20" fxFlex.xs="100" fxFlex.sm="20" class="ms-2 p-2">
-        <mat-label>Filtrar por</mat-label>
-        <mat-select matNativeControl formControlName="opcaoPesquisa" (selectionChange)="getEmprestimos()">
-          <mat-option value="Todos">Todos</mat-option>
-          <mat-option value="usuario">Usuário</mat-option>
-          <mat-option value="status">Situação Emprestimo</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field fxFlex="79" fxFlex.xs="100" fxFlex.sm="50" class="p-2">
-        <mat-label>Argumento</mat-label>
-        <input matInput formControlName="argumento">
-        <button matSuffix mat-icon-button (click)="getEmprestimos()">
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-  </form>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-light rounded-3 ">
+      <thead class="table-primary">
+        <tr>
+          <th class="d-none d-md-table-cell d-flex justify-center">
+            <a class="text-white" (click)="alterarImagem()">
+              <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_on'}}</mat-icon>
+            </a>
+          </th>
+          <th>#</th>
+          <th>Título</th>
+          <th>Destino</th>
+          <th>Usuário</th>
+          <th>Solicitação</th>
+          <th>Sala</th>
+          <th>Prateleira</th>
+          <th>Coluna</th>
+          <th>Posição</th>
+          <th>Status</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (emprestimo of emprestimos; track emprestimo.id; let i=$count) {
+        <tr>
+          <td>
+            <img [(ngbCollapse)]="!exibirImagem" src={{emprestimo.acervo.capaUrl}} alt="Capa do livro"
+              [style.width.px]="50" [style.margin.px]="2">
+          </td>
+          <td>{{i}}</td>
+          <td>{{emprestimo.acervo.titulo}}</td>
+          <td>{{emprestimo.localDeEntrega}}</td>
+          <td>{{emprestimo.userName}}</td>
+          <td>{{formatarData(emprestimo.dataEmprestimo)}}</td>
+          <td>{{emprestimo.acervo.patrimonios[0].sala}}</td>
+          <td>{{emprestimo.acervo.patrimonios[0].prateleira}}</td>
+          <td>{{emprestimo.acervo.patrimonios[0].coluna}}</td>
+          <td>{{emprestimo.acervo.patrimonios[0].posicao}}</td>
+          <td>{{obterStatus(emprestimo.status)}}</td>
+          <td>
+            @if (emprestimo.status == 1) {
+            <div class="btn-group mx-1">
+              <button class="aprovar" matTooltip="Aprovar solicitação" style="color: white;"
+                (click)="gerenciarEmprestimo(emprestimo.id, 'Aprovar' )">
+                Aprovar
+              </button>
+            </div>
+            <div class="btn-group mx-1">
+              <button class="recusar" matTooltip="Recusar solicitação" style="color: white;"
+                (click)="gerenciarEmprestimo(emprestimo.id,'Recusar')">
+                Recusar
+              </button>
+            </div>
+            }
+            @if (emprestimo.status== 2 || emprestimo.status== 4) {
+            <div class="btn-group mx-1">
+              <button class="devolver" matTooltip="Acusar recebimento" style="color: white;"
+                (click)="gerenciarEmprestimo(emprestimo.id,'Devolver')">
+                Devolução
+              </button>
+            </div>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+      <tfoot>
+        @if (!emprestimos.length) {
+        <td colspan="12" class="text-center">
+          <h2>Não foram encontrados empréstimos pendentes de atuação</h2>
+        </td>
+        }
+      </tfoot>
+    </table>
+  </div>
 </div>
-
-<div class="container d-flex">
-  @if (emprestimos && emprestimos.length) {
-  }
-  <div class="row">
-    gerenciarReservas works!
-  </div>
-  
-<p>
-</p>
-
-<!-- 
--->
-
-
-<!-- 
-  <div *ngFor="let emprestimos of emprestimosFiltrados">
-      <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
-        <div class="card-header bibcorp-bg-secondary">
-          <P class="h5">Título: {{emprestimos.acervo.titulo}}</P>
-          <P class="h7">Autor: {{emprestimos.acervo.autor}}</P>
-        </div>
-        <br>
-        <img src={{emprestimos.acervo.capaUrl}} alt="Capa do livro" style="max-width: 170px; max-width: 120px; width: fit-content; height: fit-content;margin: auto;display: block" >
-        <div class="card-body">
-           <p class="h4 card-title">Subtitulo{{acervo.subTitulo}}</p>
-          <textarea matInput style="min-height: 150px; min-width: 100%;"
-            class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea> -->
-          <!-- <p class="card-text">Data da solicitação:  {{emprestimos.dataEmprestimo}}</p>
-          <p class="card-text">Data prevista de devolução:  {{emprestimos.dataPrevistaDevolucao}}</p>
-          <p class="card-text">Status do empréstimo:  <b>{{status(emprestimos)}}</b></p>
-        </div>
-        <div class="buttons">
-          <div class="buttonRenovacao">
-            <button type="button" class="btn btn-orange button" (click)="abrirDialogRenovacao(emprestimos.id, emprestimos.acervo.titulo, emprestimos.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
-          </div>
-          <br>
-          <div class="buttonAlteracao">
-            <button type="button" class="btn btn-blue button" (click)="abrirDialogAlteracao(emprestimos.id, emprestimos.localDeColeta)" data-bs-toggle="modal" data-bs-target="modalAlterar">Alterar local de coleta</button>
-          </div>
-          <br>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-  </div> -->
-
-
-
-  <!-- <div class="container d-flex">
-    <div class="row" *ngIf="emprestimos && emprestimos.length">
-      <div  *ngFor="let emprestimos of emprestimosFiltrados">
-        <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
-          <div class="card-header bibcorp-bg-secondary">
-            <P class="h5">Título: {{emprestimos.acervo.titulo}}</P>
-            <P class="h7">Autor: {{emprestimos.acervo.autor}}</P>
-          </div>
-          <br>
-          <div class="card-body"> -->
-            <!-- <p class="h4 card-title">Subtitulo{{acervo.subTitulo}}</p>
-            <textarea matInput style="min-height: 150px; min-width: 100%;"
-              class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea> -->
-              <!-- <img src={{emprestimos.acervo.capaUrl}} alt="Capa do livro" style="max-width: 170px; max-width: 120px; width: fit-content; height: fit-content;margin: auto;display: block" >
-              <br>
-            <p class="card-text">Data da solicitação:  {{emprestimos.dataEmprestimo}}</p>
-            <p class="card-text">Data prevista de devolução:  {{emprestimos.dataPrevistaDevolucao}}</p>
-            <p class="card-text">Status do empréstimo:  <b>{{status(emprestimos)}}</b></p>
-          </div>
-          <div class="buttons">
-            <div class="buttonRenovacao">
-              <button type="button" class="btn btn-orange button" (click)="abrirDialogRenovacao(emprestimos.id, emprestimos.acervo.titulo, emprestimos.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
-            </div>
-            <br>
-            <div class="buttonAlteracao">
-              <button type="button" class="btn btn-blue button" (click)="abrirDialogAlteracao(emprestimos.id, emprestimos.localDeColeta)" data-bs-toggle="modal" data-bs-target="modalAlterar">Alterar local de coleta</button>
-            </div>
-            <br>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div> -->
-
-    <!--
-          <div class="contianer bibcorp-box m-0 ps-3">
-      <div class="p-3">
-        <div class="row" *ngIf="emprestimos && emprestimos.length">
-          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let emprestimo of emprestimosFiltrados">
-              <div class="card text-black bibcorp-bg-white mb-3" style="max-width: 20rem;">
-                <div class="card-header text-white bibcorp-bg-secondary">
-                  <P class="h5">Título: {{emprestimo.patrimonio.localizacao}} </P>
-                  <P class="h7">Autor: {{emprestimo.userName}}</P>
-                </div>
-                <div class="card-body">
-                  <p class="h4 card-title">{{acervo.subTitulo}}</p>
-                  <textarea matInput style="min-height: 150px; min-width: 100%;"
-                    class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
-                    <img src={{acervo.capaUrl}} alt="Capa do livro" style="max-width: 170px; max-width: 120px; width: fit-content; height: fit-content;margin: auto;display: block" >
-                    <br>
-                    <p class="card-text">Data da solicitação:  {{emprestimo.dataEmprestimo}}</p>
-            <p class="card-text">Data prevista de devolução:  {{emprestimo.dataPrevistaDevolucao}}</p>
-            <p class="card-text">Status do empréstimo:  <b>{{status(emprestimo)}}</b></p>
-                </div>
-                <div class="buttons">
-                  <div class="buttonRenovacao">
-                    <button type="button" class="btn btn-orange button" (click)="abrirDialogRenovacao(emprestimo.id, emprestimo.acervo.titulo, emprestimo.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
-                  </div>
-                  <br>
-                  <div class="buttonAlteracao">
-                    <button type="button" class="btn btn-blue button" (click)="abrirDialogAlteracao(emprestimo.id, emprestimo.localDeColeta)" data-bs-toggle="modal" data-bs-target="modalAlterar">Alterar local de coleta</button>
-                  </div>
-                  <br>
-                </div>
-              </div>
-          </div>
-        </div>
-        </div>
-        </div>
-    -->
-
-    
-
-    <!-- 
-      <div class="container bibcorp-box m-0 ps-3">
-      <div class="p-3">
-        <div class="row" *ngIf="emprestimos && emprestimos.length">
-          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let emprestimo of emprestimosFiltrados">
-            <div class="card bg-white mb-3" style="max-width: 20rem; height: 37rem; border-radius: 15px; overflow: auto; position: relative;">
-              <div class="text-center" style="margin-top: 20px;">
-                <img src={{emprestimo.acervo.capaUrl}} alt="Capa do livro" style="width: 150px; height: 250px; border-radius: 15px; object-fit: cover; object-position: top;">
-              </div>
-              <div class="card-body">
-                <div>
-                  <h5 class="card-title text-dark" style="font-size: 1.0rem;">Livro: {{emprestimo.acervo.titulo}}</h5>
-                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data da solicitação: {{formatarData(emprestimo.dataEmprestimo)}}</p>
-                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data prevista de devolução: {{formatarData(emprestimo.dataPrevistaDevolucao)}}</p>
-                  <p class="card-text text-dark" style="font-size: 0.9rem;">Status do empréstimo: {{obterStatus(emprestimo)}}</p>
-                  <div style="position: absolute; top: 5px; right: 10px; display: flex; flex-direction: row; align-items: center;"></div>
-                </div>
-                <div class="buttons mt-auto">
-                  <div class="buttonRenovacao">
-                    <button type="button" class="btn btn-orange button" *ngIf="emprestimo.status== 2" (click)="abrirDialogRenovacao(emprestimo.id, emprestimo.acervo.titulo, emprestimo.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
-                  </div>
-                  <br>
-                  <div class="buttonAlteracao">
-                    <button type="button" class="btn btn-blue button" *ngIf="emprestimo.status!= 3 && emprestimo.status!= 5" (click)="abrirDialogAlteracao(emprestimo.id, emprestimo.localDeColeta)" data-bs-toggle="modal" data-bs-target="modalAlterar">Alterar local de coleta</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    
-    
-
-<!-- {{emprest | json}} -->

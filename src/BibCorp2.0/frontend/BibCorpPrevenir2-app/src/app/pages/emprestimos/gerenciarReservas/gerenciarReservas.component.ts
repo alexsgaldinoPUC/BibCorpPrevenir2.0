@@ -6,6 +6,8 @@ import { UsuarioService } from "../../../services/usuario";
 import { ToastrService } from "ngx-toastr";
 import { Emprestimo } from "../../../shared/models/interfaces/emprestimo";
 import { EmprestimoService } from "../../../services/emprestimo";
+import { formatDate } from "@angular/common";
+import { TipoAcaoEmprestimo } from "../../../shared/models/enums/emprestimo";
 
 @Component({
   selector: "app-gerenciarReservas",
@@ -19,188 +21,95 @@ export class GerenciarReservasComponent {
   #toastrService = inject(ToastrService);
   #usuarioService = inject(UsuarioService);
 
-  public formReservasFiltro = {} as FormGroup;
-
-  public usuarioAtivo = {} as Usuario;
+  public exibirImagem: boolean = true;
 
   public emprestimos = [] as Emprestimo[];
+  // public emprestimo: Emprestimo;
 
-  public get ctrF(): any {
-    return this.formReservasFiltro.controls;
+  public gerenciamentoEmprestimo = {} as Emprestimo;
+  // public tipoAcaoEmprestimo: TipoAcaoEmprestimo;
+
+  public statusPendentesDeAtuacao = [] as string[];
+
+  ngOnInit(): void {
+    this.getEmprestimosPendentes();
+    //   this.gerenciamentoEmprestimo = new GerenciamentoEmprestimo();
   }
 
-  // // modalRef: BsModalRef;
-  // public emprestimosFiltrados: Emprestimo[] = [];
+  // public editarAcervo(acerovId: number): void {
+  //   this.router.navigate([`acervos/edicao/${acerovId}`]);
+  // }
 
-  // public acervos: Acervo[] = [];
-  // public acervosFiltrados: Acervo[] = [];
-  // public acervo: Acervo;
-
-  // public usuarioLogado = false;
-  // public usuarioAtivo = {} as UsuarioLogin;
-
-  // public larguraImagem = 75;
-  // public margemImagem = 2;
-  // public exibirImagem = true;
-  private filtroListado = "";
-
-  // //----------------------------------------------FILTROS--------------------------------------------------
-  public get filtroLista(): string {
-    return this.filtroListado;
+  public alterarImagem(): void {
+    this.exibirImagem = !this.exibirImagem;
   }
 
-  // public set filtroLista(value: string) {
-  //   this.filtroListado = value;
-  //   this.acervosFiltrados = this.filtroLista
-  //     ? this.filtrarReservas(this.filtroLista)
-  //     : this.acervos;
+  // public alteracaoDePagina(event: any): void {
+  //   //    this.pagination.currentPage = event.currentPage
   // }
 
-  // public filtrarReservas(filtrarPor: string): Acervo[] {
-  //   filtrarPor = filtrarPor.toLocaleLowerCase();
-  //   return this.acervos.filter(
-  //     (livro) =>
-  //       livro.titulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-  //       livro.autor.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-  //   );
-  // }
-
-  // //----------------------------------------------VERIFICAÇÃO DE USUARIO e MÉTODOS--------------------------------------------------
-
-  // constructor(
-  //   private acervoService: AcervoService,
-  //   private dialogRef: MatDialog,
-  //   public loginService: LoginService,
-  //   private router: Router
-  // ) {
-  //   router.events.subscribe((verifyUser) => {
-  //     if (verifyUser instanceof NavigationEnd)
-  //       this.loginService.currentUser$.subscribe((userActive) => {
-  //         this.usuarioLogado = userActive !== null;
-  //         this.usuarioAtivo = { ...userActive };
-  //       });
-  //   });
-  // }
-
-  // public abrirDialogRenovacao(
-  //   emprestimoId: number,
-  //   acervoTitulo: string,
-  //   dataPrevistaDevolucao: Date
-  // ) {
-  //   this.dialogRef.open(ModalRenovarComponent, {
-  //     data: {
-  //       emprestimoId: emprestimoId,
-  //       acervoTitulo: acervoTitulo,
-  //       dataPrevistaDevolucao: dataPrevistaDevolucao,
-  //       id: "Renovar",
-  //     },
-  //   });
-  // }
-
-  // public abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string) {
-  //   this.dialogRef.open(AlterarLocalComponent, {
-  //     data: {
-  //       emprestimoId: emprestimoId,
-  //       localDeColetaAtual: localDeColetaAtual,
-  //       id: "Alterar",
-  //     },
-  //   });
-  // }
-
-  public ngOnInit(): void {
-    this.validation();
-    this.getUsuarioAtivo();
-    //   // this.getPatrimonios();
-    //   this.getAcervo();
-
-    //   this.usuarioLogado = this.usuarioAtivo !== null;
-  }
-
-  private validation(): void {
-    this.formReservasFiltro = this.#formBuilder.group({
-      opcaoPesquisa: ["Todos"],
-      argumento: [""],
-    });
-  }
-
-  public getUsuarioAtivo(): void {
+  public getEmprestimosPendentes(): void {
     this.#spinnerService.show();
 
-    this.#usuarioService
-      .getUsuarioByUserName()
+    this.statusPendentesDeAtuacao = ["Reservado", "Emprestado", "Renovado"];
+
+    this.#emprestimoService
+      .getEmprestimosPendentes(this.statusPendentesDeAtuacao)
       .subscribe({
-        next: (usuarioAtivo: Usuario) => {
-          this.usuarioAtivo = { ...usuarioAtivo };
-          this.getEmprestimos();
+        next: (retorno: Emprestimo[]) => {
+          this.emprestimos = retorno;
+          console.log(this.emprestimos)
         },
         error: (error: any) => {
-          this.#toastrService.error("Falha ao logar no sistema");
+          this.#toastrService.error(
+            "Erro ao buscar os empréstimos pendentes de atuação",
+            "Erro!"
+          );
           console.error(error);
         },
       })
       .add(() => this.#spinnerService.hide());
   }
 
-  public getEmprestimos(): void {
+  public obterStatus(emprestimoStatus: number): any {
+    if (emprestimoStatus === 1) {
+      return "Aguardando aprovação";
+    } else if (emprestimoStatus === 2 || emprestimoStatus === 4) {
+      return "Aguardando devolução";
+    } else if (emprestimoStatus === 3 || emprestimoStatus === 5) {
+      return "Solicitação concluída";
+    }
+  }
+
+  public formatarData(data: Date): any {
+    var dataFormatada = formatDate(data, "dd/MM/YYYY", "en-US");
+
+    return dataFormatada;
+  }
+
+  public gerenciarEmprestimo(emprestimoId: number, acao: string): void {
     this.#spinnerService.show();
 
+    if (acao === "Aprovar") {
+      console.log(this.gerenciamentoEmprestimo);
+      this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Aprovar;
+    } else if (acao === "Recusar") {
+      this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Recusar;
+    } else if (acao === "Devolver") {
+      this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Devolver;
+    }
+
     this.#emprestimoService
-      .getEmprestimosByUserName(this.usuarioAtivo.userName)
+      .gerenciarEmprestimo(emprestimoId, this.gerenciamentoEmprestimo)
       .subscribe({
-        next: (empresitmo: Emprestimo[]) => {
-          this.emprestimos = empresitmo;
+        next: (retorno: Emprestimo) => {
+          this.getEmprestimosPendentes();
         },
         error: (error: any) => {
-          this.#toastrService.error(
-            "Erro ao buscar os empréstimos do usuario.",
-            "Erro!"
-          );
-          console.log(error);
+          this.#toastrService.error("Erro ao gerenciar o empréstimo", "Erro!");
+          console.error(error);
         },
       })
       .add(() => this.#spinnerService.hide());
   }
-
-  // public getAcervo(): void {
-  //   this.acervoService.getAcervos().subscribe({
-  //     next: (Response: Acervo[]) => {
-  //       this.acervos = Response;
-  //       this.acervosFiltrados = this.acervos;
-  //     },
-  //     error: (error: any) => {
-  //       this.spinner.hide();
-  //       this.toastr.error("Erro ao Carregar", "Erro!");
-  //     },
-  //     complete: () => this.spinner.hide(),
-  //   });
-  // }
-
-  // public obterStatus(emprestimo: Emprestimo): any {
-  //   let dataAtual = new Date()
-  //   let dataPrevistaDevolucao = emprestimo.dataPrevistaDevolucao;
-
-  //   if (dataPrevistaDevolucao < dataAtual &&
-  //     emprestimo.dataDevolucao == null && (emprestimo.status == 2 || emprestimo.status == 4)
-  //   ) { return "Em atraso";}
-  //     else if (emprestimo.status == 1) {
-  //     return "Aguardando aprovação da solicitação";
-  //   } else if (emprestimo.status == 2) {
-  //     return "Em andamento";
-  //   } else if (emprestimo.status == 3) {
-  //     return "Devolvido";
-  //   } else if (emprestimo.status == 4) {
-  //     return "Renovado";
-  //   } else if (emprestimo.status == 5) {
-  //     return "Não aprovado";
-  //   } else return "-";
-  // }
-
-  // public formatarData(data: Date): any{
-  //   if (data != null){
-  //     var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
-  //   } else{
-  //     dataFormatada = null
-  //   }
-  //   return dataFormatada
-  // }
 }

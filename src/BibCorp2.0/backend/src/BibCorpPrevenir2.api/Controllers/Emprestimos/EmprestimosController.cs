@@ -263,11 +263,6 @@ public class EmprestimosController : ControllerBase
                 return Unauthorized();
             }
 
-            if (usuario.UserName != "Admin")
-            {
-                return Unauthorized();
-            }
-
             var emprestimoRenovado = await _emprestimoService.RenovarEmprestimo(emprestimoId);
 
             if (emprestimoRenovado == null) return NotFound("Não existe empréstimo cadastrado para renovação");
