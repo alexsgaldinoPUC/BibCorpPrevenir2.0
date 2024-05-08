@@ -1,7 +1,7 @@
 <div class="container">
   <mat-accordion>
     @if (usuarioLogado) {
-    <mat-expansion-panel class="mat-elevation-z8">
+    <mat-expansion-panel class="mat-elevation-z8 mt-3">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="bcp-drawer-icon">person</mat-icon>
@@ -21,7 +21,7 @@
     </mat-expansion-panel>
     }
 
-    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+    <mat-expansion-panel class="mat-elevation-z8 mt-3">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="bcp-drawer-icon">home</mat-icon>
@@ -37,7 +37,7 @@
     </mat-expansion-panel>
 
     @if (usuarioLogado) {
-    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+    <mat-expansion-panel class="mat-elevation-z8 mt-3">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="bcp-drawer-icon">book</mat-icon>
@@ -59,7 +59,7 @@
     }
 
     @if (usuarioLogado) {
-    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+    <mat-expansion-panel class="mat-elevation-z8 mt-3">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="bcp-drawer-icon">library_books</mat-icon>
@@ -80,9 +80,8 @@
     </mat-expansion-panel>
     }
 
-    @if (usuarioLogado) {
-    @if (usuarioAtivo.isAdmin) {
-    <mat-expansion-panel class="mat-elevation-z8 mt-2">
+    @if (usuarioLogado && usuarioAtivo.isAdmin) {
+    <mat-expansion-panel class="mat-elevation-z8 mt-3">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="bcp-drawer-icon">admin_panel_settings</mat-icon>
@@ -98,7 +97,6 @@
         Histórico de Reservas
       </a>
     </mat-expansion-panel>
-    }
-    }
+  }
 
   </mat-accordion>

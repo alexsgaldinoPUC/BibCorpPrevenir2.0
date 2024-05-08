@@ -1,12 +1,12 @@
 
-<div class="modal-content-vertical-large">
+<div class="p-4">
   <div class="p-2">
     <p class="h5">Solicitação de Reserva</p>
   </div>
 
   <form [formGroup]="formModalSolicitacao">
-    <div fxLayout="row wrap"  class="emprestimo">
-      <mat-form-field fxFlex="1000" class="ms-2 p-2">
+    <div fxLayout="row wrap" >
+      <mat-form-field fxFlex="100" class="ms-2 p-2">
         <mat-label>Local Entrega</mat-label>
         <mat-select matNativeControl formControlName="localEnvio" >
           <mat-option value="Matriz">Matriz</mat-option>
@@ -24,7 +24,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field fxFlex="1000" class="ms-2 p-2">
+      <mat-form-field fxFlex="100" class="ms-2 p-2">
         <mat-label>Local Devolução</mat-label>
         <mat-select matNativeControl formControlName="localDevolucao">
           <mat-option value="Matriz">Matriz</mat-option>
@@ -41,6 +41,8 @@
           <mat-option value="Venda Nova">Ribeirão das Neves</mat-option>
         </mat-select>
       </mat-form-field>
+      <div class="ms-auto">
+        <button class="btn btn-primary " (click)="novoEmprestimo()">Reservar</button>
+      </div>
     </div>
-    <button class="btn btn-orange" (click)="novoEmprestimo()">Reservar</button>
   </form>

@@ -12,8 +12,7 @@ import { environment } from "../../../../assets/environments";
 
 @Component({
   selector: "app-acervo-detalhe",
-  templateUrl: "./acervo-detalhe.component.html",
-  styleUrl: "./acervo-detalhe.component.scss",
+  templateUrl: "./acervo-detalhe.component.html"
 })
 export class AcervoDetalheComponent {
   #acervoService = inject(AcervoService);

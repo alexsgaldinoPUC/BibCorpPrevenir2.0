@@ -7,8 +7,7 @@ import { Constants } from './util/constants';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   #loginService = inject(LoginService);

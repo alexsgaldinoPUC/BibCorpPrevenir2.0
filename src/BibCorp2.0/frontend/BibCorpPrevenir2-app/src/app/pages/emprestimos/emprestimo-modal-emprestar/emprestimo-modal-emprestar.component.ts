@@ -9,13 +9,18 @@ import { UsuarioService } from "../../../services/usuario";
 import { Usuario } from "../../../shared/models/interfaces/usuario";
 import { ToastrService } from "ngx-toastr";
 import { EmprestimoService } from "../../../services/emprestimo";
+import { AcervoService } from "../../../services/acervo";
+import { Acervo } from "../../../shared/models/interfaces/acervo";
+import { Patrimonio } from "../../../shared/models/interfaces/patrimonio";
+import { PatrimonioService } from "../../../services/patrimonio";
 
 @Component({
   selector: "app-emprestimo-modal-emprestar",
   templateUrl: "./emprestimo-modal-emprestar.component.html",
-  styleUrl: "./emprestimo-modal-emprestar.component.scss",
 })
-export class EmprestimoModalEmprestarComponent implements OnInit {
+export class EmprestimoModalEmprestarComponent {
+  #acervoService = inject(AcervoService);
+  #patrimonioService = inject(PatrimonioService);
   #dialog = inject(MatDialog);
   #emprestimoService = inject(EmprestimoService);
   #formBuilder = inject(FormBuilder);
@@ -36,15 +41,14 @@ export class EmprestimoModalEmprestarComponent implements OnInit {
   }
   // title = "angular-material";
 
-  // public acervo: Acervo;
-  // public patrimonio: Patrimonio;
+  public acervo = {} as Acervo;
+  public patrimonio = {} as Patrimonio;
   // public localEntrega: string;
   // public localColeta: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public dataInput: { patrimonioId: number; acervoId: number; id: string } //   private acervoService: AcervoService, //   private patrimonioService: PatrimonioService,
-  ) {}
+    public dataInput: { patrimonioId: number; acervoId: number; id: string } ) {}
 
   ngOnInit(): void {
     console.log(
@@ -58,9 +62,9 @@ export class EmprestimoModalEmprestarComponent implements OnInit {
     this.validation();
     this.getUsuarioAtivo();
 
-    //   this.getAcervoById();
+    this.getAcervoById();
 
-    //   this.getPatrimonioById();
+    this.getPatrimonioById();
   }
 
   private validation(): void {
@@ -82,39 +86,39 @@ export class EmprestimoModalEmprestarComponent implements OnInit {
     });
   }
 
-  // public getAcervoById(): void {
-  //   this.spinnerService.show();
+  public getAcervoById(): void {
+    this.#spinnerService.show();
 
-  //   this.acervoService
-  //     .getAcervoById(+this.acervoParam)
-  //     .subscribe(
-  //       (acervo: Acervo) => {
-  //         this.acervo = acervo;
-  //       },
-  //       (error: any) => {
-  //         this.toastrService.error("Erro ao carregar Acervo", "Erro!");
-  //         console.error(error);
-  //       }
-  //     )
-  //     .add(() => this.spinnerService.hide());
-  // }
+    this.#acervoService
+      .getAcervoById(+this.acervoParam)
+      .subscribe({
+        next: (acervo: Acervo) => {
+          this.acervo = acervo;
+        },
+        error: (error: any) => {
+          this.#toastrService.error("Erro ao carregar Acervo", "Erro!");
+          console.error(error);
+        },
+      })
+      .add(() => this.#spinnerService.hide());
+  }
 
-  // public getPatrimonioById(): void {
-  //   this.spinnerService.show();
+  public getPatrimonioById(): void {
+    this.#spinnerService.show();
 
-  //   this.patrimonioService
-  //     .getPatrimonioById(+this.patrimonioParam)
-  //     .subscribe(
-  //       (retorno: Patrimonio) => {
-  //         this.patrimonio = retorno;
-  //       },
-  //       (error: any) => {
-  //         this.toastrService.error("Erro ao carregar Patrimonio", "Erro!");
-  //         console.error(error);
-  //       }
-  //     )
-  //     .add(() => this.spinnerService.hide());
-  // }
+    this.#patrimonioService
+      .getPatrimonioById(+this.patrimonioParam)
+      .subscribe({
+        next: (retorno: Patrimonio) => {
+          this.patrimonio = retorno;
+        },
+        error: (error: any) => {
+          this.#toastrService.error("Erro ao carregar Patrimonio", "Erro!");
+          console.error(error);
+        },
+      })
+      .add(() => this.#spinnerService.hide());
+  }
 
   public novoEmprestimo(): void {
     this.#spinnerService.show();
