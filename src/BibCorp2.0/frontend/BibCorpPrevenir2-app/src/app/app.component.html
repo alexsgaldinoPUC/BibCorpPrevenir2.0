@@ -1,33 +1,34 @@
 @if (showDrawer()) {
-<div class="container-fluid p-3">
+<div class="container-fluid px-3 py-2">
   <mat-drawer-container class="rounded-5 p-0 m-0 " [class.drawer-opened]="drawer.opened" autosize>
-      <mat-drawer #drawer [mode]="modeDrawer" [opened]="openedDrawer">
-        <div class="flex-column  mat-elevation-z8 justify-content-center">
-          <img src="../assets/images/thumbnail_logotipo.png" alt="Logotipo Prevenir"
-          class="bcp-logo-principal" (click)="drawer.close()">
-          <button matTooltip="Fechar Menu" mat-icon-button (click)="drawer.close()"  alt="Menu Recolher" class="position-absolute end-0">
-            <mat-icon>close</mat-icon>
-          </button>
-          <p class="bcp-texto-logo">Biblioteca Corporativa</p>
+    <mat-drawer #drawer [mode]="modeDrawer" [opened]="openedDrawer">
+      <div class="flex-column  mat-elevation-z8 justify-content-center ps-4">
+        <img src="../assets/images/thumbnail_logotipo.png" alt="Logotipo Prevenir" class="bcp-logo-principal"
+          (click)="drawer.close()">
+        <button matTooltip="Fechar Menu" mat-icon-button (click)="drawer.close()" alt="Menu Recolher"
+          class="position-absolute end-0">
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
-      <app-drawer-navigator/>
+      <p class="bcp-texto-logo text-center mat-elevation-z2 m-2 p-3 text-primary">Biblioteca Corporativa</p>
+      <app-drawer-navigator />
     </mat-drawer>
     <mat-drawer-content>
 
       @if (!drawer.opened) {
 
-        <div class="d-flex p-1">
-          <button matTooltip="Abrir Menu" mat-icon-button (click)="drawer.toggle()" alt="Menu Expandir">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <div>
-            <img src="../assets/images/thumbnail_logotipo.png"  alt="Logotipo Prevenir" class="bcp-logo-secundaria"
+      <div class="d-flex p-1">
+        <button matTooltip="Abrir Menu" mat-icon-button (click)="drawer.toggle()" alt="Menu Expandir">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div>
+          <img src="../assets/images/thumbnail_logotipo.png" alt="Logotipo Prevenir" class="bcp-logo-secundaria"
             (click)="drawer.toggle()">
-          </div>
-          <div class="flex-grow-1 text-end mt-3">
-            <p style="color: var(--primary)">Biblioteca Corporativa</p>
-          </div>
         </div>
+        <div class="flex-grow-1 text-end mt-3">
+          <p class="text-primary">Biblioteca Corporativa</p>
+        </div>
+      </div>
 
       }
 
@@ -43,6 +44,6 @@
 
 }
 
-<ngx-spinner >
+<ngx-spinner>
   <p class="text-white">Carregando...</p>
 </ngx-spinner>

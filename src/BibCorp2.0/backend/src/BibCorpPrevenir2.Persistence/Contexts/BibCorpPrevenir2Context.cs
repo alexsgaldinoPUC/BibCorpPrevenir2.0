@@ -53,9 +53,13 @@ namespace BibCorpPrevenir2.Persistence.Contexts
             {
                 emprestimo.HasIndex(e => e.AcervoId);
 
-                emprestimo.HasIndex(e => e.PatrimonioId);
 
                 emprestimo.HasIndex(e => e.UserName);
+
+                emprestimo.HasOne(p => p.Patrimonios);
+
+                emprestimo.HasIndex(e => e.PatrimonioId);
+
             });
 
             // Acervos

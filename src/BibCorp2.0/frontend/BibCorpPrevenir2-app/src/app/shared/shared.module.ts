@@ -3,8 +3,10 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { FlexModule } from '@angular/flex-layout';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FlexModule } from '@angular/flex-layout';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
@@ -16,7 +18,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DrawerNavigatorComponent, ModalDeleteComponent, TitleNavigatorComponent } from '.';
+import { AcervoService } from '../services/acervo';
+import { EmprestimoService } from '../services/emprestimo';
+import { PatrimonioService } from '../services/patrimonio';
+import { LoginService, UsuarioService } from '../services/usuario';
 
+import { JwtInterceptor } from '../util/security';
+
+import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatDividerModule } from '@angular/material/divider';
@@ -26,14 +35,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/mat
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LoginService, UsuarioService } from '../services/usuario';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from '../util/security';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { AcervoService } from '../services/acervo';
-import { PatrimonioService } from '../services/patrimonio';
-import { EmprestimoService } from '../services/emprestimo';
 import { RouterModule } from '@angular/router';
 import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
@@ -57,6 +59,7 @@ import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
     ToastrModule.forRoot(),
 
     MatButtonModule,
+    MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
@@ -82,6 +85,7 @@ import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
     ToastrModule,
 
     MatButtonModule,
+    MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,

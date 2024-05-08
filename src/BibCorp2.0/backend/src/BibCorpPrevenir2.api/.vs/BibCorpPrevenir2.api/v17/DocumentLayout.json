@@ -3,10 +3,10 @@
   "WorkspaceRootPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\interfaces\\implementations\\emprestimos\\emprestimopersistence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\contexts\\bibcorpprevenir2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\contexts\\bibcorpprevenir2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\interfaces\\implementations\\emprestimos\\emprestimopersistence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3DC6CAC8-E19A-43C7-9694-C3CC1F6032EB}|..\\BibCorpPrevenir2.Domain\\BibCorpPrevenir2.Domain.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.domain\\models\\emprestimos\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -25,7 +25,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -42,13 +42,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EmprestimoPersistence.cs",
               "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
               "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
               "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
               "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
-              "ViewState": "AQIAAIYAAAAAAAAAAAAUwJ8AAAApAAAA",
+              "ViewState": "AQIAAKIAAAAAAAAAAAA6wJsAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T10:26:06.723Z",
               "EditorCaption": ""
@@ -81,13 +81,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "BibCorpPrevenir2Context.cs",
               "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
               "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
               "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
               "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAA9wAAAAAAAAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T10:21:52.062Z",
               "EditorCaption": ""

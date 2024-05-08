@@ -33,6 +33,10 @@
   color: black;
 }
 
+.mat-drawer-content {
+  min-height: 890px;
+}
+
 .bcp-drawer-icon {
   transform: scale(1.2);
   color: var(--primary-010);
@@ -51,6 +55,14 @@
   max-height:80px;
   width: auto;
   height: auto;
+}
+
+.bcp-imagem-card {
+  max-width:500px;
+  max-height:400px;
+  width: 200px;
+  height: 250px;
+  border-radius: 15px; 
 }
 
 .bcp-logo-principal {
