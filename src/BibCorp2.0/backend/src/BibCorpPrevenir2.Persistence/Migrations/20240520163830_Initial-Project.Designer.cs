@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorpPrevenir2.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpPrevenir2Context))]
-    [Migration("20240506110758_Initial-Identity-3")]
-    partial class InitialIdentity3
+    [Migration("20240520163830_Initial-Project")]
+    partial class InitialProject
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

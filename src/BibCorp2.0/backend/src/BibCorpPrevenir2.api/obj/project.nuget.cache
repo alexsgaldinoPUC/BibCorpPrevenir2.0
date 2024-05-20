@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FLznRfcQnK0=",
+  "dgSpecHash": "dAqJxr9DcEA=",
   "success": true,
-  "projectFilePath": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\BibCorpPrevenir2.api.csproj",
+  "projectFilePath": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\bibcorpprevenir2.api\\BibCorpPrevenir2.api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USUARIO\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BibCorpPrevenir2.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialIdentity : Migration
+    public partial class InitialProject : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -11,3 +11,16 @@ C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\
 C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\refint\BibCorpPrevenir2.Domain.dll
 C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.pdb
 C:\GitHub\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\ref\BibCorpPrevenir2.Domain.dll
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\bin\Debug\net8.0\BibCorpPrevenir2.Domain.deps.json
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\bin\Debug\net8.0\BibCorpPrevenir2.Domain.dll
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\bin\Debug\net8.0\BibCorpPrevenir2.Domain.pdb
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.csproj.AssemblyReference.cache
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.AssemblyInfoInputs.cache
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.AssemblyInfo.cs
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.csproj.CoreCompileInputs.cache
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.sourcelink.json
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.dll
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\refint\BibCorpPrevenir2.Domain.dll
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\BibCorpPrevenir2.Domain.pdb
+D:\BibCorpPrevenir2.0\src\BibCorp2.0\backend\src\BibCorpPrevenir2.Domain\obj\Debug\net8.0\ref\BibCorpPrevenir2.Domain.dll

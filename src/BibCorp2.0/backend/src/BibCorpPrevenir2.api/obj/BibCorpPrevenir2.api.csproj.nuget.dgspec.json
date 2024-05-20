@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\BibCorpPrevenir2.api.csproj": {}
+    "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\bibcorpprevenir2.api\\BibCorpPrevenir2.api.csproj": {}
   },
   "projects": {
-    "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\BibCorpPrevenir2.api.csproj": {
+    "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\bibcorpprevenir2.api\\BibCorpPrevenir2.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\BibCorpPrevenir2.api.csproj",
+        "projectUniqueName": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\bibcorpprevenir2.api\\BibCorpPrevenir2.api.csproj",
         "projectName": "BibCorpPrevenir2.api",
-        "projectPath": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\BibCorpPrevenir2.api.csproj",
+        "projectPath": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\bibcorpprevenir2.api\\BibCorpPrevenir2.api.csproj",
         "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-        "outputPath": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\obj\\",
+        "outputPath": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\bibcorpprevenir2.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
