@@ -1,21 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\",
+  "WorkspaceRootPath": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\contexts\\bibcorpprevenir2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\interfaces\\implementations\\acervos\\acervopersistence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\interfaces\\implementations\\emprestimos\\emprestimopersistence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\interfaces\\contracts\\acervos\\iacervopersistence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3DC6CAC8-E19A-43C7-9694-C3CC1F6032EB}|..\\BibCorpPrevenir2.Domain\\BibCorpPrevenir2.Domain.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.domain\\models\\emprestimos\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5DFC8C73-9552-49E3-B1C3-B6902A6DDB6A}|..\\BibCorpPrevenir2.Application\\BibCorpPrevenir2.Application.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.application\\services\\implements\\acervos\\acervoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3DC6CAC8-E19A-43C7-9694-C3CC1F6032EB}|..\\BibCorpPrevenir2.Domain\\BibCorpPrevenir2.Domain.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.domain\\models\\patrimonios\\patrimonio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5DFC8C73-9552-49E3-B1C3-B6902A6DDB6A}|..\\BibCorpPrevenir2.Application\\BibCorpPrevenir2.Application.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.application\\config\\automapperconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|c:\\github\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\interfaces\\implementations\\acervos\\acervopersistence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\configuration\\classes\\persistenceconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DFC8C73-9552-49E3-B1C3-B6902A6DDB6A}|..\\BibCorpPrevenir2.Application\\BibCorpPrevenir2.Application.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.application\\services\\contracts\\acervos\\iacervoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DFC8C73-9552-49E3-B1C3-B6902A6DDB6A}|..\\BibCorpPrevenir2.Application\\BibCorpPrevenir2.Application.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.application\\dtos\\acervos\\acervodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E741093A-7EEC-4306-BD6E-E5171F30B4F0}|..\\BibCorpPrevenir2.Persistence\\BibCorpPrevenir2.Persistence.csproj|d:\\bibcorpprevenir2.0\\src\\bibcorp2.0\\backend\\src\\bibcorpprevenir2.persistence\\contexts\\bibcorpprevenir2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,71 +34,110 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Patrimonio.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Domain\\Models\\Patrimonios\\Patrimonio.cs",
-              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Domain\\Models\\Patrimonios\\Patrimonio.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Domain\\Models\\Patrimonios\\Patrimonio.cs",
-              "RelativeToolTip": "..\\BibCorpPrevenir2.Domain\\Models\\Patrimonios\\Patrimonio.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "DocumentIndex": 0,
+              "Title": "AcervoPersistence.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T10:28:41.832Z",
+              "WhenOpened": "2024-05-27T22:53:01.365Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmprestimoPersistence.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
-              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
-              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Emprestimos\\EmprestimoPersistence.cs",
-              "ViewState": "AQIAAKIAAAAAAAAAAAA6wJsAAAAeAAAA",
+              "DocumentIndex": 3,
+              "Title": "AutoMapperConfig.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Config\\AutoMapperConfig.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Application\\Config\\AutoMapperConfig.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Config\\AutoMapperConfig.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Application\\Config\\AutoMapperConfig.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABsAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T10:26:06.723Z",
+              "WhenOpened": "2024-05-27T22:48:15.758Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "AcervoPersistence.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Implementations\\Acervos\\AcervoPersistence.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Title": "PersistenceConfiguration.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Configuration\\Classes\\PersistenceConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Configuration\\Classes\\PersistenceConfiguration.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Configuration\\Classes\\PersistenceConfiguration.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Configuration\\Classes\\PersistenceConfiguration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T10:26:02.323Z",
+              "WhenOpened": "2024-05-27T22:47:53.412Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Emprestimo.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Domain\\Models\\Emprestimos\\Emprestimo.cs",
-              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Domain\\Models\\Emprestimos\\Emprestimo.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Domain\\Models\\Emprestimos\\Emprestimo.cs",
-              "RelativeToolTip": "..\\BibCorpPrevenir2.Domain\\Models\\Emprestimos\\Emprestimo.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAA1wBgAAAAmAAAA",
+              "Title": "AcervoService.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Services\\Implements\\Acervos\\AcervoService.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Application\\Services\\Implements\\Acervos\\AcervoService.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Services\\Implements\\Acervos\\AcervoService.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Application\\Services\\Implements\\Acervos\\AcervoService.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAwwEwAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T10:22:12.042Z",
+              "WhenOpened": "2024-05-27T22:47:11.591Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BibCorpPrevenir2Context.cs",
-              "DocumentMoniker": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
-              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
-              "ToolTip": "C:\\GitHub\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
-              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAADsAAAAAAAAA",
+              "DocumentIndex": 5,
+              "Title": "IAcervoService.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Services\\Contracts\\Acervos\\IAcervoService.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Application\\Services\\Contracts\\Acervos\\IAcervoService.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Services\\Contracts\\Acervos\\IAcervoService.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Application\\Services\\Contracts\\Acervos\\IAcervoService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T10:21:52.062Z",
+              "WhenOpened": "2024-05-27T22:46:50.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AcervoDto.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Dtos\\Acervos\\AcervoDto.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Application\\Dtos\\Acervos\\AcervoDto.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Application\\Dtos\\Acervos\\AcervoDto.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Application\\Dtos\\Acervos\\AcervoDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T22:44:00.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IAcervoPersistence.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Contracts\\Acervos\\IAcervoPersistence.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Contracts\\Acervos\\IAcervoPersistence.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Interfaces\\Contracts\\Acervos\\IAcervoPersistence.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Interfaces\\Contracts\\Acervos\\IAcervoPersistence.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T22:43:26.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BibCorpPrevenir2Context.cs",
+              "DocumentMoniker": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
+              "RelativeDocumentMoniker": "..\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
+              "ToolTip": "D:\\BibCorpPrevenir2.0\\src\\BibCorp2.0\\backend\\src\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
+              "RelativeToolTip": "..\\BibCorpPrevenir2.Persistence\\Contexts\\BibCorpPrevenir2Context.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABUAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T22:43:01.029Z",
               "EditorCaption": ""
             }
           ]

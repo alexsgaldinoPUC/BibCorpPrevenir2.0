@@ -17,7 +17,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { DrawerNavigatorComponent, ModalDeleteComponent, TitleNavigatorComponent } from '.';
+import {
+  DrawerNavigatorComponent,
+  ModalDeleteComponent,
+  TitleNavigatorComponent,
+} from '.';
 import { AcervoService } from '../services/acervo';
 import { EmprestimoService } from '../services/emprestimo';
 import { PatrimonioService } from '../services/patrimonio';
@@ -27,24 +31,29 @@ import { JwtInterceptor } from '../util/security';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import {
+  MAT_DATE_LOCALE,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
-
-
-
 @NgModule({
   declarations: [
-    DrawerNavigatorComponent, TitleNavigatorComponent, ModalDeleteComponent
+    DrawerNavigatorComponent,
+    TitleNavigatorComponent,
+    ModalDeleteComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -54,9 +63,15 @@ import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
     FlexModule,
     NgbModule,
     NgxMaskDirective,
-    NgxSpinnerModule.forRoot({ type: "square-jelly-box"}),
+    NgxSpinnerModule.forRoot({ type: 'square-jelly-box' }),
     RouterModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
 
     MatButtonModule,
     MatCardModule,
@@ -71,7 +86,6 @@ import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
     MatSelectModule,
     MatSidenavModule,
     MatTooltipModule,
-
   ],
   exports: [
     AppRoutingModule,
@@ -100,7 +114,7 @@ import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
     DrawerNavigatorComponent,
     ModalDeleteComponent,
-    TitleNavigatorComponent
+    TitleNavigatorComponent,
   ],
   providers: [
     AcervoService,
@@ -110,14 +124,16 @@ import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
     UsuarioService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline', color: 'primary' }},
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline', color: 'primary' },
+    },
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
 
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
-    provideEnvironmentNgxMask()
+    provideEnvironmentNgxMask(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-
 })
-export class SharedModule { }
+export class SharedModule {}
