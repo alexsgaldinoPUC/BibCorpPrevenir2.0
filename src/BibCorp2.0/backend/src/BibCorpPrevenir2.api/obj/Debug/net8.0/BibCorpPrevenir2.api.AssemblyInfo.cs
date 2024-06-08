@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BibCorpPrevenir2.api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3d42a46de5a8ba05ccb4a7012146de96ff95acf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2db59bf410438364ffbf51b446b5c3735f715a5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BibCorpPrevenir2.api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BibCorpPrevenir2.api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

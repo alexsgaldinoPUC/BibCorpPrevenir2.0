@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, inject } from "@angular/core";
 import { Acervo } from "../../../shared/models/interfaces/acervo";
 import { EmprestimoModalEmprestarComponent } from "../../emprestimos";
 import { MatDialog } from "@angular/material/dialog";
@@ -9,12 +9,15 @@ import { ToastrService } from "ngx-toastr";
 import { UsuarioService } from "../../../services/usuario";
 import { Usuario } from "../../../shared/models/interfaces/usuario";
 import { environment } from "../../../../assets/environments";
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: "app-acervo-detalhe",
   templateUrl: "./acervo-detalhe.component.html"
+
 })
-export class AcervoDetalheComponent {
+export class AcervoDetalheComponent implements OnInit {
   #acervoService = inject(AcervoService);
   #activevateRouter = inject(ActivatedRoute);
   #dialogRef = inject(MatDialog);
@@ -22,6 +25,13 @@ export class AcervoDetalheComponent {
   #spinnerService = inject(NgxSpinnerService);
   #toastrService = inject(ToastrService);
   #usuarioService = inject(UsuarioService);
+  #snackBar = inject(MatSnackBar);
+  @Input('rating') public rating: number = 2;
+  @Input('starCount') public starCount: number = 5;
+  @Input('color') public color: string = 'primary';
+  @Output() public ratingUpdated = new EventEmitter();
+  public snackBarDuration: number = 2000;
+  public ratingArr:number[] = [] as number[] ;
 
   public acervo = {} as Acervo;
   public usuarioAtivo = {} as Usuario;
@@ -45,6 +55,9 @@ export class AcervoDetalheComponent {
 
   public ngOnInit(): void {
     this.acervoParam = this.#activevateRouter.snapshot.paramMap.get("id");
+    for (let i = 0; i < this.starCount; i++) {
+      this.ratingArr.push(i);
+    }
 
     this.getUserAtivo();
     this.getAcervoById();
@@ -123,4 +136,29 @@ export class AcervoDetalheComponent {
     else this.disabledReservar = false;
     return _status ? "Indisponível" : "Disponível";
   }
+
+  showIcon(index:number) {
+    if (this.rating >= index + 1) {
+      return 'star';
+    } else {
+      return 'star_border';
+    }
+  }
+  onClick(rating:number) {
+    console.log(rating)
+    this.#snackBar.open('Sua avaliação ' + rating + ' / ' + this.starCount, '', {
+      duration: this.snackBarDuration
+    });
+    this.rating = rating;
+    this.ratingUpdated.emit(rating);
+    return false;
+  }
+
 }
+
+export enum StarRatingColor {
+  primary = "primary",
+  accent = "accent",
+  warn = "warn"
+}
+

@@ -77,6 +77,24 @@
 <div class="container-fluid mt-4 me-4">
   <form class="card mb-4  mat-elevation-z8 p-2">
     <h2 class="border-bottom">Comentários</h2>
+
+    <div class="container">
+
+
+      @for (ratingId of ratingArr; track ratingArr; let i = $index) {
+      <button mat-icon-button [color]="color" [id]="'star_'+i" (click)="onClick(i+1)" 
+        matTooltipPosition="above">
+        <mat-icon>
+          {{showIcon(i)}}
+        </mat-icon>
+      </button>
+
+      }
+      <p class="body-2">
+        Sua avaliação: <span class="body-2">{{rating}}</span> / <span class="body-2">{{starCount}}</span>
+      </p>
+    </div>
+
     <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
       <div class="d-flex flex-start w-100">
         <img class="rounded-circle shadow-1-strong me-3" [src]="fotoURL" alt="avatar" width="40" height="40" />

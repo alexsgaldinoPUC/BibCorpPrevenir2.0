@@ -6,7 +6,7 @@
           <div class="card-header bcp-bg-secondary align-items-center text-center p-1">
             <input type="file" #file (change)="changePhoto($event)" class="d-none">
             <div class="">
-              <img class="rounded-circle" [src]="fotoURL" (click)="file.click()" alt="Foto do perfil">
+              <img class="rounded-circle bcp-avatar-perfil" [src]="fotoURL" (click)="file.click()" alt="Foto do perfil">
               <div class="h5 text-center text-white">
                 {{usuario.email}}
               </div>
